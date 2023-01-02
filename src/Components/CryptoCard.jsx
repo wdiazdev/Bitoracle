@@ -1,4 +1,4 @@
-import React from 'react'
+import { formatCurrency } from '../Utilities/FormatCurrency'
 
 export default function CryptoCard({ image, name, symbol, price }) {
     return (
@@ -9,7 +9,7 @@ export default function CryptoCard({ image, name, symbol, price }) {
             <div className='card--info'>
                 <h2>{name}</h2>
                 <span>{symbol}</span>
-                <span>{price}</span>
+                <span>{formatCurrency(price)}</span>
             </div>
         </div>
     )
