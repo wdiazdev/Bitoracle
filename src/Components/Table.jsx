@@ -1,5 +1,5 @@
 import React from 'react'
-import { formatCurrency } from '../Utilities/FormatCurrency'
+import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency'
 import '../Styles/Table.css';
 
 export default function Table({ cryptoData }) {
@@ -22,13 +22,25 @@ export default function Table({ cryptoData }) {
                 {cryptoData.map((coin, index) => {
                     return (
                         <tbody>
-                            <tr>
-                                <td>Rank</td>
-                                <td></td>
-                                <td>Price</td>
-                                <td>24h</td>
-                                <td>Market cap</td>
-                                <td>Supply</td>
+                            <tr key={index}>
+
+                                <td>{coin.market_cap_rank}</td>
+
+                                <td className='coin--name--img'>
+                                    <img src={coin.image} alt={coin.name} />
+                                    {coin.name}
+
+
+                                </td>
+
+                                <td>{formatCurrency(coin.current_price.toFixed(2))}</td>
+
+                                <td>{coin.price_change_percentage_24h}</td>
+
+                                <td>{numberWithCommas(coin.market_cap.toFixed(0))}</td>
+
+                                <td>{numberWithCommas(coin.circulating_supply.toFixed(0))}</td>
+
                             </tr>
                         </tbody>
 

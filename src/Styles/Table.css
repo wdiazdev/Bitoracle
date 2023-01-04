@@ -26,3 +26,13 @@ th {
 td {
     background-color: rgb(205, 235, 253);
 }
+
+img {
+    width: 50px;
+}
+
+.coin--name--img {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
