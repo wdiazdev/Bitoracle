@@ -15,6 +15,7 @@ html {
 body {
   background: var(--primary--bg--color);
   font-family: var(--primary--font);
+  color: #fff;
 }
 
 :root {
