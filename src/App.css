@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,4 +10,15 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background: var(--primary--bg--color);
+  font-family: var(--primary--font);
+}
+
+:root {
+  --primary--color: #04D4F0;
+  --primary--bg--color: #141414;
+  --primary--font: 'Montserrat', sans-serif;
 }
