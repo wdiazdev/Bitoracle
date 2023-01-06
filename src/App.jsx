@@ -1,14 +1,11 @@
 import './App.css'
-import CryptoData from './Section/CryptoData';
-import Main from './Section/Main';
+import Main from './Pages/Main';
 
 function App() {
-
 
   return (
     <div className="App">
       <Main />
-      <CryptoData />
     </div>
   )
 }

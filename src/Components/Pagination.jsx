@@ -1,4 +1,4 @@
-import '../Styles/Table.css';
+import '../Styles/Pagination.css';
 
 const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage, currentPage }) => {
     let pages = [];

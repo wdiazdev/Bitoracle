@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import Table from '../Components/Table';
-import Pagination from '../Components/Pagination';
+import Table from './Table';
+import Pagination from './Pagination';
 
 export default function CryptoData() {
 
@@ -9,14 +9,14 @@ export default function CryptoData() {
 
     const [currentPage, setCurrentPage] = useState(1);
 
-    const [coinsPerPage, setCoinsPerPage] = useState(10);
+    const [coinsPerPage, setCoinsPerPage] = useState(25);
 
     const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
 
     const fetchCryptoData = () => {
         axios.get(url)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setCryptoData(res.data)
             }).catch(err => {
                 console.log(err)
@@ -35,7 +35,9 @@ export default function CryptoData() {
 
     return (
         <div>
-            <Table cryptoData={currentCoinPage} />
+            <Table cryptoData={currentCoinPage}
+                setCoinsPerPage={setCoinsPerPage}
+            />
             <Pagination
                 totalCoins={cryptoData.length}
                 coinsPerPage={coinsPerPage}
