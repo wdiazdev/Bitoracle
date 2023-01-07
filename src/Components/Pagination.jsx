@@ -1,6 +1,6 @@
 import '../Styles/Pagination.css';
 
-const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage, loading }) => {
+const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage }) => {
     let pages = [];
 
     for (let i = 1; i <= Math.ceil(totalCoins / coinsPerPage); i++) {
@@ -9,11 +9,7 @@ const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage, loading }) => {
 
     return (
         <div className='pagination'>
-            {loading
-                ?
-                <h2>Loading...</h2>
-                :
-
+            {
                 pages.map((page, index) => {
                     return (
                         <button
