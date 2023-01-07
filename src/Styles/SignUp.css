@@ -22,14 +22,14 @@
     padding: 2rem;
 }
 
-.signin--input--container {
+.signup--input--container {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
 }
 
-.signin--input--container input {
+.signup--input--container input {
     padding: 1rem;
     outline: none;
     background: transparent;
@@ -39,7 +39,7 @@
     border: 1px solid #333;
 }
 
-.login--btn {
+.signup--btn {
     width: 100%;
     padding: 1rem;
     color: #111;
@@ -53,8 +53,13 @@
     text-transform: uppercase;
 }
 
-.login--btn:hover {
+.signup--btn:hover {
     box-shadow: 0 0 10px #ffffff;
     background: transparent;
     color: var(--primary--color);
+}
+
+.signup--error {
+    padding: 0.8rem;
+    color: #F96666;
 }
