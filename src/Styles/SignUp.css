@@ -1,0 +1,60 @@
+.signup {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url('/src/assets/secondarybg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    border: 1px solid #333;
+    box-shadow: rgba(0, 0, 0, 0.6) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    padding: 2rem;
+}
+
+.signin--input--container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.signin--input--container input {
+    padding: 1rem;
+    outline: none;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.login--btn {
+    width: 100%;
+    padding: 1rem;
+    color: #111;
+    background: #ffffff;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+    border: none;
+    text-transform: uppercase;
+}
+
+.login--btn:hover {
+    box-shadow: 0 0 10px #ffffff;
+    background: transparent;
+    color: var(--primary--color);
+}
