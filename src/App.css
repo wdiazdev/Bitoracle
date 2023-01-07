@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 * {
@@ -20,8 +20,8 @@ body {
 }
 
 :root {
-  --primary--color: #04D4F0;
+  --primary--color: #0995e0;
   --primary--bg--color: #141414;
-  --primary--font: 'Montserrat', sans-serif;
+  --primary--font: 'Poppins', sans-serif;
   --secondary--font: 'Bebas Neue', cursive, sans-serif;
 }

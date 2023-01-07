@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import '../Styles/CryptoData.css';
 import axios from 'axios';
 import Table from './Table';
 import Pagination from './Pagination';
@@ -37,7 +38,7 @@ export default function CryptoData() {
     const currentCoinPage = cryptoData.slice(firstPageIndex, lastPageIndex)
 
     return (
-        <div>
+        <div className='crypto--data'>
             <SearchInput
                 search={search}
                 setSearch={setSearch}
