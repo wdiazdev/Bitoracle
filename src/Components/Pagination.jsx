@@ -1,6 +1,6 @@
 import '../Styles/Pagination.css';
 
-const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage, currentPage }) => {
+const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage, loading }) => {
     let pages = [];
 
     for (let i = 1; i <= Math.ceil(totalCoins / coinsPerPage); i++) {
@@ -9,19 +9,24 @@ const Pagination = ({ coinsPerPage, totalCoins, setCurrentPage, currentPage }) =
 
     return (
         <div className='pagination'>
-            {pages.map((page, index) => {
-                return (
-                    <button
-                        key={index}
-                        onClick={() => setCurrentPage(page)}
-                        className={page === currentPage ? 'active' : ''}
-                    >
-                        {page}
-                    </button>
-                )
-            })}
+            {loading
+                ?
+                <h2>Loading...</h2>
+                :
+
+                pages.map((page, index) => {
+                    return (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentPage(page)}
+                        >
+                            {page}
+                        </button>
+                    )
+                })
+            }
         </div>
     )
 }
 
-export default Pagination
+export default Pagination;
