@@ -16,9 +16,9 @@ export const AuthContextProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    // const signIn = (email, password) => {
-    //     return signInWithEmailAndPassword(auth, email, password)
-    // }
+    const signIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
 
     const logout = () => {
         return signOut(auth)
@@ -38,6 +38,7 @@ export const AuthContextProvider = ({ children }) => {
             value={{
                 createUser,
                 logout,
+                signIn,
                 user
             }}>
             {children}

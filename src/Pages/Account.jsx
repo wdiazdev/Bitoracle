@@ -3,7 +3,7 @@ import '../Styles/Account.css';
 import { useNavigate } from 'react-router-dom';
 
 
-const Account = () => {
+export const Account = () => {
 
     const { user, logout } = UserAuth();
 
@@ -31,4 +31,4 @@ const Account = () => {
     )
 }
 
-export default Account;
+

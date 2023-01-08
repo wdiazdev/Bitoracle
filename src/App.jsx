@@ -2,8 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css'
 import { NavBar } from './Components/NavBar';
 import { SignUp } from './Pages/SignUp';
-import Main from './Pages/Main';
-import Account from './Pages/Account';
+import { Account } from './Pages/Account';
+import { SignIn } from './Pages/SignIn';
+import { Home } from './Pages/Home';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
 
@@ -14,9 +16,16 @@ function App() {
 
       <Routes>
 
-        <Route index path='/' element={<Main />} />
+        <Route index path='/' element={<Home />} />
+        <Route index path='/signin' element={<SignIn />} />
         <Route index path='/signup' element={<SignUp />} />
-        <Route index path='/account' element={<Account />} />
+        //! protected route
+        <Route index path='/account' element={
+          <ProtectedRoute>
+            <Account />
+          </ProtectedRoute>
+        } />
+
         <Route path='*' element={<p className='error'>404! Page not found!</p>} />
 
       </Routes>

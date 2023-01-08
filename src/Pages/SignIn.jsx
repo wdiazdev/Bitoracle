@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react';
-import '../Styles/SignUp.css';
+import React, { useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../Context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
 
-export const SignUp = () => {
+export const SignIn = () => {
 
     const [error, setError] = useState();
 
@@ -11,31 +10,26 @@ export const SignUp = () => {
 
     const passwordRef = useRef();
 
-    const passwordConfirmRef = useRef();
-
-    const { createUser } = UserAuth();
+    const { signIn } = UserAuth();
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError('Passwords do not match')
-        }
         try {
             setError('')
-            await createUser(emailRef.current.value, passwordRef.current.value)
+            await signIn(emailRef.current.value, passwordRef.current.value)
             console.log('Signed Up Successfully')
             navigate('/account')
         } catch {
-            setError('Failed to sign up')
+            setError('Unable to login')
         }
     };
 
     return (
         <div className='signup'>
 
-            <h2>Sign up</h2>
+            <h2>Sign In</h2>
 
             <form
                 className='form'
@@ -60,15 +54,6 @@ export const SignUp = () => {
                         required />
                 </div>
 
-                <div className='signup--input--container'>
-                    <label htmlFor='confirmpassword'>Confirm Password</label>
-                    <input
-                        type='password'
-                        id='confirmpassword'
-                        ref={passwordConfirmRef}
-                        required />
-                </div>
-
                 <button
                     type='submit'
                     className='signup--btn'
@@ -80,8 +65,10 @@ export const SignUp = () => {
 
             </form>
 
-            <div>Already have an account?<Link to='/signin'>Sign In</Link></div>
+            <div>Don't have an account?<Link to='/signup'>Sign Up</Link></div>
 
         </div>
     )
 }
+
+

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoData from '../Components/CryptoData';
-import '../Styles/Main.css';
+import '../Styles/Home.css';
 import { formatCurrency } from '../Utilities/FormatCurrency';
 
-export default function Main() {
-
+export const Home = () => {
 
     const [singleCoin, setSingleCoin] = useState([]);
 
@@ -34,7 +33,7 @@ export default function Main() {
 
                     <div className='main--hero'>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita unde at repellat. Tempore eum dicta consequatur, ut fuga inventore cumque esse, quisquam, similique quia excepturi labore pariatur harum assumenda voluptates!</p>
-                        <button className='btn'>Explore</button>
+                        <button to='signup' className='btn'>Sign Up</button>
                     </div>
                 </div>
 
@@ -75,4 +74,4 @@ export default function Main() {
             <CryptoData />
         </div>
     )
-}
+};

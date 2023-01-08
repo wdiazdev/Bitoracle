@@ -14,7 +14,7 @@ export const NavBar = () => {
             <h3>BITORACLE</h3>
             <div className={click ? 'nav--menu active' : 'nav--menu'}>
                 <a onClick={handleClick} className='focus-in-expand' href='#'>Home</a>
-                <Link to='/signup'><button id='signup--btn'>Sign Up</button></Link>
+                <Link to='/signin'><button id='signup--btn'>Sign In</button></Link>
             </div>
             <div className='hamburger--menu' onClick={handleClick}>
                 {click ? (<FaTimes size={35} />) : (<FaBars size={35} />)}
