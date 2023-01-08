@@ -10,6 +10,13 @@
     background-size: cover;
 }
 
+.signup h2 {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #00FFFF 0%, #d40071 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .form {
     width: 400px;
     display: flex;
@@ -43,7 +50,7 @@
     width: 100%;
     padding: 1rem;
     color: #111;
-    background: #ffffff;
+    background: var(--primary--color);
     font-size: 1.2rem;
     border-radius: 10px;
     cursor: pointer;
@@ -61,5 +68,16 @@
 
 .signup--error {
     padding: 0.8rem;
-    color: #F96666;
+    color: #DC0000;
+    text-align: center;
+}
+
+.reset--pass--msg {
+    padding: 0.8rem;
+    color: #7CFC00;
+    text-align: center;
+}
+
+a {
+    color: var(--primary--color);
 }

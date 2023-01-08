@@ -28,7 +28,7 @@ export const SignUp = () => {
             console.log('Signed Up Successfully')
             navigate('/account')
         } catch (e) {
-            setError('Failed to sign up')
+            setError('Failed to create an account')
             console.log(e.message)
         }
     };
@@ -81,7 +81,7 @@ export const SignUp = () => {
 
             </form>
 
-            <div>Already have an account?<Link to='/signin'>Sign In</Link></div>
+            <div>Already have an account?<Link to='/signin'> Sign In</Link></div>
 
         </div>
     )

@@ -12,8 +12,9 @@
 }
 
 .main--info {
+    /* position: fixed; */
     max-width: 1240px;
-    height: 500px;
+    height: 550px;
     padding: 2rem;
     display: flex;
     align-items: center;
@@ -55,8 +56,8 @@
 
 .coins--container {
     position: absolute;
-    bottom: 4rem;
-    right: 6rem;
+    bottom: 2rem;
+    right: 4rem;
     width: 600px;
     height: 100px;
     gap: 2rem;

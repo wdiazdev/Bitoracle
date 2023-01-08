@@ -11,14 +11,14 @@ export const NavBar = () => {
 
     return (
         <nav className='navbar--container'>
-            <h3>BITORACLE</h3>
+            <Link to='/'><h3>BITORACLE</h3></Link>
             <div className={click ? 'nav--menu active' : 'nav--menu'}>
                 <a onClick={handleClick} className='focus-in-expand' href='#'>Home</a>
-                <Link to='/signin'><button id='signup--btn'>Sign In</button></Link>
+                <Link to='/signin'><button id='signup--btn'>Log in</button></Link>
             </div>
             <div className='hamburger--menu' onClick={handleClick}>
                 {click ? (<FaTimes size={35} />) : (<FaBars size={35} />)}
             </div>
         </nav >
     )
-}
+};

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 2.5rem;
+    padding: 2rem 4rem;
     z-index: 1000;
 }
 
@@ -21,8 +21,9 @@
 .nav--menu {
     width: 30%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
+    gap: 4rem;
 }
 
 .nav--menu a {

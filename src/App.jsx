@@ -6,6 +6,7 @@ import { Account } from './Pages/Account';
 import { SignIn } from './Pages/SignIn';
 import { Home } from './Pages/Home';
 import ProtectedRoute from './Components/ProtectedRoute';
+import { ForgotPassword } from './Pages/ForgotPassword';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route index path='/' element={<Home />} />
         <Route index path='/signin' element={<SignIn />} />
         <Route index path='/signup' element={<SignUp />} />
+        <Route index path='/forgot-password' element={<ForgotPassword />} />
         //! protected route
         <Route index path='/account' element={
           <ProtectedRoute>
@@ -26,7 +28,10 @@ function App() {
           </ProtectedRoute>
         } />
 
-        <Route path='*' element={<p className='error'>404! Page not found!</p>} />
+        <Route
+          path='*'
+          element={<p className='error'>404! Page not found!</p>}
+        />
 
       </Routes>
 

@@ -1,28 +1,25 @@
 import React, { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
 
-export const SignIn = () => {
+export const ForgotPassword = () => {
 
     const [error, setError] = useState();
 
+    const [message, setMessage] = useState();
+
     const emailRef = useRef();
 
-    const passwordRef = useRef();
-
-    const { signIn } = UserAuth();
-
-    const navigate = useNavigate();
+    const { resetPassword } = UserAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             setError('')
-            await signIn(emailRef.current.value, passwordRef.current.value)
-            console.log('Signed Up Successfully')
-            navigate('/account')
+            await resetPassword(emailRef.current.value)
+            setMessage('Check your inbox for further instructions')
         } catch (e) {
-            setError('Unable to login')
+            setError('Failed to reset password')
             console.log(e.message)
         }
     };
@@ -30,13 +27,14 @@ export const SignIn = () => {
     return (
         <div className='signup'>
 
-            <h2>Log In</h2>
+            <h2>Reset Password</h2>
 
             <form
                 className='form'
                 onSubmit={handleSubmit}
             >
                 {error && <p className='signup--error'>{error}</p>}
+                {message && <p className='reset--pass--msg'>{message}</p>}
 
                 <div className='signup--input--container'>
                     <label htmlFor='email'>Email</label>
@@ -47,23 +45,14 @@ export const SignIn = () => {
                         required />
                 </div>
 
-                <div className='signup--input--container'>
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        type='password'
-                        id='password'
-                        ref={passwordRef}
-                        required />
-                </div>
-
                 <button
                     type='submit'
                     className='signup--btn'
                 >
-                    Log In
+                    Reset Password
                 </button>
 
-                <Link to='/forgot-password'>Forgot Password?</Link>
+                <Link to='/signin'>Log in</Link>
             </form>
 
             <div>Don't have an account?<Link to='/signup'> Sign Up</Link></div>
@@ -71,5 +60,3 @@ export const SignIn = () => {
         </div>
     )
 }
-
-

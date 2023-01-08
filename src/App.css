@@ -25,3 +25,11 @@ body {
   --primary--font: 'Poppins', sans-serif;
   --secondary--font: 'Bebas Neue', cursive, sans-serif;
 }
+
+.error {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
