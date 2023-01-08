@@ -1,22 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
-import { NavBar } from './Components/NavBar';
 import { SignUp } from './Pages/SignUp';
-import { Account } from './Pages/Account';
+import { Dashboard } from './Pages/Dashboard';
 import { SignIn } from './Pages/SignIn';
 import { Home } from './Pages/Home';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { ForgotPassword } from './Pages/ForgotPassword';
+import { NavBar } from './Components/NavBar';
 
 function App() {
 
   return (
     <div className="App">
-
       <NavBar />
-
       <Routes>
-
         <Route index path='/' element={<Home />} />
         <Route index path='/signin' element={<SignIn />} />
         <Route index path='/signup' element={<SignUp />} />
@@ -24,17 +21,14 @@ function App() {
         //! protected route
         <Route index path='/account' element={
           <ProtectedRoute>
-            <Account />
+            <Dashboard />
           </ProtectedRoute>
         } />
-
         <Route
           path='*'
           element={<p className='error'>404! Page not found!</p>}
         />
-
       </Routes>
-
     </div>
   )
 }

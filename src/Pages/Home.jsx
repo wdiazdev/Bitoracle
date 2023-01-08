@@ -3,6 +3,7 @@ import axios from 'axios';
 import CryptoData from '../Components/CryptoData';
 import '../Styles/Home.css';
 import { formatCurrency } from '../Utilities/FormatCurrency';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
 
@@ -33,7 +34,7 @@ export const Home = () => {
 
                     <div className='main--hero'>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita unde at repellat. Tempore eum dicta consequatur, ut fuga inventore cumque esse, quisquam, similique quia excepturi labore pariatur harum assumenda voluptates!</p>
-                        <button to='signup' className='btn'>Sign Up</button>
+                        <Link to='/signin'><button className='login--btn'>Log in</button></Link>
                     </div>
                 </div>
 

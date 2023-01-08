@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 4rem;
+    padding: 1rem 4rem;
     z-index: 1000;
 }
 
@@ -38,21 +38,23 @@
     transition: 0.3s ease-in;
 }
 
-#signup--btn {
-    font-size: 1.2rem;
-    padding: 0.5rem 1.2rem;
-    border: 1px solid #fff;
+.login--btn {
+    color: #FFF;
+    border: 1px solid #FFF;
     border-radius: 10px;
-    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 2rem;
+    transition: 0.3s ease-in;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: #111;
-    transition: 0.3s;
+    letter-spacing: 2px;
 }
 
-#signup--btn:hover {
+.login--btn:hover {
     color: var(--primary--color);
-    background: transparent;
-    border: 1px solid #fff;
+    border: 1px solid var(--primary--color);
+    box-shadow: 0 0 10px #ffffff;
 }
 
 .nav--menu a:nth-child(1) {

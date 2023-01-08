@@ -1,10 +1,10 @@
 import { UserAuth } from '../Context/AuthContext';
-import '../Styles/Account.css';
+import '../Styles/Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 
-export const Account = () => {
+export const Dashboard = () => {
 
     const [error, setError] = useState();
 
@@ -25,14 +25,23 @@ export const Account = () => {
     }
 
     return (
-        <div className='account'>
-            <h1>Account page</h1>
-            <p>User Email: {user && user.email}</p>
-            <button
-                className='logout--btn'
-                onClick={handleLogout}
-            >Logout</button>
-            {error && <p className='signup--error'>{error}</p>}
+        <div className='dashboard'>
+
+            <div className='dash--container'>
+
+                <h2>Dashboard</h2>
+
+                <div className='dash--nav'>
+
+                    <p>Welcome: {user && user.email}</p>
+                    <button
+                        className='dash--btn'
+                        onClick={handleLogout}
+                    >Logout</button>
+
+                    {error && <p className='signup--error'>{error}</p>}
+                </div>
+            </div>
         </div>
     )
 }
