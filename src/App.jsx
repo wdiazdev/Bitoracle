@@ -3,6 +3,7 @@ import './App.css'
 import { NavBar } from './Components/NavBar';
 import { SignUp } from './Pages/SignUp';
 import Main from './Pages/Main';
+import Account from './Pages/Account';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
 
         <Route index path='/' element={<Main />} />
         <Route index path='/signup' element={<SignUp />} />
+        <Route index path='/account' element={<Account />} />
         <Route path='*' element={<p className='error'>404! Page not found!</p>} />
 
       </Routes>

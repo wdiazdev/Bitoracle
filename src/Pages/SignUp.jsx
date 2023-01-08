@@ -1,12 +1,11 @@
 import { useRef, useState } from 'react';
 import '../Styles/SignUp.css';
-import { useAuth } from '../Context/AuthContext';
+import { UserAuth } from '../Context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const SignUp = () => {
 
-    const [error, setError] = useState('');
-
-    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
 
     const emailRef = useRef();
 
@@ -14,24 +13,23 @@ export const SignUp = () => {
 
     const passwordConfirmRef = useRef();
 
-    const { signUp } = useAuth();
+    const { createUser } = UserAuth();
 
-    async function handleSubmit(e) {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (passwordRef.current.value !==
-            passwordConfirmRef.current.value) {
+        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Passwords do not match')
         }
-
         try {
-            setLoading(true);
             setError('')
-            await signUp(emailRef.current.value, passwordRef.current.value)
+            await createUser(emailRef.current.value, passwordRef.current.value)
+            console.log('Signed Up Successfully')
+            navigate('/account')
         } catch {
             setError('Failed to sign up')
         }
-        setLoading(false)
     };
 
     return (
@@ -74,7 +72,6 @@ export const SignUp = () => {
                 <button
                     type='submit'
                     className='signup--btn'
-                    disabled={loading}
                 >
                     Sign up
                 </button>
@@ -83,7 +80,7 @@ export const SignUp = () => {
 
             </form>
 
-            <div>Already have an account? Log In</div>
+            <div>Already have an account?<Link to='/account'>Log In</Link></div>
 
         </div>
     )

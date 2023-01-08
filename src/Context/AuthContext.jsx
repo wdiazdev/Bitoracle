@@ -1,46 +1,50 @@
-import React, { useContext, useState, useEffect } from "react"
+import { createContext, useContext, useEffect, useState } from 'react';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+} from 'firebase/auth';
 import { auth } from '../firebase';
 
-const AuthContext = React.createContext()
-
-export function useAuth() {
-    return useContext(AuthContext)
-}
+const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+    const [user, setUser] = useState({});
 
-    const [currentUser, setCurrentUser] = useState()
-
-    const [loading, setLoading] = useState(true)
-
-    function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password)
-    }
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password);
+    };
 
     // const signIn = (email, password) => {
     //     return signInWithEmailAndPassword(auth, email, password)
     // }
 
-    // const logout = () => {
-    //     return signOut(auth)
-    // }
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            setCurrentUser(user)
-            setLoading(false)
-        })
-
-        return unsubscribe
-    }, [])
-
-    const value = {
-        currentUser
+    const logout = () => {
+        return signOut(auth)
     }
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
     return (
-        <AuthContext.Provider value={value}>
-            {!loading && children}
-        </AuthContext.Provider>
+        <UserContext.Provider
+            value={{
+                createUser,
+                logout,
+                user
+            }}>
+            {children}
+        </UserContext.Provider>
     );
+};
+
+export const UserAuth = () => {
+    return useContext(UserContext);
 };
