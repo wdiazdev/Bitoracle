@@ -27,8 +27,9 @@ export const SignUp = () => {
             await createUser(emailRef.current.value, passwordRef.current.value)
             console.log('Signed Up Successfully')
             navigate('/account')
-        } catch {
+        } catch (e) {
             setError('Failed to sign up')
+            console.log(e.message)
         }
     };
 

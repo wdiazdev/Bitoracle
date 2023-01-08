@@ -21,8 +21,9 @@ export const SignIn = () => {
             await signIn(emailRef.current.value, passwordRef.current.value)
             console.log('Signed Up Successfully')
             navigate('/account')
-        } catch {
+        } catch (e) {
             setError('Unable to login')
+            console.log(e.message)
         }
     };
 
