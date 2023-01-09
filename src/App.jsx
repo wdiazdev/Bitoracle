@@ -1,15 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
+import { NavBar } from './Components/NavBar';
 import { SignUp } from './Pages/SignUp';
 import { Dashboard } from './Pages/Dashboard';
 import { SignIn } from './Pages/SignIn';
 import { Home } from './Pages/Home';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { ForgotPassword } from './Pages/ForgotPassword';
-import { NavBar } from './Components/NavBar';
 
 function App() {
-
   return (
     <div className="App">
       <NavBar />
