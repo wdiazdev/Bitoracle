@@ -31,12 +31,12 @@ export const SignIn = () => {
     return (
         <div className='signup'>
 
-            <h2>Log In</h2>
-
             <form
                 className='form'
                 onSubmit={handleSubmit}
             >
+                <h2>Log In</h2>
+
                 {error && <p className='signup--error'>{error}</p>}
 
                 <div className='signup--input--container'>

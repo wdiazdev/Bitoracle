@@ -27,13 +27,15 @@ export const ForgotPassword = () => {
     return (
         <div className='signup'>
 
-            <h2>Reset Password</h2>
-
             <form
                 className='form'
                 onSubmit={handleSubmit}
             >
+
+                <h2>Reset Password</h2>
+
                 {error && <p className='signup--error'>{error}</p>}
+
                 {message && <p className='reset--pass--msg'>{message}</p>}
 
                 <div className='signup--input--container'>

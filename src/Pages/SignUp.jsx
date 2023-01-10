@@ -36,12 +36,12 @@ export const SignUp = () => {
     return (
         <div className='signup'>
 
-            <h2>Sign up</h2>
-
             <form
                 className='form'
                 onSubmit={handleSubmit}
             >
+
+                <h2>Sign up</h2>
 
                 <div className='signup--input--container'>
                     <label htmlFor='email'>Email</label>
