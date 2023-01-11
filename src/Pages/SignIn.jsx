@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../Context/AuthContext';
-import { NavBar } from '../Components/NavBar';
 
 export const SignIn = () => {
 
@@ -30,7 +29,6 @@ export const SignIn = () => {
 
     return (
         <div className='signup'>
-
             <form
                 className='form'
                 onSubmit={handleSubmit}
@@ -71,6 +69,6 @@ export const SignIn = () => {
 
         </div>
     )
-}
+};
 
 

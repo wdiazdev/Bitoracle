@@ -1,12 +1,15 @@
 import { UserAuth } from '../Context/AuthContext';
 import '../Styles/Dashboard.css';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Loader } from '../Components/Loader';
 
 
 export const Dashboard = () => {
 
     const [error, setError] = useState();
+
+    const [loading, setLoading] = useState(true);
 
     const { user, logout } = UserAuth();
 
@@ -24,27 +27,44 @@ export const Dashboard = () => {
         }
     }
 
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
+
+    }, []);
+
     return (
-        <div className='dashboard'>
 
-            <div className='dash--nav'>
-                <p>Welcome: {user && user.email}</p>
+        <>
+            {loading
+                ?
+                <Loader />
+                :
+                <div className='dashboard'>
 
-                <button
-                    className='dash--btn'
-                    onClick={handleLogout}
-                >Logout</button>
+                    <div className='dash--nav'>
+                        <p>Welcome: {user && user.email}</p>
 
-                {error && <p className='signup--error'>{error}</p>}
-            </div>
+                        <button
+                            className='dash--btn'
+                            onClick={handleLogout}
+                        >Logout</button>
 
-            <div className='dash--container'>
+                        {error && <p className='signup--error'>{error}</p>}
+                    </div>
 
-                <h2>Dashboard</h2>
+                    <div className='dash--container'>
 
-            </div>
-        </div>
+                        <h2>Dashboard</h2>
+
+                    </div>
+                </div>
+
+            }
+        </>
     )
-}
+};
 
 
