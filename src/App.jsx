@@ -7,6 +7,7 @@ import { SignIn } from './Pages/SignIn';
 import { Home } from './Pages/Home';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { ForgotPassword } from './Pages/ForgotPassword';
+import { Error404 } from './Components/Error404';
 
 function App() {
   return (
@@ -23,9 +24,7 @@ function App() {
             <Dashboard />
           </ProtectedRoute>
         } />
-        <Route
-          path='*'
-          element={<p className='error'>404! Page not found!</p>}
+        <Route path='*' element={<Error404 />}
         />
       </Routes>
     </div>

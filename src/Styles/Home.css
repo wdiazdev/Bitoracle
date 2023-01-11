@@ -2,7 +2,7 @@
     position: relative;
     min-height: 100vh;
     width: 100%;
-    padding: 0rem 4rem;
+    padding: 2rem 4rem;
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('/src/assets/mainbg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,11 +16,11 @@
 .main--info {
     max-width: 1240px;
     height: 550px;
-    padding: 2rem;
+    padding: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 2rem;
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 25px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
     border-radius: 20px;
 }
@@ -43,7 +43,7 @@
 
 .coins--container {
     max-width: 1240px;
-    padding: 1rem 0;
+    padding-bottom: 1rem;
     width: 100%;
     gap: 2rem;
     display: flex;
