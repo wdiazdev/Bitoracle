@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react'
 import '../Styles/MarketData.css';
 import axios from 'axios';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
+import { Pagination } from '@mui/material';
 
 export const MarketData = () => {
 
     const [cryptoData, setCryptoData] = useState([]);
 
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const [coinsPerPage] = useState(25);
+    const [page, setPage] = useState(1);
 
     const [search, setSearch] = useState('');
 
@@ -29,17 +28,13 @@ export const MarketData = () => {
         fetchCryptoData();
     }, []);
 
-    const lastPageIndex = currentPage * coinsPerPage
-
-    const firstPageIndex = lastPageIndex - coinsPerPage
-
-    const currentCoinPage = cryptoData.slice(firstPageIndex, lastPageIndex)
-
-    let pages = [];
-
-    for (let i = 1; i <= Math.ceil(cryptoData.length / coinsPerPage); i++) {
-        pages.push(i)
-    }
+    const handleSearch = () => {
+        return cryptoData.filter(
+            (crypto) =>
+                crypto.name.toLowerCase().includes(search) ||
+                crypto.symbol.toLowerCase().includes(search)
+        );
+    };
 
     return (
         <div className='crypto--data'>
@@ -59,7 +54,7 @@ export const MarketData = () => {
                 <table>
                     <thead>
                         <tr className='table--head'>
-                            <th>#</th>
+                            <th>Rank</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>24h</th>
@@ -68,85 +63,56 @@ export const MarketData = () => {
                         </tr>
                     </thead>
 
-                    {
-                        currentCoinPage.filter((coin) => coin.name.toLowerCase().includes(search) ||
-                            coin.symbol.toLowerCase().includes(search)
+                    {handleSearch().slice((page - 1) * 25, (page - 1) * 25 + 25).map((coin, index) => {
+
+                        let priceChange = coin.price_change_percentage_24h;
+
+                        return (
+                            <tbody key={index}>
+                                <tr>
+                                    <td className='col--rank'>{coin.market_cap_rank}</td>
+
+                                    <td className='col--name'>
+                                        <img src={coin.image} alt={coin.name} />
+                                        <div className='name--symbol'>
+                                            <div>
+                                                {coin.name}
+                                            </div>
+                                            <div className='symbol'>
+                                                {coin.symbol.toUpperCase()}
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td className='col--price'>{formatCurrency(coin.current_price.toFixed(2))}</td>
+
+                                    <td
+                                        className='col--hr--change'
+                                        style={priceChange > 0 ? { color: '#7CFC00' } : { color: '#DC0000' }}
+                                    >
+                                        {priceChange.toFixed(2)}%
+                                    </td>
+
+                                    <td className='col--price'>{numberWithCommas(coin.market_cap.toFixed(0))}</td>
+
+                                    <td className='col--price'>
+                                        {numberWithCommas(coin.circulating_supply.toFixed(0))}
+                                    </td>
+                                </tr>
+                            </tbody>
                         )
-                            .map((coin, index) => {
-
-                                let priceChange = coin.price_change_percentage_24h;
-
-                                return (
-                                    <tbody>
-                                        <tr key={index}>
-
-                                            <td className='col--rank'>{coin.market_cap_rank}</td>
-
-                                            <td className='col--name'>
-                                                <img src={coin.image} alt={coin.name} />
-                                                <div className='name--symbol'>
-                                                    <div>
-                                                        {coin.name}
-                                                    </div>
-                                                    <div className='symbol'>
-                                                        {coin.symbol.toUpperCase()}
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td className='col--price'>{formatCurrency(coin.current_price.toFixed(2))}</td>
-
-                                            <td
-                                                className='col--hr--change'
-                                                style={priceChange > 0 ? { color: '#7CFC00' } : { color: '#DC0000' }}
-                                            >
-                                                {priceChange.toFixed(2)}%
-                                            </td>
-
-                                            <td className='col--price'>{numberWithCommas(coin.market_cap.toFixed(0))}</td>
-
-                                            <td className='col--price'>{numberWithCommas(coin.circulating_supply.toFixed(0))}</td>
-
-                                        </tr>
-                                    </tbody>
-                                )
-                            })}
+                    })}
                 </table>
             </div >
 
-            <div className='pagination'>
-                {
-                    pages.map((page, index) => {
-                        return (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentPage(page)}
-                            >
-                                {page}
-                            </button>
-                        )
-                    })
-                }
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <Pagination
+                className='pagination'
+                count={parseInt((handleSearch()?.length / 25).toFixed(0))}
+                onChange={(_, value) => {
+                    setPage(value);
+                    window.scroll(0, 500);
+                }}
+            />
         </div>
     )
 };

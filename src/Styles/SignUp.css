@@ -49,6 +49,11 @@
     border: 1px solid #333;
 }
 
+.signup--input--container input:focus {
+    border: 2px solid var(--primary--color);
+    box-shadow: 0 0 10px var(--primary--color);
+}
+
 .signup--btn {
     width: 100%;
     padding: 1rem;

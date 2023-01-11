@@ -7,12 +7,48 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+.dash--nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.dash--nav p {
+    top: 2rem;
+    left: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.dash--btn {
+    top: 1rem;
+    right: 1rem;
+    color: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1rem;
+    transition: 0.3s ease-in;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+.dash--btn:hover {
+    color: var(--primary--color);
+    border: 1px solid var(--primary--color);
+    box-shadow: 0 0 10px #ffffff;
+}
+
 .dash--container {
-    position: relative;
     width: 100%;
     min-height: 85vh;
     padding: 1rem 2rem;
@@ -28,40 +64,4 @@
     background: linear-gradient(to right, #00FFFF 0%, #d40071 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.dash--nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dash--nav p {
-    position: absolute;
-    top: 2rem;
-    left: 1rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.dash--btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: #FFF;
-    border: 1px solid #FFF;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1rem 1rem;
-    transition: 0.3s ease-in;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    cursor: pointer;
-    letter-spacing: 2px;
-}
-
-.dash--btn:hover {
-    color: var(--primary--color);
-    border: 1px solid var(--primary--color);
-    box-shadow: 0 0 10px #ffffff;
 }

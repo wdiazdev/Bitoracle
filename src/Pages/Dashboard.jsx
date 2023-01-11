@@ -27,20 +27,21 @@ export const Dashboard = () => {
     return (
         <div className='dashboard'>
 
+            <div className='dash--nav'>
+                <p>Welcome: {user && user.email}</p>
+
+                <button
+                    className='dash--btn'
+                    onClick={handleLogout}
+                >Logout</button>
+
+                {error && <p className='signup--error'>{error}</p>}
+            </div>
+
             <div className='dash--container'>
 
                 <h2>Dashboard</h2>
 
-                <div className='dash--nav'>
-
-                    <p>Welcome: {user && user.email}</p>
-                    <button
-                        className='dash--btn'
-                        onClick={handleLogout}
-                    >Logout</button>
-
-                    {error && <p className='signup--error'>{error}</p>}
-                </div>
             </div>
         </div>
     )
