@@ -14,8 +14,6 @@ export const Dashboard = () => {
 
     const [error, setError] = useState();
 
-    const [search, setSearch] = useState('');
-
     const [loading, setLoading] = useState(true);
 
     const { user, logout } = UserAuth();
@@ -51,7 +49,7 @@ export const Dashboard = () => {
     //* LOADER
 
     useEffect(() => {
-        setLoading(false)
+        setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 3000)
@@ -110,9 +108,16 @@ export const Dashboard = () => {
                                     onChange={handleFilter}
                                 />
                                 {filteredData.length != 0 &&
-                                    <div className='data--result'>
+                                    <div className='filtered--container'>
                                         {filteredData.map((coin, index) => {
-                                            return <span key={index}>{coin.name}</span>
+                                            return (
+                                                <div key={index} className='data--result'>
+                                                    <img src={coin.image} alt={coin.name} />
+                                                    <span>{coin.name}</span>
+                                                </div>
+
+                                            )
+
                                         })}
                                     </div>
                                 }
