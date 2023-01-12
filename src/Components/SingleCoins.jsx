@@ -1,15 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { singleCoinUrl } from '../APIs/ApiUrl';
 import { formatCurrency } from '../Utilities/FormatCurrency';
 
 export const SingleCoins = () => {
 
     const [singleCoin, setSingleCoin] = useState([]);
 
-    const singleCoinURL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-
     const fetchSingleCoin = () => {
-        axios.get(singleCoinURL)
+        axios.get(singleCoinUrl)
             .then(res => {
                 // console.log(res.data)
                 setSingleCoin(res.data)

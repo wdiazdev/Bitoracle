@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import '../Styles/MarketData.css';
-import axios from 'axios';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
 import { Pagination } from '@mui/material';
+import { marketDataUrl } from '../APIs/ApiUrl';
+import axios from 'axios';
 
 export const MarketData = () => {
 
@@ -12,10 +13,8 @@ export const MarketData = () => {
 
     const [search, setSearch] = useState('');
 
-    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
-
     const fetchCryptoData = () => {
-        axios.get(url)
+        axios.get(marketDataUrl)
             .then(res => {
                 // console.log(res.data)
                 setCryptoData(res.data)

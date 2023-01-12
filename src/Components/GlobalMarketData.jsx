@@ -2,15 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import '../Styles/MarketData.css';
 import { numberWithCommas } from '../Utilities/FormatCurrency';
+import { globalMarketDataURL } from '../APIs/ApiUrl'
 
 export const GlobalMarketData = () => {
 
     const [globalData, setGlobalData] = useState([]);
 
-    const url = 'https://api.coingecko.com/api/v3/global/'
-
     const fetchGlobalData = () => {
-        axios.get(url)
+        axios.get(globalMarketDataURL)
             .then(res => {
                 setGlobalData(res.data)
                 // console.log(res.data)
