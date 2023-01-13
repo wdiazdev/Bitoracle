@@ -10,7 +10,7 @@ export const SignIn = () => {
 
     const passwordRef = useRef();
 
-    const { signIn } = UserAuth();
+    const { signIn, user } = UserAuth();
 
     const navigate = useNavigate();
 
@@ -29,44 +29,56 @@ export const SignIn = () => {
 
     return (
         <div className='signup'>
-            <form
-                className='form'
-                onSubmit={handleSubmit}
-            >
-                <h2>Log In</h2>
 
-                {error && <p className='signup--error'>{error}</p>}
+            {
+                user ? <p
+                    className='already--login'
+                    style={{
+                        fontSize: '2.5rem',
+                        color: 'var(--primary--color)'
+                    }}
+                >You are already logged in.
+                </p> :
+                    <>
+                        <form
+                            className='form'
+                            onSubmit={handleSubmit}
+                        >
+                            <h2>Log In</h2>
 
-                <div className='signup--input--container'>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                        type='email'
-                        id='email'
-                        ref={emailRef}
-                        required />
-                </div>
+                            {error && <p className='signup--error'>{error}</p>}
 
-                <div className='signup--input--container'>
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        type='password'
-                        id='password'
-                        ref={passwordRef}
-                        required />
-                </div>
+                            <div className='signup--input--container'>
+                                <label htmlFor='email'>Email</label>
+                                <input
+                                    type='email'
+                                    id='email'
+                                    ref={emailRef}
+                                    required />
+                            </div>
 
-                <button
-                    type='submit'
-                    className='signup--btn'
-                >
-                    Log In
-                </button>
+                            <div className='signup--input--container'>
+                                <label htmlFor='password'>Password</label>
+                                <input
+                                    type='password'
+                                    id='password'
+                                    ref={passwordRef}
+                                    required />
+                            </div>
 
-                <Link to='/forgot-password'>Forgot Password?</Link>
-            </form>
+                            <button
+                                type='submit'
+                                className='signup--btn'
+                            >
+                                Log In
+                            </button>
 
-            <div>Don't have an account?<Link to='/signup'> Sign Up</Link></div>
+                            <Link to='/forgot-password'>Forgot Password?</Link>
+                        </form>
 
+                        <div>Don't have an account?<Link to='/signup'> Sign Up</Link></div>
+                    </>
+            }
         </div>
     )
 };

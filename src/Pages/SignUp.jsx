@@ -81,7 +81,7 @@ export const SignUp = () => {
 
             </form>
 
-            <div>Already have an account?<Link to='/signin'> Sign In</Link></div>
+            <div>Already have an account?<Link to='/signin'> Log In</Link></div>
 
         </div>
     )
