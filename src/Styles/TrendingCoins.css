@@ -8,13 +8,13 @@
 .trending--container h2 {
     font-size: 3rem;
     font-family: var(--secondary--font);
-    background: linear-gradient(to right, #00FFFF 0%, #d40071 20%);
+    background: linear-gradient(to right, var(--primary--color) 0%, #d40071 20%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .card--container {
-    padding: 3rem;
+    padding: 4rem 2rem 1rem 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 1rem;

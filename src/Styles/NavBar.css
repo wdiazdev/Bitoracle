@@ -11,7 +11,7 @@
     font-family: var(--secondary--font);
     font-size: 2rem;
     letter-spacing: 2px;
-    background: linear-gradient(to right, #00FFFF 0%, #d40071 100%);
+    background: linear-gradient(to right, var(--primary--color) 0%, #d40071 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
