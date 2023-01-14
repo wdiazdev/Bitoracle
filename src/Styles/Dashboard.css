@@ -89,6 +89,7 @@
     gap: 0.5rem;
     cursor: pointer;
     transition: 0.3s;
+    border: none;
 }
 
 .data--result:hover {
@@ -96,6 +97,11 @@
     color: #FFF;
 }
 
-.assets {
+.portfolio--container {
     width: 100%;
+}
+
+.portfolio--container h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
 }
