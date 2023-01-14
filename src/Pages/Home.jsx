@@ -3,6 +3,7 @@ import { GlobalMarketData } from '../Components/GlobalMarketData';
 import '../Styles/Home.css';
 import { Link } from 'react-router-dom';
 import { SingleCoins } from '../Components/SingleCoins';
+import { TrendingCoins } from '../Components/TrendingCoins';
 
 export const Home = () => {
     return (
@@ -21,6 +22,7 @@ export const Home = () => {
                 <SingleCoins />
             </div>
             <GlobalMarketData />
+            <TrendingCoins />
             <MarketData />
         </div>
     )

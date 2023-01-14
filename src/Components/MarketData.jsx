@@ -37,14 +37,14 @@ export const MarketData = () => {
 
     return (
         <div className='crypto--data'>
-
+            <h2>Search for your favorite cryptos</h2>
             <div className='search--bar--container'>
                 <div className='input--container'>
                     <input
                         type='text'
                         onChange={e => setSearch(e.target.value.toLowerCase())
                         }
-                        placeholder='Search for your crypto here...'
+                        placeholder='Ex: Bitcoin, Ethereum...'
                     />
                 </div>
             </div>
@@ -109,7 +109,7 @@ export const MarketData = () => {
                 count={parseInt((handleSearch()?.length / 25).toFixed(0))}
                 onChange={(_, value) => {
                     setPage(value);
-                    window.scroll(0, 500);
+                    window.scroll(0, 1200);
                 }}
             />
         </div>

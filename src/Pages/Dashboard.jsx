@@ -53,12 +53,11 @@ export const Dashboard = () => {
         e.preventDefault()
         const selectedCoin = document.getElementById('selected').innerText.toLocaleLowerCase();
         if (selectedCoin === filteredData.name) {
-            setFilteredData(selectedCoin.name)
+            setFilteredData(selectedCoin)
         }
         setFilteredData([])
         console.log(filteredData)
     };
-
 
     return (
         <>
@@ -108,7 +107,6 @@ export const Dashboard = () => {
                                 }
                             </div>
 
-
                             <div className='portfolio--container'>
                                 <h3>Current Balance:</h3>
 
@@ -150,27 +148,6 @@ export const Dashboard = () => {
 
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
 
@@ -178,5 +155,3 @@ export const Dashboard = () => {
         </>
     )
 };
-
-
