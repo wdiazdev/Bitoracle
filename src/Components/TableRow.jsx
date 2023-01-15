@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { marketDataUrl } from '../APIs/ApiUrl';
+
 
 class TableRow extends React.Component {
 
@@ -12,7 +12,6 @@ class TableRow extends React.Component {
     };
 
     componentDidMount() {
-
         this.setState({
             data: {
                 asset: 'Bitcoin',

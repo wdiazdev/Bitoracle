@@ -32,7 +32,7 @@ export const Dashboard = () => {
     //* LOADER
 
     useEffect(() => {
-        setLoading(false)
+        setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 2000)
@@ -122,7 +122,7 @@ export const Dashboard = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <TableRow filteredData={filteredData} />
+                                        <TableRow />
 
                                     </tbody>
 
