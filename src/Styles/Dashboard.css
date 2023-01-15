@@ -33,9 +33,9 @@
 .dashboard--data {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    /* grid-template-rows: 2fr; */
-    grid-column-gap: 3rem;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 2fr;
+    grid-column-gap: 2rem;
 }
 
 .search {
@@ -46,9 +46,9 @@
     transition: 0.3s;
 }
 
-.search label {
+.search h4 {
     font-size: 1.3rem;
-    /* font-weight: 700; */
+    padding-bottom: 1rem;
 }
 
 .search input {
@@ -90,7 +90,6 @@
     cursor: pointer;
     transition: 0.3s;
     border: none;
-    font-size: 1rem;
 }
 
 .data--result:hover {
@@ -102,7 +101,18 @@
     width: 100%;
 }
 
-.portfolio--container h3 {
+.portfolio--container h4 {
     font-size: 1.3rem;
-    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+.dashboard--table th {
+    background: #333;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.dash--container tr {
+    color: #fff;
 }

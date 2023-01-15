@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { NavItem } from 'react-bootstrap';
 import { trendingCoins } from '../APIs/ApiUrl';
 import '../Styles/TrendingCoins.css';
 
@@ -29,7 +28,6 @@ export const TrendingCoins = () => {
             <h2>Trending Cryptos</h2>
 
             <div className='card--container'>
-
                 {trending.map((coin, index) => {
                     return (
                         <div key={index} className='card'>
@@ -40,6 +38,7 @@ export const TrendingCoins = () => {
                     )
                 })}
             </div>
+
         </div>
     )
 }

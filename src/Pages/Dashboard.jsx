@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react';
 import { Loader } from '../Components/Loader';
 import { marketDataUrl } from '../APIs/ApiUrl';
 import axios from 'axios';
+import TableRow from '../Components/TableRow';
 
 export const Dashboard = () => {
+
+
 
     const [cryptoData, setCryptoData] = useState([]);
 
     const [filteredData, setFilteredData] = useState([]);
 
     const [loading, setLoading] = useState(true);
-
-    // const [selected, setSelected] = useState([]);
 
     const fetchCryptoData = () => {
         axios.get(marketDataUrl)
@@ -51,11 +52,10 @@ export const Dashboard = () => {
 
     const handleSelect = (e) => {
         e.preventDefault()
-        const selectedCoin = document.getElementById('selected').innerText.toLocaleLowerCase();
+        const selectedCoin = document.getElementById('asset').innerText.toLocaleLowerCase();
         if (selectedCoin === filteredData.name) {
-            setFilteredData(selectedCoin)
+            return setFilteredData(selectedCoin)
         }
-        setFilteredData([])
         console.log(filteredData)
     };
 
@@ -74,7 +74,7 @@ export const Dashboard = () => {
                         <div className='dashboard--data'>
 
                             <div className='search'>
-                                <label htmlFor='asset'>Add an Asset:</label>
+                                <h4>Add an Asset:</h4>
                                 <input
                                     type='text'
                                     name='asset'
@@ -108,9 +108,10 @@ export const Dashboard = () => {
                             </div>
 
                             <div className='portfolio--container'>
-                                <h3>Current Balance:</h3>
 
-                                <table>
+                                <h4>Current Balance:</h4>
+
+                                <table className='dashboard--table'>
                                     <thead>
                                         <tr>
                                             <th>Asset</th>
@@ -120,38 +121,18 @@ export const Dashboard = () => {
                                             <th>Holdings</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
-
-
-
-
-
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-
-                                        </tr>
-
-
-
-
-
+                                        <TableRow filteredData={filteredData} />
 
                                     </tbody>
+
                                 </table>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
             }
+
         </>
     )
 };
