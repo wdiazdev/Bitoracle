@@ -14,6 +14,7 @@
 }
 
 .main--info {
+    margin-top: 20px;
     max-width: 1240px;
     height: 550px;
     padding: 3rem;
@@ -21,7 +22,7 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 25px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 25px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
     border-radius: 20px;
 }
 
@@ -56,10 +57,10 @@
     padding: 1.5rem;
     display: flex;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
     border-radius: 20px;
-    width: 200px;
+    width: 175px;
     gap: 0.5rem;
     transition: 0.3s;
 }
@@ -77,9 +78,10 @@
 
 .main--symbol--rank {
     display: flex;
-    gap: 0.3rem;
+    gap: 0.5rem;
 }
 
 .main--rank {
     font-weight: 700;
+    color: var(--primary--color);
 }

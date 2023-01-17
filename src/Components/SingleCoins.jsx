@@ -32,11 +32,6 @@ export const SingleCoins = () => {
 
                             <div className='main--price--symbol'>
 
-
-                                <span className='main--price'>
-                                    {formatCurrency(coin.current_price.toFixed(2))}
-                                </span>
-
                                 <div className='main--symbol--rank'>
 
                                     <div className='main--rank'>
@@ -47,6 +42,10 @@ export const SingleCoins = () => {
                                         {coin.symbol.toUpperCase()}
                                     </div>
                                 </div>
+
+                                <span className='main--price'>
+                                    {formatCurrency(coin.current_price.toFixed(2))}
+                                </span>
 
                             </div>
                         </div>

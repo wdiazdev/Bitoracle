@@ -62,12 +62,12 @@ export const MarketData = () => {
                         </tr>
                     </thead>
 
-                    {handleSearch().slice((page - 1) * 25, (page - 1) * 25 + 25).map((coin, index) => {
+                    {handleSearch().slice((page - 1) * 25, (page - 1) * 25 + 25).map((coin) => {
 
                         let priceChange = coin.price_change_percentage_24h;
 
                         return (
-                            <tbody key={index}>
+                            <tbody key={coin.id}>
                                 <tr>
                                     <td className='col--rank'>{coin.market_cap_rank}</td>
 

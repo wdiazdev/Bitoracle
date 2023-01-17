@@ -3,15 +3,16 @@ import { useEffect, useState } from 'react';
 import { Loader } from '../Components/Loader';
 import { marketDataUrl } from '../APIs/ApiUrl';
 import axios from 'axios';
-import TableRow from '../Components/TableRow';
+import { SearchBar } from '../Components/SearchBar';
+import { Portfolio } from '../Components/Portfolio';
 
 export const Dashboard = () => {
-
-
 
     const [cryptoData, setCryptoData] = useState([]);
 
     const [filteredData, setFilteredData] = useState([]);
+
+    const [selectedData, setSelectedData] = useState([]);
 
     const [loading, setLoading] = useState(true);
 
@@ -32,17 +33,19 @@ export const Dashboard = () => {
     //* LOADER
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(false)
         setTimeout(() => {
             setLoading(false)
         }, 2000)
     }, []);
 
+    //? Handle input filtered data / SearchBar component
+
     const handleFilter = (event) => {
-        const searchCoin = event.target.value.toLocaleLowerCase()
+        const searchCoin = event.target.value;
         const newFilter = cryptoData.filter((coin) => {
-            return coin.name.toLowerCase().includes(searchCoin) ||
-                coin.symbol.toLowerCase().includes(searchCoin)
+            return coin.name.toLowerCase().includes(searchCoin.toLowerCase()) ||
+                coin.symbol.toLowerCase().includes(searchCoin.toLowerCase())
         });
         if (searchCoin === '') {
             setFilteredData([]);
@@ -50,14 +53,18 @@ export const Dashboard = () => {
             setFilteredData(newFilter);
     };
 
+    //? Handle Selected crypto / Search component data result
+
     const handleSelect = (e) => {
         e.preventDefault()
-        const selectedCoin = document.getElementById('asset').innerText.toLocaleLowerCase();
-        if (selectedCoin === filteredData.name) {
-            return setFilteredData(selectedCoin)
+        const selectedCoin = document.getElementById('asset').innerText;
+        if (selectedCoin === filteredData.name || filteredData.symbol) {
+            return setSelectedData(filteredData[0])
         }
         console.log(filteredData)
     };
+
+
 
     return (
         <>
@@ -72,67 +79,16 @@ export const Dashboard = () => {
                         <h2>Dashboard</h2>
 
                         <div className='dashboard--data'>
-
-                            <div className='search'>
-                                <h4>Add an Asset:</h4>
-                                <input
-                                    type='text'
-                                    name='asset'
-                                    id='asset'
-                                    placeholder='Ex: Bitcoin, Ethereum...'
-                                    autoComplete='off'
-                                    className='input--search'
-                                    onChange={handleFilter}
-                                />
-                                {filteredData.length != 0 &&
-                                    <div className='filtered--container'>
-                                        {filteredData.map((coin, index) => {
-                                            return (
-                                                <button
-                                                    key={index}
-                                                    className='data--result'
-                                                    onClick={handleSelect}
-                                                >
-                                                    <img src={coin.image} alt={coin.name} />
-                                                    <span
-                                                        id='selected'
-
-                                                    >
-                                                        {coin.name}
-                                                    </span>
-                                                </button>
-                                            )
-                                        })}
-                                    </div>
-                                }
-                            </div>
-
-                            <div className='portfolio--container'>
-
-                                <h4>Current Balance:</h4>
-
-                                <table className='dashboard--table'>
-                                    <thead>
-                                        <tr>
-                                            <th>Asset</th>
-                                            <th>price</th>
-                                            <th>Quantity</th>
-                                            <th>AVG. Buy Price</th>
-                                            <th>Holdings</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <TableRow />
-
-                                    </tbody>
-
-                                </table>
-                            </div>
+                            <SearchBar
+                                filteredData={filteredData}
+                                handleFilter={handleFilter}
+                                handleSelect={handleSelect}
+                            />
+                            <Portfolio filteredData={filteredData} />
                         </div>
                     </div>
                 </div>
             }
-
         </>
     )
 };
