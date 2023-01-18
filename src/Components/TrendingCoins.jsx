@@ -24,9 +24,7 @@ export const TrendingCoins = () => {
 
     return (
         <div className='trending--container'>
-
             <h2>Trending Cryptos</h2>
-
             <div className='card--container'>
                 {trending.map((coin, index) => {
                     return (
@@ -38,7 +36,6 @@ export const TrendingCoins = () => {
                     )
                 })}
             </div>
-
         </div>
     )
 }
