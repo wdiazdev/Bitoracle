@@ -68,7 +68,7 @@ export const MarketData = () => {
 
                         return (
                             <tbody key={coin.id}>
-                                <tr>
+                                <tr onClick={() => setClick(true)}>
                                     <td className='col--rank'>{coin.market_cap_rank}</td>
 
                                     <td className='col--name'>
@@ -103,7 +103,6 @@ export const MarketData = () => {
                     })}
                 </table>
             </div >
-
             <Pagination
                 className='pagination'
                 count={parseInt((handleSearch()?.length / 25).toFixed(0))}

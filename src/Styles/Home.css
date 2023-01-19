@@ -57,12 +57,17 @@
     padding: 1.5rem;
     display: flex;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    align-items: center;
     border-radius: 20px;
     width: 175px;
     gap: 0.5rem;
     transition: 0.3s;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+}
+
+.coin img {
+    width: 50px;
 }
 
 .coin:hover {
@@ -78,7 +83,7 @@
 
 .main--symbol--rank {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 .main--rank {

@@ -1,96 +1,57 @@
 import '../Styles/Dashboard.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Loader } from '../Components/Loader';
-import { marketDataUrl } from '../APIs/ApiUrl';
-import axios from 'axios';
-// import { nanoid } from 'nanoid';
+import { AssetList } from '../Components/AssetList';
+
 
 export const Dashboard = () => {
 
-    const [cryptoData, setCryptoData] = useState([]);
-
-    // const [asset, setAsset] = useState();
-
-    // const [addFormData, setAddFormData] = useState({
-    //     name: '',
-    //     quantity: ''
-    // });
-
-    const [filteredData, setFilteredData] = useState([]);
-
     const [loading, setLoading] = useState(true);
 
-    const fetchCryptoData = () => {
-        axios.get(marketDataUrl)
-            .then(res => {
-                // console.log(res.data)
-                setCryptoData(res.data)
-            }).catch(err => {
-                console.log(err)
-            })
-    };
+    const [asset, setAsset] = useState([]);
+
+    const [balance, setBalance] = useState(0);
+
+    const assetName = useRef(null);
+    const price = useRef(null);
+    const quantity = useRef(null);
+    const date = useRef(null);
+
+    const addAsset = (event) => {
+        event.preventDefault();
+
+        let d = date.current.value.split('-');
+        let newD = new Date(d[0], d[1], d[2]);
+
+        setAsset([...asset, {
+            'assetName': assetName.current.value,
+            'price': price.current.value,
+            'quantity': quantity.current.value,
+            'date': newD.getTime()
+        }])
+        assetName.current.value = '';
+        price.current.value = null;
+        quantity.current.value = null;
+        date.current.value = null;
+    }
 
     useEffect(() => {
-        fetchCryptoData();
-    }, []);
+        let total = 0;
+        for (let i = 0; i < asset.length; i++) {
+            total += parseInt(asset[i].price * asset[i].quantity)
+        }
+        setBalance(total);
+    }, [asset]);
+
 
     //* LOADER
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(false)
         setTimeout(() => {
             setLoading(false)
         }, 2000)
     }, []);
-
-    //? Handle input filtered data / SearchBar component
-
-    const handleFilter = (event) => {
-        const searchCoin = event.target.value;
-        const newFilter = cryptoData.filter((coin) => {
-            return coin.name.toLowerCase().includes(searchCoin.toLowerCase()) ||
-                coin.symbol.toLowerCase().includes(searchCoin.toLowerCase())
-        });
-        if (searchCoin === '') {
-            setFilteredData([]);
-        } else
-            setFilteredData(newFilter);
-    };
-
-    // //?  Handle Selected crypto / Search component data result
-
-    const handleSelect = (e) => {
-        e.preventDefault()
-        const selectedCoin = document.getElementById('asset').innerText;
-        if (selectedCoin === filteredData.name || filteredData.symbol) {
-            return setSelectedData(filteredData[0])
-        }
-        console.log(filteredData)
-    };
-
-    // const handleAddFormChange = (event) => {
-    //     event.preventDefault();
-
-    //     const fieldName = event.target.getAttribute('name');
-    //     const fieldValue = event.target.value;
-
-    //     const newFormData = { ...addFormData }
-    //     newFormData[fieldName] = fieldValue;
-    //     setAddFormData(newFormData);
-    // };
-
-    // const handleAddFormSubmit = (event) => {
-    //     event.preventDefault();
-
-    //     const newAsset = {
-    //         id: nanoid(),
-    //         name: addFormData.name,
-    //         quantity: addFormData.quantity
-    //     };
-
-    //     const newAssets = [...asset, newAsset];
-    //     setAsset(newAssets);
-    // };
 
     return (
         <>
@@ -106,84 +67,42 @@ export const Dashboard = () => {
 
                         <div className='dashboard--data'>
 
-                            <div className='search'>
+                            <div className='total--balance'>${balance}</div>
 
-                                <h4>Add an Asset:</h4>
-
-                                <form
-                                // onSubmit={handleAddFormSubmit}
-                                >
+                            <form className='asset--form' onSubmit={addAsset}>
+                                <div className='form--inner'>
                                     <input
                                         type='text'
-                                        name='name'
-                                        placeholder='Ex: Bitcoin, Ethereum...'
-                                        required='required'
-                                        autoComplete='off'
-                                        className='input--search'
-                                        onChange={handleFilter}
+                                        name='asset'
+                                        id='asset'
+                                        placeholder='Asset'
+                                        ref={assetName}
                                     />
-
-                                    {/* <h4>Quantity:</h4>
-
+                                    <input
+                                        type='number'
+                                        name='price'
+                                        id='price'
+                                        placeholder='price'
+                                        ref={price}
+                                    />
                                     <input
                                         type='number'
                                         name='quantity'
-                                        placeholder='Quantity'
-                                        required='required'
-                                        className='input--search'
-                                    onChange={handleAddFormChange}
+                                        id='quantity'
+                                        placeholder='quantity'
+                                        ref={quantity}
                                     />
-                                    <button type='submit'>Add</button> */}
-                                </form>
-
-                                {filteredData.length != 0 &&
-                                    <div className='filtered--container'>
-                                        {filteredData.slice(0, 2).map((coin) => {
-                                            return (
-                                                <div
-                                                    key={coin.id}
-                                                    className='data--result'
-                                                    onClick={handleSelect}
-                                                >
-                                                    <img src={coin.image} alt={coin.name} />
-                                                    <span
-                                                        id='asset'
-                                                    >
-                                                        {coin.name}
-                                                    </span>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                }
-                            </div>
-
-                            <div className='portfolio--container'>
-
-                                <h4>Balance: $300.00</h4>
-
-                                <table className='dashboard--table'>
-                                    <thead>
-                                        <tr>
-                                            <th>Asset</th>
-                                            <th>price</th>
-                                            <th>Quantity</th>
-                                            <th>AVG. Buy Price</th>
-                                            <th>Holdings</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Osmosis</td>
-                                            <td>$0.98</td>
-                                            <td>900</td>
-                                            <td>$0.56</td>
-                                            <td>$500.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
+                                    <input
+                                        type='date'
+                                        name='date'
+                                        id='date'
+                                        placeholder='date'
+                                        ref={date}
+                                    />
+                                    <input type='submit' value='add asset' />
+                                </div>
+                            </form>
+                            <AssetList asset={asset} setAsset={setAsset} />
                         </div>
                     </div>
                 </div>

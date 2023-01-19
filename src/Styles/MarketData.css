@@ -94,6 +94,7 @@ tr {
     color: #fff;
     border-bottom: 1px solid var(--primary--color);
     transition: 0.3s;
+    cursor: pointer;
 }
 
 tr:hover {
@@ -102,7 +103,6 @@ tr:hover {
 
 td {
     padding: 1rem;
-    cursor: pointer;
 }
 
 .col--rank {
