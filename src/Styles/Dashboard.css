@@ -76,6 +76,7 @@
 
 .asset--item {
     display: flex;
+    justify-content: space-between;
     background: var(--primary--bg--color);
     padding: 1rem;
     border-radius: 20px;

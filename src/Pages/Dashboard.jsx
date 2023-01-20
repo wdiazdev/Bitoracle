@@ -47,7 +47,7 @@ export const Dashboard = () => {
     //* LOADER
 
     useEffect(() => {
-        setLoading(false)
+        setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 2000)
