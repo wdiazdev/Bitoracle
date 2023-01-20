@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import '../Styles/MarketData.css';
-import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
 import { Pagination } from '@mui/material';
+import { MainSearch } from '../Components/MainSearch';
+import { MarketTable } from '../Components/MarketTable';
 import { marketDataUrl } from '../APIs/ApiUrl';
 import axios from 'axios';
 
@@ -25,7 +26,7 @@ export const MarketData = () => {
 
     useEffect(() => {
         fetchCryptoData();
-    }, []);
+    }, [cryptoData]);
 
     const handleSearch = () => {
         return cryptoData.filter(
@@ -37,72 +38,13 @@ export const MarketData = () => {
 
     return (
         <div className='crypto--data'>
-            <h2>Search for your favorite cryptos</h2>
-            <div className='search--bar--container'>
-                <div className='input--container'>
-                    <input
-                        type='text'
-                        onChange={e => setSearch(e.target.value.toLowerCase())
-                        }
-                        placeholder='Ex: Bitcoin, Ethereum...'
-                    />
-                </div>
-            </div>
-
-            <div className='table--container'>
-                <table>
-                    <thead>
-                        <tr className='table--head'>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>24h</th>
-                            <th>Market Cap</th>
-                            <th>Circulating Supply</th>
-                        </tr>
-                    </thead>
-
-                    {handleSearch().slice((page - 1) * 25, (page - 1) * 25 + 25).map((coin) => {
-
-                        let priceChange = coin.price_change_percentage_24h;
-
-                        return (
-                            <tbody key={coin.id}>
-                                <tr onClick={() => setClick(true)}>
-                                    <td className='col--rank'>{coin.market_cap_rank}</td>
-
-                                    <td className='col--name'>
-                                        <img src={coin.image} alt={coin.name} />
-                                        <div className='name--symbol'>
-                                            <div>
-                                                {coin.name}
-                                            </div>
-                                            <div className='symbol'>
-                                                {coin.symbol.toUpperCase()}
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td className='col--price'>{formatCurrency(coin.current_price.toFixed(2))}</td>
-
-                                    <td
-                                        className='col--hr--change'
-                                        style={priceChange > 0 ? { color: '#7CFC00' } : { color: '#DC0000' }}
-                                    >
-                                        {priceChange.toFixed(2)}%
-                                    </td>
-
-                                    <td className='col--price'>{numberWithCommas(coin.market_cap.toFixed(0))}</td>
-
-                                    <td className='col--price'>
-                                        {numberWithCommas(coin.circulating_supply.toFixed(0))}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        )
-                    })}
-                </table>
-            </div >
+            <MainSearch setSearch={setSearch} />
+            <MarketTable
+                cryptoData={cryptoData}
+                page={page}
+                search={search}
+                handleSearch={handleSearch}
+            />
             <Pagination
                 className='pagination'
                 count={parseInt((handleSearch()?.length / 25).toFixed(0))}

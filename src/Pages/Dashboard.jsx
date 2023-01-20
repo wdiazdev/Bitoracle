@@ -2,7 +2,7 @@ import '../Styles/Dashboard.css';
 import { useEffect, useRef, useState } from 'react';
 import { Loader } from '../Components/Loader';
 import { AssetList } from '../Components/AssetList';
-
+import { numberWithCommas } from '../Utilities/FormatCurrency';
 
 export const Dashboard = () => {
 
@@ -40,9 +40,9 @@ export const Dashboard = () => {
         for (let i = 0; i < asset.length; i++) {
             total += parseInt(asset[i].price * asset[i].quantity)
         }
-        setBalance(total);
+        const newBalance = `$${numberWithCommas(total)}`;
+        setBalance(newBalance);
     }, [asset]);
-
 
     //* LOADER
 
@@ -67,42 +67,50 @@ export const Dashboard = () => {
 
                         <div className='dashboard--data'>
 
-                            <div className='total--balance'>${balance}</div>
+                            <div className='num1'>
+                                <h3>Balance:</h3>
+                                <div className='total--balance'>{balance}</div>
 
-                            <form className='asset--form' onSubmit={addAsset}>
-                                <div className='form--inner'>
-                                    <input
-                                        type='text'
-                                        name='asset'
-                                        id='asset'
-                                        placeholder='Asset'
-                                        ref={assetName}
-                                    />
-                                    <input
-                                        type='number'
-                                        name='price'
-                                        id='price'
-                                        placeholder='price'
-                                        ref={price}
-                                    />
-                                    <input
-                                        type='number'
-                                        name='quantity'
-                                        id='quantity'
-                                        placeholder='quantity'
-                                        ref={quantity}
-                                    />
-                                    <input
-                                        type='date'
-                                        name='date'
-                                        id='date'
-                                        placeholder='date'
-                                        ref={date}
-                                    />
-                                    <input type='submit' value='add asset' />
-                                </div>
-                            </form>
-                            <AssetList asset={asset} setAsset={setAsset} />
+                                <form onSubmit={addAsset}>
+                                    <div className='form--inner'>
+                                        <input
+                                            type='text'
+                                            name='asset'
+                                            id='asset'
+                                            placeholder='Asset'
+                                            required
+                                            ref={assetName}
+                                        />
+                                        <input
+                                            type='text'
+                                            name='price'
+                                            id='price'
+                                            placeholder='Price'
+                                            required
+                                            ref={price}
+                                        />
+                                        <input
+                                            type='number'
+                                            name='quantity'
+                                            id='quantity'
+                                            placeholder='QTY'
+                                            required
+                                            ref={quantity}
+                                        />
+                                        <input
+                                            type='date'
+                                            name='date'
+                                            id='date'
+                                            placeholder='Date'
+                                            ref={date}
+                                        />
+                                        <input type='submit' value='Add' className='signup--btn' />
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='num2'>
+                                <AssetList asset={asset} setAsset={setAsset} />
+                            </div>
                         </div>
                     </div>
                 </div>

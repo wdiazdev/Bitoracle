@@ -21,9 +21,9 @@ export const AssetList = ({ asset, setAsset }) => {
                         asset={value}
                         index={index}
                         removeAsset={removeAsset} />
+
                 ))
             }
-
         </div>
     )
 };
