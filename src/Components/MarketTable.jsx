@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
 
 export const MarketTable = ({ page, handleSearch }) => {
+
+    const navigate = useNavigate();
 
     return (
         <div className='table--container'>
@@ -22,7 +25,7 @@ export const MarketTable = ({ page, handleSearch }) => {
 
                     return (
                         <tbody key={coin.id} >
-                            <tr>
+                            <tr onClick={() => navigate(`/coin/${coin.id}`)}>
                                 <td className='col--rank'>{coin.market_cap_rank}</td>
 
                                 <td className='col--name'>
@@ -46,7 +49,7 @@ export const MarketTable = ({ page, handleSearch }) => {
                                     {priceChange.toFixed(2)}%
                                 </td>
 
-                                <td className='col--price'>{numberWithCommas(coin.market_cap.toFixed(0))}</td>
+                                <td className='col--price'>${numberWithCommas(coin.market_cap.toFixed(0))}</td>
 
                                 <td className='col--price'>
                                     {numberWithCommas(coin.circulating_supply.toFixed(0))}

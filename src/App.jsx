@@ -8,6 +8,7 @@ import { Home } from './Pages/Home';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { ForgotPassword } from './Pages/ForgotPassword';
 import { Error404 } from './Components/Error404';
+import { CoinPage } from './Pages/CoinPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route index path='/' element={<Home />} />
+        <Route index path='/coin/:id' element={<CoinPage />} />
         <Route index path='/signin' element={<SignIn />} />
         <Route index path='/signup' element={<SignUp />} />
         <Route index path='/forgot-password' element={<ForgotPassword />} />

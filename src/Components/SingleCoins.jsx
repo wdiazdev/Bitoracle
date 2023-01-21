@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { singleCoinUrl } from '../APIs/ApiUrl';
+import { singleCoinMain } from '../APIs/ApiUrl';
 import { formatCurrency } from '../Utilities/FormatCurrency';
 
 export const SingleCoins = () => {
@@ -8,7 +8,7 @@ export const SingleCoins = () => {
     const [singleCoin, setSingleCoin] = useState([]);
 
     const fetchSingleCoin = () => {
-        axios.get(singleCoinUrl)
+        axios.get(singleCoinMain)
             .then(res => {
                 // console.log(res.data)
                 setSingleCoin(res.data)
