@@ -1,0 +1,49 @@
+.coin--page--container {
+    position: relative;
+    min-height: 100vh;
+    padding: 2rem 4rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('/src/assets/cardbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coin--info--container {
+    width: 1240px;
+    height: 600px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+}
+
+.coin--page--nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coin--page--nav img {
+    width: 80px;
+}
+
+.coin--page--nav h2 {
+    font-size: 2rem;
+    background: linear-gradient(to right, var(--primary--color) 0%, #d40071 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.close--btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close--btn:hover {
+    color: var(--primary--color);
+    cursor: pointer;
+}

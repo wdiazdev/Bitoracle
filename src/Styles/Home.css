@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 25px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
     border-radius: 20px;
 }
 
