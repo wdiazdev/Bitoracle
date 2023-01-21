@@ -12,7 +12,6 @@
 
 .coin--info--container {
     width: 1240px;
-    height: 600px;
     margin: 0 auto;
     border-radius: 20px;
     padding: 2rem 3rem;
@@ -31,7 +30,8 @@
 }
 
 .coin--page--nav h2 {
-    font-size: 2rem;
+    font-family: var(--secondary--font);
+    font-size: 3rem;
     background: linear-gradient(to right, var(--primary--color) 0%, #d40071 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -46,4 +46,37 @@
 .close--btn:hover {
     color: var(--primary--color);
     cursor: pointer;
+}
+
+.description {
+    padding: 1rem 2rem;
+}
+
+.coin--page--info {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 2rem;
+}
+
+.coin--page--info--1 {
+    overflow: hidden;
+}
+
+
+.coin--page--info li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    gap: 1rem;
+    border-bottom: 1px solid var(--primary--color);
+}
+
+.coin--page--info--1 p {
+    color: var(--primary--color);
+    font-weight: 700;
+}
+
+.coin--page--info--2 {
+    border: 1px solid blue;
 }
