@@ -18,14 +18,9 @@ export const CoinPage = () => {
 
     const [loading, setLoading] = useState(true);
 
-    const fetchCoin = () => {
-        axios.get(singleCoin(id))
-            .then(res => {
-                // console.log(res.data)
-                setCoin(res.data)
-            }).catch(err => {
-                console.log(err)
-            })
+    const fetchCoin = async () => {
+        const { data } = await axios.get(singleCoin(id));
+        setCoin(data)
     };
 
     useEffect(() => {

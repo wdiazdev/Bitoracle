@@ -14,19 +14,15 @@ export const MarketData = () => {
 
     const [search, setSearch] = useState('');
 
-    const fetchCryptoData = () => {
-        axios.get(marketDataUrl)
-            .then(res => {
-                // console.log(res.data)
-                setCryptoData(res.data)
-            }).catch(err => {
-                console.log(err)
-            })
-    };
+
+    const fetchCryptoData = async () => {
+        const { data } = await axios.get(marketDataUrl);
+        setCryptoData(data);
+    }
 
     useEffect(() => {
         fetchCryptoData();
-    }, [cryptoData]);
+    }, [page, search]);
 
     const handleSearch = () => {
         return cryptoData.filter(

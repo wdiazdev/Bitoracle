@@ -7,19 +7,15 @@ export const SingleCoins = () => {
 
     const [singleCoin, setSingleCoin] = useState([]);
 
-    const fetchSingleCoin = () => {
-        axios.get(singleCoinMain)
-            .then(res => {
-                // console.log(res.data)
-                setSingleCoin(res.data)
-            }).catch(err => {
-                console.log(err)
-            })
-    };
+
+    const fetchSingleCoin = async () => {
+        const { data } = await axios.get(singleCoinMain);
+        setSingleCoin(data);
+    }
 
     useEffect(() => {
         fetchSingleCoin();
-    }, [singleCoin]);
+    }, []);
 
     return (
         <div className='coins--container'>

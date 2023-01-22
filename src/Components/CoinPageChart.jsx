@@ -11,19 +11,14 @@ export const CoinPageChart = ({ coin, id }) => {
 
     const [days, setDays] = useState(1);
 
-    const fetchMarketData = () => {
-        axios.get(HistoricalChart(id, days))
-            .then(res => {
-                // console.log(res.data)
-                setChartData(res.data.prices)
-            }).catch(err => {
-                console.log(err)
-            })
+    const fetchMarketData = async () => {
+        const { data } = await axios.get(HistoricalChart(id, days));
+        setChartData(data.prices)
     };
 
     useEffect(() => {
         fetchMarketData();
-    }, [chartData]);
+    }, [days]);
 
     return (
         <div className='coin--page--info--2'>

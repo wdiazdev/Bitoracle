@@ -8,19 +8,14 @@ export const GlobalMarketData = () => {
 
     const [globalData, setGlobalData] = useState([]);
 
-    const fetchGlobalData = () => {
-        axios.get(globalMarketDataURL)
-            .then(res => {
-                setGlobalData(res.data)
-                // console.log(res.data)
-            }).catch(err => {
-                console.log(err)
-            })
-    };
+    const fetchGlobalData = async () => {
+        const { data } = await axios.get(globalMarketDataURL);
+        setGlobalData(data);
+    }
 
     useEffect(() => {
         fetchGlobalData();
-    }, [globalData]);
+    }, []);
 
     return (
         <div>

@@ -10,19 +10,14 @@ export const TrendingCoins = () => {
 
     const navigate = useNavigate();
 
-    const fetchTrendingCoins = () => {
-        axios.get(trendingCoins)
-            .then(res => {
-                setTrending(res.data.coins)
-                // console.log(res.data.coins)
-            }).catch(err => {
-                console.log(err)
-            })
-    };
+    const fetchTrendingCoins = async () => {
+        const { data } = await axios.get(trendingCoins);
+        setTrending(data.coins);
+    }
 
     useEffect(() => {
         fetchTrendingCoins();
-    }, [trending]);
+    }, []);
 
     return (
         <div className='trending--container'>
