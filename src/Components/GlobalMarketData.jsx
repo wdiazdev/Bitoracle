@@ -20,7 +20,7 @@ export const GlobalMarketData = () => {
 
     useEffect(() => {
         fetchGlobalData();
-    }, []);
+    }, [globalData]);
 
     return (
         <div>

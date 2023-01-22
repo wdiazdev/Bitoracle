@@ -19,7 +19,7 @@ export const SingleCoins = () => {
 
     useEffect(() => {
         fetchSingleCoin();
-    }, []);
+    }, [singleCoin]);
 
     return (
         <div className='coins--container'>

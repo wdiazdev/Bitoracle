@@ -14,7 +14,7 @@ export const CoinPageChart = ({ coin, id }) => {
     const fetchMarketData = () => {
         axios.get(HistoricalChart(id, days))
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setChartData(res.data.prices)
             }).catch(err => {
                 console.log(err)
@@ -23,7 +23,7 @@ export const CoinPageChart = ({ coin, id }) => {
 
     useEffect(() => {
         fetchMarketData();
-    }, []);
+    }, [chartData]);
 
     return (
         <div className='coin--page--info--2'>
@@ -39,7 +39,8 @@ export const CoinPageChart = ({ coin, id }) => {
                     datasets: [{
                         data: chartData?.map((crypto) => crypto[1]),
                         label: `Price (Past ${days} Days) in USD`,
-                        borderColor: "#04D4F0",
+                        borderColor: "#0995e0",
+
                     }],
                 }}
                 options={{

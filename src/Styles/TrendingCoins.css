@@ -37,6 +37,7 @@
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .card span {
