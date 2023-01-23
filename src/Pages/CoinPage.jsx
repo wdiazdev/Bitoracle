@@ -30,7 +30,7 @@ export const CoinPage = () => {
     //* LOADER
 
     useEffect(() => {
-        setLoading(false)
+        setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 1000)

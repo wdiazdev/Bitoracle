@@ -37,7 +37,7 @@ export const NavBar = () => {
                     user
                         ?
                         <>
-                            <Link to='/account'>Account: {user && user.email}</Link>
+                            <Link to='/account'>Welcome: {user && user.email}</Link>
                             <button
                                 className='dash--btn'
                                 onClick={handleLogout}

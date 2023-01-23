@@ -20,7 +20,7 @@ export const Home = () => {
 
                     <div className='main--hero'>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita unde at repellat. Tempore eum dicta consequatur, ut fuga inventore cumque esse, quisquam, similique quia excepturi labore pariatur harum assumenda voluptates!</p>
-                        {user ? <Link to='/account'><button className='dash--btn'>Account</button></Link> :
+                        {user ? <Link to='/account'><button className='dash--btn'>Dashboard</button></Link> :
                             <Link to='/signin'><button className='dash--btn'>Log in</button></Link>
                         }
                     </div>
