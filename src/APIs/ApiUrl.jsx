@@ -8,5 +8,5 @@ export const marketDataUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_
 
 export const trendingCoins = 'https://api.coingecko.com/api/v3/search/trending';
 
-export const HistoricalChart = (id, days = 365) =>
+export const HistoricalChart = (id, days) =>
     `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}`;

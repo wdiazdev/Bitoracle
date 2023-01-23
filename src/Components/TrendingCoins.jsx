@@ -23,9 +23,9 @@ export const TrendingCoins = () => {
         <div className='trending--container'>
             <h2>Trending Cryptos</h2>
             <div className='card--container'>
-                {trending.map((coin, id) => {
+                {trending.map((coin, index) => {
                     return (
-                        <div key={id} className='card' onClick={() => navigate(`/coin/${coin.id}`)}>
+                        <div key={index} className='card' onClick={() => navigate(`/coin/${coin.item.id}`)}>
                             <img src={coin.item.large} alt={coin.item.name} />
                             <h3>{coin.item.name}</h3>
                             <span># {coin.item.market_cap_rank}</span>
@@ -35,4 +35,4 @@ export const TrendingCoins = () => {
             </div>
         </div>
     )
-}
+};

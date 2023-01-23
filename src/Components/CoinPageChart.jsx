@@ -4,7 +4,6 @@ import Chart from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
 import { HistoricalChart } from '../APIs/ApiUrl';
 
-
 export const CoinPageChart = ({ coin, id }) => {
 
     const [chartData, setChartData] = useState();
@@ -35,7 +34,6 @@ export const CoinPageChart = ({ coin, id }) => {
                         data: chartData?.map((crypto) => crypto[1]),
                         label: `Price (Past ${days} Days) in USD`,
                         borderColor: "#0995e0",
-
                     }],
                 }}
                 options={{
