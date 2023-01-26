@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyDvkn3KjXoqjKUtYNZiQVN4qf3FBqMoWPY',
-    authDomain: 'bitoralce-development.firebaseapp.com',
-    projectId: 'bitoralce-development',
-    storageBucket: 'bitoralce-development.appspot.com',
-    messagingSenderId: '1094638928869',
-    appId: '1:1094638928869:web:654731f62755abffb7a50c'
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID
 };
 
 // Initialize Firebase 
