@@ -44,22 +44,35 @@ export const CoinPage = () => {
                     <Loader />
                     :
                     <div className='coin--page--container'>
+
                         <div className='coin--info--container'>
 
                             <nav className='coin--page--nav'>
-                                {coin.image ? <div><img src={coin.image.large} alt={coin.name} /></div> : null}
-                                <div><h2>{coin.name}</h2></div>
+
+                                <div className='img--name--symbol'>
+
+                                    {coin.image ? <img src={coin.image.large} alt={coin.name} /> : null}
+                                    <h2>{coin.name}</h2>
+                                    <span>{coin.symbol}</span>
+
+                                </div>
+
                                 <div><FaWindowClose
                                     className='close--btn'
                                     onClick={() => navigate('/')}
                                 /></div>
+
                             </nav>
-                            {coin.description ? <p className='description'>{coin.description.en.split(". ")[0]}.</p> : null}
+
+
                             <div className='coin--page--info'>
                                 <CoinPageInfo coin={coin} />
                                 <CoinPageChart coin={coin} id={id} />
                             </div>
+
+                            {coin.description ? <p className='description'>{coin.description.en.split(". ")[0]}.</p> : null}
                         </div>
+
                     </div>
             }
         </>

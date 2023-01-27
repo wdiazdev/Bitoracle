@@ -25,20 +25,33 @@
     align-items: center;
 }
 
-.coin--page--nav img {
-    width: 80px;
+.img--name--symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.coin--page--nav h2 {
+.img--name--symbol img {
+    width: 60px;
+}
+
+.img--name--symbol h2 {
     font-family: var(--secondary--font);
     font-size: 3rem;
-    background: linear-gradient(to right, var(--primary--color) 0%, #d40071 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.img--name--symbol span {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    background: var(--primary--color);
+    border-radius: 10px;
+    padding: 0.4rem 0.8rem;
 }
 
 .close--btn {
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -59,11 +72,6 @@
     grid-column-gap: 2rem;
 }
 
-.coin--page--info--1 {
-    overflow: hidden;
-}
-
-
 .coin--page--info li {
     display: flex;
     justify-content: space-between;
@@ -79,6 +87,28 @@
 
 .coin--page--info--2 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.charts--btn--container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem 0rem;
+}
+
+.chart-btn {
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    background: rgb(46, 46, 46);
+    border: none;
+    transition: 0.3s;
+}
+
+.chart-btn:focus {
+    background: var(--primary--color);
 }

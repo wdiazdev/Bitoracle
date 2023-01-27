@@ -5,7 +5,7 @@ export const CoinPageInfo = ({ coin }) => {
     return (
         <div className='coin--page--info--1'>
             <ul>
-                <li><p>Rank:</p>#{coin.market_cap_rank}</li>
+                <li><p>Market Cap Rank:</p>#{coin.market_cap_rank}</li>
                 {coin.market_data?.current_price ? <li><p>Price:</p>${numberWithCommas(coin.market_data.current_price.usd.toFixed(2))}</li> : null}
                 {coin.market_data?.market_cap ? <li><p>Market Cap:</p>${numberWithCommas(coin.market_data.market_cap.usd)}</li> : null}
                 {coin.market_data?.total_volume ? <li><p>24 Hour Trading Vol:</p>${numberWithCommas(coin.market_data.total_volume.usd)}</li> : null}

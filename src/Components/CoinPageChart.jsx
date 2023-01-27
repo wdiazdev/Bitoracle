@@ -39,11 +39,19 @@ export const CoinPageChart = ({ coin, id }) => {
                 options={{
                     elements: {
                         point: {
-                            radius: 1,
+                            radius: 2,
                         },
                     },
                 }}
             />
+            <div className='charts--btn--container'>
+
+                <button className='chart-btn' onClick={() => setDays(1)}>1D</button>
+                <button className='chart-btn' onClick={() => setDays(7)}>7D</button>
+                <button className='chart-btn' onClick={() => setDays(30)}>30D</button>
+                <button className='chart-btn' onClick={() => setDays(365)}>365D</button>
+
+            </div>
         </div>
     )
 };
