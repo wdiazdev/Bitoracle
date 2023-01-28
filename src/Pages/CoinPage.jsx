@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ReactHTMLParser from "react-html-parser";
 import { singleCoin } from '../APIs/ApiUrl';
 import '../Styles/CoinPage.css';
 import { FaWindowClose } from "react-icons/fa";
@@ -21,6 +22,7 @@ export const CoinPage = () => {
     const fetchCoin = async () => {
         const { data } = await axios.get(singleCoin(id));
         setCoin(data)
+        // console.log(data)
     };
 
     useEffect(() => {
@@ -47,6 +49,8 @@ export const CoinPage = () => {
 
                         <div className='coin--info--container'>
 
+                            {coin.image ? <img src={coin.image.large} alt={coin.name} className='coin--img--bg' /> : null}
+
                             <nav className='coin--page--nav'>
 
                                 <div className='img--name--symbol'>
@@ -70,7 +74,7 @@ export const CoinPage = () => {
                                 <CoinPageChart coin={coin} id={id} />
                             </div>
 
-                            {coin.description ? <p className='description'>{coin.description.en.split(". ")[0]}.</p> : null}
+                            {coin.description ? <p className='description'>{ReactHTMLParser(coin.description.en.split(". ")[0])}.</p> : null}
                         </div>
 
                     </div>

@@ -19,7 +19,7 @@ export const MarketTable = ({ page, handleSearch }) => {
                     </tr>
                 </thead>
 
-                {handleSearch().slice((page - 1) * 25, (page - 1) * 25 + 25).map((coin) => {
+                {handleSearch().slice((page - 1) * 10, (page - 1) * 10 + 10).map((coin) => {
 
                     let priceChange = coin.price_change_percentage_24h;
 

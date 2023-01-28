@@ -42,6 +42,13 @@
     font-size: 1.2rem;
 }
 
+.main--btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 .coins--container {
     max-width: 1240px;
     padding-bottom: 1rem;

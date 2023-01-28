@@ -14,10 +14,10 @@ export const MarketData = () => {
 
     const [search, setSearch] = useState('');
 
-
     const fetchCryptoData = async () => {
         const { data } = await axios.get(marketDataUrl);
         setCryptoData(data);
+        console.log(cryptoData)
     }
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export const MarketData = () => {
             />
             <Pagination
                 className='pagination'
-                count={parseInt((handleSearch()?.length / 25).toFixed(0))}
+                count={(cryptoData?.length / 10).toFixed(0)}
                 onChange={(_, value) => {
                     setPage(value);
                     window.scroll(0, 1200);

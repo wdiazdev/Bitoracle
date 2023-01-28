@@ -11,18 +11,32 @@
 }
 
 .coin--info--container {
+    position: relative;
     width: 1240px;
     margin: 0 auto;
     border-radius: 20px;
     padding: 2rem 3rem;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.coin--img--bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    transform: translate(40px, -50px);
+    opacity: 0.2;
 }
 
 .coin--page--nav {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1000;
 }
 
 .img--name--symbol {
@@ -75,9 +89,17 @@
 .coin--page--info li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.5rem 0;
     gap: 1rem;
     border-bottom: 1px solid var(--primary--color);
+}
+
+.high--low--range {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .coin--page--info--1 p {
@@ -111,4 +133,29 @@
 
 .chart-btn:focus {
     background: var(--primary--color);
+}
+
+
+.indicator {
+    width: 100%;
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.high--low--container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.high--indicator {
+    height: 0.4rem;
+    background: #65ca00;
+    border-radius: 0 10px 10px 0;
+}
+
+.low--indicator {
+    height: 0.4rem;
+    background: #c20101;
+    border-radius: 10px 0 0 10px;
 }

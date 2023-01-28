@@ -1,5 +1,6 @@
 import React from 'react'
 import { numberWithCommas } from '../Utilities/FormatCurrency';
+import { HighAndLowIndicator } from './HighAndLowIndicator';
 
 export const CoinPageInfo = ({ coin }) => {
     return (
@@ -12,8 +13,7 @@ export const CoinPageInfo = ({ coin }) => {
                 {coin.market_data?.max_supply ? <li><p>Max Supply:</p>{numberWithCommas(coin.market_data.max_supply)}</li> : null}
                 {coin.market_data?.total_supply ? <li><p>Total Supply:</p>{numberWithCommas(coin.market_data.total_supply)}</li> : null}
                 {coin.market_data?.circulating_supply ? <li><p>Circulating Supply:</p>{numberWithCommas(coin.market_data.circulating_supply.toFixed(2))}</li> : null}
-                {coin.market_data?.high_24h ? <li><p>24 Hour High:</p>${numberWithCommas(coin.market_data.high_24h.usd.toFixed(2))}</li> : null}
-                {coin.market_data?.low_24h ? <li><p>24 Hour Low:</p>${numberWithCommas(coin.market_data.low_24h.usd.toFixed(2))}</li> : null}
+                <HighAndLowIndicator coin={coin} />
                 {coin.market_data?.ath ? <li><p>All Time High:</p>${numberWithCommas(coin.market_data.ath.usd.toFixed(2))}</li> : null}
                 {coin.market_data?.ath_change_percentage ?
                     <li style={coin.market_data.ath_change_percentage.usd > 0 ? { color: '#7CFC00' } : { color: '#DC0000' }}>
