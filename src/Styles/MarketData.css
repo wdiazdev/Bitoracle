@@ -136,38 +136,3 @@ img {
 .col--hr--change {
     text-align: center;
 }
-
-/* PAGINATION  */
-
-.pagination {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.pagination button {
-    color: #fff;
-    border: 1px solid rgb(36, 36, 36);
-    background: transparent;
-    padding: 1rem;
-    margin: 0 0.5rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.pagination button:hover {
-    background: rgb(36, 36, 36);
-    color: var(--primary--color);
-    font-weight: 600;
-    border: 1px solid var(--primary--color);
-}
-
-.pagination button:focus {
-    background: rgb(36, 36, 36);
-    color: var(--primary--color);
-    font-weight: 600;
-    border: 1px solid var(--primary--color);
-}

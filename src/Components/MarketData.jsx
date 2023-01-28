@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import '../Styles/MarketData.css';
-import { Pagination } from '@mui/material';
 import { MainSearch } from '../Components/MainSearch';
 import { MarketTable } from '../Components/MarketTable';
 import { marketDataUrl } from '../APIs/ApiUrl';
 import axios from 'axios';
+import { Pagination } from '../Components/Pagination';
 
 export const MarketData = () => {
 
@@ -25,6 +25,9 @@ export const MarketData = () => {
     }, [page, search]);
 
     const handleSearch = () => {
+        if (search.length > 0) {
+            setPage(1);
+        }
         return cryptoData.filter(
             (crypto) =>
                 crypto.name.toLowerCase().includes(search) ||
@@ -36,19 +39,13 @@ export const MarketData = () => {
         <div className='crypto--data'>
             <MainSearch setSearch={setSearch} />
             <MarketTable
-                cryptoData={cryptoData}
                 page={page}
-                search={search}
                 handleSearch={handleSearch}
             />
             <Pagination
-                className='pagination'
-                count={(cryptoData?.length / 10).toFixed(0)}
-                onChange={(_, value) => {
-                    setPage(value);
-                    window.scroll(0, 1200);
-                }}
-            />
+                page={page}
+                setPage={setPage}
+                cryptoData={cryptoData} />
         </div>
     )
 };
