@@ -177,6 +177,25 @@
     }
 }
 
-@media screen and (max-width:900px) {}
+@media screen and (max-width:900px) {
+    .main--info {
+        margin-top: 10px;
+        height: 400px;
+        padding: 3rem;
+        flex-direction: column;
+        gap: 0rem;
+    }
+}
 
-@media screen and (max-width:360px) {}
+@media screen and (max-width:360px) {
+    .main--info {
+        height: 350px;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+        box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+        border-radius: 20px;
+    }
+
+    .main--info h1 {
+        font-size: 4.5rem;
+    }
+}

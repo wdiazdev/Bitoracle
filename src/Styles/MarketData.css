@@ -1,14 +1,22 @@
+.crypto--data {
+    min-height: 100vh;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
 /* GLOBAL MARKET DATA  */
 
 .global--market--data {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 1rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     font-size: 0.8rem;
     border-bottom: 1px solid var(--primary--color);
+    gap: 2rem;
 }
 
 .global--market--data span {
@@ -35,19 +43,42 @@
     -webkit-text-fill-color: transparent;
 }
 
+
+@media screen and (max-width:1000px) {
+    .global--market--data {
+        padding: 1rem 0;
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width:640px) {
+    .global--market--data {
+        gap: 0.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 /* SEARCH INPUT FILTER  */
 
 .search--bar--container {
     position: relative;
     max-width: 1240px;
-    margin: 0 auto;
-    padding: 2rem 0rem;
+    padding: 1rem 0 2rem 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.search--bar--container h2 {
+    width: 100%;
+    font-size: 3rem;
 }
 
 .input--container {
-    width: 50%;
+    margin-top: 10px;
+    width: 60%;
 }
 
 .input--container input {
@@ -66,10 +97,32 @@
     box-shadow: 0 0 10px var(--primary--color);
 }
 
+@media screen and (max-width:1000px) {
+    .search--bar--container h2 {
+        width: 100%;
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width:360px) {
+    .input--container {
+        width: 100%;
+    }
+
+    .search--bar--container h2 {
+        font-size: 1.8rem;
+    }
+
+    .input--container input {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
 /* TABLE STYLES  */
 
 .table--container {
-    min-height: 80vh;
+    min-height: 100vh;
     max-width: 1240px;
     margin: 0 auto;
 }
@@ -135,4 +188,33 @@ img {
 
 .col--hr--change {
     text-align: center;
+}
+
+@media screen and (max-width:800px) {
+    th {
+        padding: 0.2rem;
+        font-size: 0.5rem;
+    }
+
+    td {
+        padding: 1rem 0;
+        font-size: 0.5rem;
+    }
+
+    .col--rank {
+        font-size: 0.5rem;
+    }
+
+    .col--name {
+        font-size: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    img {
+        width: 20px;
+    }
+
+    .name--symbol {
+        gap: 0.2rem;
+    }
 }

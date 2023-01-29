@@ -2,7 +2,7 @@
     position: relative;
     max-width: 1240px;
     margin: 2rem auto;
-    padding: 2rem 0rem;
+    padding: 2rem 2rem;
 }
 
 .trending--container h2 {
@@ -14,6 +14,8 @@
 }
 
 .card--container {
+    max-width: 1240px;
+    margin: 0 auto;
     padding: 4rem 2rem 1rem 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -38,6 +40,7 @@
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
     transition: 0.3s;
     cursor: pointer;
+    gap: 1rem;
 }
 
 .card span {
@@ -55,4 +58,49 @@
 .card:hover {
     box-shadow: 0 0 20px #ffffff;
     transform: rotateX(7deg) translateY(-6px) scale(1.05);
+}
+
+@media screen and (max-width:1000px) {
+    .trending--container {
+        margin: 0 auto;
+        padding: 1rem 1rem;
+    }
+
+    .trending--container h2 {
+        font-size: 2rem;
+    }
+
+    .card--container {
+        max-width: 400px;
+        padding: 1rem 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+        width: 150px;
+        height: 150px;
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .card span {
+        top: 0.5rem;
+        left: 1rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+    }
+
+    .card img {
+        width: 60px;
+    }
+
+    .card h3 {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width:360px) {
+    .trending--container h2 {
+        font-size: 1.8rem;
+    }
 }

@@ -47,7 +47,7 @@ export const Home = () => {
             </div>
             <GlobalMarketData />
             <TrendingCoins />
-            {/* <MarketData /> */}
+            <MarketData />
         </div>
     )
 };
