@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
 
-export const MarketTable = ({ page, handleSearch }) => {
+export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export const MarketTable = ({ page, handleSearch }) => {
                     </tr>
                 </thead>
 
-                {handleSearch().slice((page - 1) * 10, (page - 1) * 10 + 10).map((coin) => {
+                {handleSearch().slice(page * itemsPerPage - itemsPerPage, page * itemsPerPage).map((coin) => {
 
                     let priceChange = coin.price_change_percentage_24h;
 

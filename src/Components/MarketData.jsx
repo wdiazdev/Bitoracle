@@ -12,12 +12,13 @@ export const MarketData = () => {
 
     const [page, setPage] = useState(1);
 
+    const [itemsPerPage, setItemsPerPage] = useState(25);
+
     const [search, setSearch] = useState('');
 
     const fetchCryptoData = async () => {
         const { data } = await axios.get(marketDataUrl);
         setCryptoData(data);
-        console.log(cryptoData)
     }
 
     useEffect(() => {
@@ -40,12 +41,18 @@ export const MarketData = () => {
             <MainSearch setSearch={setSearch} />
             <MarketTable
                 page={page}
+                itemsPerPage={itemsPerPage}
                 handleSearch={handleSearch}
             />
-            <Pagination
-                page={page}
-                setPage={setPage}
-                cryptoData={cryptoData} />
+            {cryptoData.length > 0 &&
+                <Pagination
+                    page={page}
+                    itemsPerPage={itemsPerPage}
+                    setItemsPerPage={setItemsPerPage}
+                    setPage={setPage}
+                    cryptoData={cryptoData}
+                />
+            }
         </div>
     )
 };

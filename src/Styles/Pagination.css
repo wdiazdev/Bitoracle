@@ -1,55 +1,41 @@
 .pagination {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 1rem;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .pagination img {
     width: 2.5rem;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-.pagination li {
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    transition: 0.3s;
-}
-
-.pagination li:nth-child(3),
-li:nth-child(4),
-li:nth-child(5),
-li:nth-child(7) {
+.pagination>button {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: #505050;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    background: #333;
-    color: #fff;
-    padding: 1.2rem;
-}
-
-.pagination li:nth-child(4) {
-    background: var(--primary--color);
-}
-
-.pagination li:nth-child(2):hover,
-li:nth-child(3):hover,
-li:nth-child(5):hover,
-li:nth-child(6):hover,
-li:nth-child(7):hover {
-    color: var(--primary--color);
+    font: inherit;
     cursor: pointer;
+    outline: inherit;
+    transition: 0.2s;
+    border: none;
+    color: #fff;
 }
 
-.pagination li:nth-child(2),
-li:nth-child(6) {
-    display: flex;
-    letter-spacing: 2px;
-    font-size: 1.5rem;
+.pagination>button:hover {
+    color: var(--primary--color);
+    font-weight: 700;
+}
+
+.pagination--disable {
+    transition: 0.2s;
+    opacity: 0;
 }
 
 .prev--btn {
