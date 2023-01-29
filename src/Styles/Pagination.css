@@ -5,16 +5,9 @@
     gap: 1rem;
 }
 
-.pagination--icon {
-    font-size: 2rem;
-    color: #333;
+.pagination img {
+    width: 2.5rem;
     cursor: pointer;
-    transition: 0.3s;
-
-}
-
-.pagination--icon:hover {
-    color: var(--primary--color);
 }
 
 .pagination li {
@@ -57,4 +50,8 @@ li:nth-child(6) {
     display: flex;
     letter-spacing: 2px;
     font-size: 1.5rem;
+}
+
+.prev--btn {
+    transform: rotate(180deg);
 }

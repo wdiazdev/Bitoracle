@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Styles/Pagination.css';
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
+import NextIcon from '../assets/nexticon.png';
 
 export const Pagination = ({ page, setPage, cryptoData }) => {
 
@@ -12,7 +12,7 @@ export const Pagination = ({ page, setPage, cryptoData }) => {
         } else {
             setPage(page + 1);
         }
-    }
+    };
 
     const prev = () => {
         if (page === 1) {
@@ -22,29 +22,46 @@ export const Pagination = ({ page, setPage, cryptoData }) => {
         }
     }
 
+    const nextThreePages = () => {
+        if (page + 3 >= totalNumber) {
+            setPage(totalNumber - 1)
+        } else {
+            setPage(page + 3)
+        }
+    };
+
+    const prevThreePages = () => {
+        if (page - 3 <= 1) {
+            setPage(totalNumber + 1)
+        } else {
+            setPage(page - 2)
+        }
+    };
+
     return (
         <ul className='pagination'>
 
-            <li onClick={prev}>
-                <FaArrowAltCircleLeft className='pagination--icon' />
-            </li>
+            <img src={NextIcon} alt='preview' onClick={prev} className='prev--btn' />
 
-            <li>...</li>
+            <li onClick={prevThreePages}>...</li>
 
-            <li onClick={prev}>{page - 1}</li>
+
+            <li onClick={prev}>{page - 1}{" "}</li>
+
 
             <li>{page}</li>
 
-            <li onClick={next}>{page + 1}</li>
 
-            <li>...</li>
+            {page + 1 !== totalNumber && page !== totalNumber ? <li onClick={next}>{page + 1}</li> : null}
 
-            <li onClick={() => setPage(totalNumber)}>{totalNumber}</li>
 
-            <li onClick={next}>
-                <FaArrowAltCircleRight className='pagination--icon' />
-            </li>
+            {page + 1 !== totalNumber && page !== totalNumber ? <li onClick={nextThreePages}>...</li> : null}
 
-        </ul>
+            {page !== totalNumber ? <li onClick={() => setPage(totalNumber)}>{totalNumber}</li> : null}
+
+
+            <img src={NextIcon} alt='next' onClick={next} />
+
+        </ul >
     )
 };
