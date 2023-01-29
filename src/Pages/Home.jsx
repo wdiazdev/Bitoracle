@@ -20,15 +20,23 @@ export const Home = () => {
 
                     <div className='main--hero'>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita unde at repellat. Tempore eum dicta consequatur, ut fuga inventore cumque esse, quisquam, similique quia excepturi labore pariatur harum assumenda voluptates!</p>
+                        <div className='sub--headings'>
+
+                            <h2>The World's</h2>
+                            <h2>Fastest Growing</h2>
+                            <h2>Crypto Web App</h2>
+
+                        </div>
+
+                        <p> BitOracle is one of the most useful tools available to crypto traders and investors.</p>
 
                         <div className='main--btns'>
 
-                            {user ? <Link to='/account'><button className='dash--btn'>Dashboard</button></Link> :
-                                <Link to='/signin'><button className='dash--btn'>Log in</button></Link>
+                            {user ? <Link to='/account'><button className='main--btn'>Dashboard</button></Link> :
+                                <Link to='/signin'><button className='main--btn'>Log in</button></Link>
                             }
 
-                            {!user ? <Link to='/signup'><button className='dash--btn'>Sign Up</button></Link> : null}
+                            {!user ? <Link to='/signup'><button className='main--btn'>Sign Up</button></Link> : null}
 
                         </div>
 
@@ -39,7 +47,7 @@ export const Home = () => {
             </div>
             <GlobalMarketData />
             <TrendingCoins />
-            <MarketData />
+            {/* <MarketData /> */}
         </div>
     )
 };

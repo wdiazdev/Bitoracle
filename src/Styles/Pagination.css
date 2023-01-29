@@ -7,12 +7,12 @@
 }
 
 .pagination img {
-    width: 2.5rem;
+    width: 2.3rem;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.pagination>button {
+.pagination--btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,8 +28,29 @@
     color: #fff;
 }
 
-.pagination>button:hover {
+.pagination--btn:hover {
     color: var(--primary--color);
+    font-weight: 700;
+}
+
+.pagination--selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--primary--color);
+    border-radius: 50%;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    transition: 0.2s;
+    border: none;
+    color: #fff;
+}
+
+.pagination--selected:hover {
+    color: #111;
     font-weight: 700;
 }
 

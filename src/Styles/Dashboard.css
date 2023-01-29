@@ -77,12 +77,27 @@
 .asset--item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: var(--primary--bg--color);
     padding: 1rem;
     border-radius: 20px;
 }
 
 .asset--name {
-    width: 40%;
-    margin-left: 20px;
+    width: 20%;
+}
+
+.remove--asset {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--primary--color);
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.remove--asset:hover {
+    background: #c20101;
+    color: #fff;
 }

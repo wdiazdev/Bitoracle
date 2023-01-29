@@ -29,6 +29,7 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
                             key={i}
                             onClick={() => handlePage(i + 1)}
                             onChange={window.scroll(0, 1200)}
+                            className={page === i + 1 ? 'pagination--selected' : 'pagination--btn'}
                         >
                             {i + 1
                             }
