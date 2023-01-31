@@ -178,6 +178,10 @@
 
 
 @media screen and (max-width:1000px) {
+    .coin--info--container {
+        border: none;
+    }
+
     .coin--page--container {
         padding: 1rem 1rem;
     }
@@ -190,15 +194,15 @@
     }
 
     .img--name--symbol img {
-        width: 40px;
+        width: 35px;
     }
 
     .img--name--symbol h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .img--name--symbol span {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
 
     .description {
@@ -209,17 +213,22 @@
     }
 
     .coin--page--info--1 li {
+        width: 315px;
         font-size: 0.8rem;
     }
 
     .coin--page--info--2 {
-        width: 250px;
-        height: 200px;
+        width: 315px;
+        height: 250px;
     }
 }
 
 @media screen and (max-width:640px) {
     .coin--info--container {
         padding: 2rem 2rem;
+    }
+
+    .img--name--symbol span {
+        display: none;
     }
 }
