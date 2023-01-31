@@ -37,6 +37,7 @@ export const CoinPageChart = ({ coin, id }) => {
                     }],
                 }}
                 options={{
+                    maintainAspectRatio: false,
                     elements: {
                         point: {
                             radius: 2,

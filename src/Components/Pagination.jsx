@@ -9,6 +9,7 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
             selectedPage <= cryptoData.length / itemsPerPage &&
             selectedPage !== page)
             setPage(selectedPage);
+        window.scroll(0, 1200)
     };
 
     return (
@@ -19,7 +20,6 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
                 alt='preview'
                 className={page > 1 ? 'prev--btn' : 'pagination--disable'}
                 onClick={() => handlePage(page - 1)}
-                onChange={window.scroll(0, 1200)}
             />
 
             {
@@ -28,7 +28,6 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
                         <button
                             key={i}
                             onClick={() => handlePage(i + 1)}
-                            onChange={window.scroll(0, 1200)}
                             className={page === i + 1 ? 'pagination--selected' : 'pagination--btn'}
                         >
                             {i + 1
@@ -43,7 +42,6 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
                 alt='next'
                 onClick={() => handlePage(page + 1)}
                 className={page < cryptoData.length / itemsPerPage ? '' : 'pagination--disable'}
-                onChange={window.scroll(0, 1200)}
             />
 
         </div >

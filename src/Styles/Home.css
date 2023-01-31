@@ -56,7 +56,6 @@
     -webkit-text-fill-color: transparent;
 }
 
-
 .main--info p {
     font-size: 1.2rem;
 }
@@ -139,6 +138,12 @@
 /* RESPONSIVE DESIGN  */
 
 @media screen and (max-width:1000px) {
+    .main--container {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/src/assets/mainbg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     .main--info {
         height: 350px;
         padding: 1rem;
@@ -153,23 +158,19 @@
         font-size: 6rem;
     }
 
-    .sub--headings {
-        font-size: 0.8rem;
+    .main--info {
+        margin-top: 10px;
+        height: 400px;
+        padding: 3rem;
+        flex-direction: column;
+        gap: 0rem;
+        background: none;
+        box-shadow: none;
+        border-radius: 0px;
     }
 
-    .sub--headings h2:nth-child(2) {
-        font-size: 1.4rem;
-    }
-
-    .main--info p {
-        font-size: 0.8rem;
-    }
-
-    .main--btn {
-        font-size: 1rem;
-        letter-spacing: 1px;
-        padding: 0.5rem 0.5rem;
-
+    .main--btns {
+        margin-top: 1rem;
     }
 
     .coins--container {
@@ -177,25 +178,21 @@
     }
 }
 
-@media screen and (max-width:900px) {
-    .main--info {
-        margin-top: 10px;
-        height: 400px;
-        padding: 3rem;
-        flex-direction: column;
-        gap: 0rem;
-    }
-}
-
 @media screen and (max-width:360px) {
-    .main--info {
-        height: 350px;
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-        box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)25px 10px 5px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
-        border-radius: 20px;
+    .main--info h1 {
+        font-size: 5rem;
     }
 
-    .main--info h1 {
-        font-size: 4.5rem;
+    .sub--headings {
+        font-size: 1rem;
+    }
+
+    .sub--headings h2:nth-child(2) {
+        font-size: 1.8rem;
+    }
+
+
+    .main--info p {
+        font-size: 1rem;
     }
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import '../Styles/MarketData.css';
 import { numberWithCommas } from '../Utilities/FormatCurrency';
 import { globalMarketDataURL } from '../APIs/ApiUrl'
+import '../Styles/GlobalData.css';
 
 export const GlobalMarketData = () => {
 

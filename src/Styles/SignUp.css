@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url('/src/assets/secondarybg.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url('/src/assets/signupbg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }

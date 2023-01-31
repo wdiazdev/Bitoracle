@@ -14,7 +14,7 @@
 
 .dash--container {
     width: 100%;
-    min-height: 85vh;
+    height: 80vh;
     padding: 1rem 3rem;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 25px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
@@ -32,7 +32,7 @@
 
 .dashboard--data {
     display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    grid-template-columns: 1fr 2fr;
     grid-column-gap: 3rem;
 }
 
@@ -83,14 +83,15 @@
     border-radius: 20px;
 }
 
-.asset--name {
-    width: 20%;
+.asset {
+    font-size: 1rem;
 }
 
 .remove--asset {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    border: none;
     cursor: pointer;
     color: var(--primary--color);
     font-weight: 700;
@@ -101,3 +102,69 @@
     background: #c20101;
     color: #fff;
 }
+
+@media screen and (max-width:1000px) {
+    .dashboard {
+        padding: 0rem 1rem;
+    }
+
+    .dash--container {
+        padding: 1rem 2rem;
+    }
+
+    .dash--container h2 {
+        font-size: 2rem;
+    }
+
+    .dashboard--data {
+        grid-column-gap: 2rem;
+        gap: 1rem;
+    }
+
+    .total--balance {
+        font-size: 1rem;
+    }
+
+    .form--inner input {
+        padding: 0.8rem;
+    }
+
+    .signup--btn {
+        font-size: 0.8rem;
+    }
+
+    .asset {
+        font-size: 0.8rem;
+    }
+
+    .remove--asset {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width:640px) {
+
+    .dash--container {
+        padding: 1rem 1rem;
+    }
+
+    .dashboard--data {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 3rem;
+    }
+
+    .asset {
+        font-size: 0.6rem;
+    }
+
+    .remove--asset {
+        width: 1.2rem;
+        height: 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* @media screen and (max-width:360px) {} */

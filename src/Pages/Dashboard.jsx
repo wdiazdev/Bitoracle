@@ -68,10 +68,13 @@ export const Dashboard = () => {
                         <div className='dashboard--data'>
 
                             <div className='num1'>
+
                                 <h3>Balance:</h3>
+
                                 <div className='total--balance'>{balance}</div>
 
                                 <form onSubmit={addAsset}>
+
                                     <div className='form--inner'>
                                         <input
                                             type='text'
@@ -106,13 +109,19 @@ export const Dashboard = () => {
                                         />
                                         <input type='submit' value='Add' className='signup--btn' />
                                     </div>
+
                                 </form>
+
                             </div>
+
                             <div className='num2'>
                                 <AssetList asset={asset} setAsset={setAsset} />
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
             }
         </>

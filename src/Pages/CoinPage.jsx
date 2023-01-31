@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ReactHTMLParser from "react-html-parser";
 import { singleCoin } from '../APIs/ApiUrl';
 import '../Styles/CoinPage.css';
-import { FaWindowClose } from "react-icons/fa";
 import { Loader } from '../Components/Loader';
 import { CoinPageInfo } from '../Components/CoinPageInfo';
 import { CoinPageChart } from '../Components/CoinPageChart';
@@ -35,7 +34,7 @@ export const CoinPage = () => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-        }, 500)
+        }, 1000)
     }, []);
 
     return (
@@ -61,10 +60,12 @@ export const CoinPage = () => {
 
                                 </div>
 
-                                <div><FaWindowClose
+                                <button
                                     className='close--btn'
                                     onClick={() => navigate('/')}
-                                /></div>
+                                >
+                                    x
+                                </button>
 
                             </nav>
 

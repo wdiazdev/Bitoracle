@@ -19,10 +19,10 @@ export const AssetItem = ({ asset, index, removeAsset }) => {
             >
                 X
             </button>
-            <div className='asset--name'>{asset.assetName}</div>
-            <div className='asset--price'>{asset.price}</div>
-            <div className='asset--qty'>{asset.quantity}</div>
-            <div className='asset--date'>{month + '/' + day + '/' + year}</div>
+            <div className='asset'>{asset.assetName}</div>
+            <div className='asset'>{asset.price}</div>
+            <div className='asset'>{asset.quantity}</div>
+            <div className='asset'>{month + '/' + day + '/' + year}</div>
         </div >
     )
 };

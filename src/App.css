@@ -14,7 +14,9 @@ html {
 }
 
 body {
-  background: var(--primary--bg--color);
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6)), url('src/assets/appbg.jpg');
+  /* background: var(--primary--bg--color); */
+  background-size: contain;
   font-family: var(--primary--font);
   color: #fff;
 }
