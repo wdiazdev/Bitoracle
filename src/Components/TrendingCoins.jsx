@@ -23,6 +23,7 @@ export const TrendingCoins = () => {
         <div className='trending--container'>
             <h2>Trending Cryptos</h2>
             <div className='card--container'>
+
                 {trending.map((coin, index) => {
                     return (
                         <div key={index} className='card' onClick={() => navigate(`/coin/${coin.item.id}`)}>
@@ -32,6 +33,7 @@ export const TrendingCoins = () => {
                         </div>
                     )
                 })}
+
             </div>
         </div>
     )

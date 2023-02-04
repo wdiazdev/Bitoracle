@@ -63,6 +63,5 @@ export const Pagination = (
             </select>
 
         </div >
-
     )
 };
