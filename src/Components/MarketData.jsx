@@ -23,7 +23,7 @@ export const MarketData = () => {
 
     useEffect(() => {
         fetchCryptoData();
-    }, [page, search]);
+    }, [page, search, itemsPerPage]);
 
     const handleSearch = () => {
         if (search.length > 0) {

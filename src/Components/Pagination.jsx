@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Styles/Pagination.css';
 import NextIcon from '../assets/nexticon.png';
 
-export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPerPage }) => {
+export const Pagination = (
+    {
+        page,
+        setPage,
+        cryptoData,
+        itemsPerPage,
+        setItemsPerPage }) => {
 
     const handlePage = (selectedPage) => {
         if (selectedPage >= 1 &&
@@ -13,6 +19,7 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
     };
 
     return (
+
         <div className='pagination'>
 
             <img
@@ -44,6 +51,18 @@ export const Pagination = ({ page, setPage, cryptoData, itemsPerPage, setItemsPe
                 className={page < cryptoData.length / itemsPerPage ? '' : 'pagination--disable'}
             />
 
+            <p>Show:</p>
+
+            <select
+                onChange={e => setItemsPerPage(e.target.value)}
+                className='pages'
+            >
+                <option value='25' >25</option>
+                <option value='50' >50</option>
+                <option value='100'>100</option>
+            </select>
+
         </div >
+
     )
 };
