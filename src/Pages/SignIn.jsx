@@ -52,7 +52,6 @@ export const SignIn = () => {
                                 <label htmlFor='email'>Email</label>
                                 <input
                                     type='email'
-                                    id='email'
                                     ref={emailRef}
                                     required />
                             </div>
@@ -61,7 +60,6 @@ export const SignIn = () => {
                                 <label htmlFor='password'>Password</label>
                                 <input
                                     type='password'
-                                    id='password'
                                     ref={passwordRef}
                                     required />
                             </div>

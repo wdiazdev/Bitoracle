@@ -16,12 +16,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route index path='/' element={<Home />} />
-        <Route index path='/coin/:id' element={<CoinPage />} />
-        <Route index path='/signin' element={<SignIn />} />
-        <Route index path='/signup' element={<SignUp />} />
-        <Route index path='/forgot-password' element={<ForgotPassword />} />
+        <Route exact path='/coin/:id' element={<CoinPage />} />
+        <Route exact path='/signin' element={<SignIn />} />
+        <Route exact path='/signup' element={<SignUp />} />
+        <Route exact path='/forgot-password' element={<ForgotPassword />} />
         //! protected route
-        <Route index path='/account' element={
+        <Route exact path='/account' element={
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>
