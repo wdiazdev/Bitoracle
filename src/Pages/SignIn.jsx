@@ -19,7 +19,7 @@ export const SignIn = () => {
         try {
             setError('')
             await signIn(emailRef.current.value, passwordRef.current.value)
-            console.log('Signed Up Successfully')
+            console.log('Login Successfully')
             navigate('/account')
         } catch (e) {
             setError('Unable to login')
