@@ -1,5 +1,3 @@
-Project: Bitoracle
-Live: www.wdiazdev.com
 Technologies: React.js, JavaScript, Node.Js, CSS3, HTML5, Firebase
 
 Description: Bitoracle is a cryptocurrency dashboard that allows users to 
