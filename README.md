@@ -23,3 +23,5 @@ CRUD computer programming model.
 
 Demo User: test@test.com  
 Demo Password: pass123
+
+https://wdiazdev.github.io/Bitoracle/#/account
