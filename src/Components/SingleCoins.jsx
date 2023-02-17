@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { singleCoinMain } from '../APIs/ApiUrl';
 import { formatCurrency } from '../Utilities/FormatCurrency';
 
@@ -7,6 +8,7 @@ export const SingleCoins = () => {
 
     const [singleCoin, setSingleCoin] = useState([]);
 
+    const navigate = useNavigate();
 
     const fetchSingleCoin = async () => {
         const { data } = await axios.get(singleCoinMain);
@@ -18,11 +20,14 @@ export const SingleCoins = () => {
     }, []);
 
     return (
+
         <div className='coins--container'>
-            {
-                singleCoin.map((coin, index) => {
-                    return (
-                        <div key={index} className='coin'>
+
+            {singleCoin.map((coin) => {
+                return (
+                    <div onClick={() => navigate(`/coin/${coin.id}`)}>
+
+                        <div key={coin.id} className='coin'>
 
                             <img src={coin.image} alt={coin.name} />
 
@@ -44,10 +49,14 @@ export const SingleCoins = () => {
                                 </span>
 
                             </div>
+
                         </div>
-                    )
-                })
-            }
+
+                    </div>
+                )
+            })}
+
         </div>
+
     )
 };

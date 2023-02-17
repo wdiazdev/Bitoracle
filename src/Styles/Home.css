@@ -92,8 +92,8 @@
     width: 100%;
     gap: 2rem;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .coin {
@@ -107,7 +107,8 @@
     gap: 0.5rem;
     transition: 0.3s;
     background: rgba(0, 0, 0, 0.6);
-    box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 10px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+    cursor: pointer;
 }
 
 .coin img {
@@ -115,7 +116,7 @@
 }
 
 .coin:hover {
-    box-shadow: 0 0 20px #ffffff;
+    box-shadow: 0 0 15px #ffffff;
 }
 
 .main--price--symbol {

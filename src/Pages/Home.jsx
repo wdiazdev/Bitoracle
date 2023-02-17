@@ -4,6 +4,7 @@ import '../Styles/Home.css';
 import { Link } from 'react-router-dom';
 import { SingleCoins } from '../Components/SingleCoins';
 import { TrendingCoins } from '../Components/TrendingCoins';
+import { Footer } from '../Components/Footer';
 import { UserAuth } from '../Context/AuthContext';
 
 export const Home = () => {
@@ -48,6 +49,7 @@ export const Home = () => {
             <GlobalMarketData />
             <TrendingCoins />
             <MarketData />
+            <Footer />
         </div>
     )
 };

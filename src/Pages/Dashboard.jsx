@@ -2,6 +2,7 @@ import '../Styles/Dashboard.css';
 import { useEffect, useRef, useState } from 'react';
 import { Loader } from '../Components/Loader';
 import { AssetList } from '../Components/AssetList';
+import { Footer } from '../Components/Footer';
 import { numberWithCommas } from '../Utilities/FormatCurrency';
 
 export const Dashboard = () => {
@@ -124,6 +125,8 @@ export const Dashboard = () => {
 
                 </div>
             }
+
+            <Footer />
         </>
     )
 };
