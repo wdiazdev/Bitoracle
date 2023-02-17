@@ -20,3 +20,8 @@ Protected route: The dashboard page is protected. Only users who are
 logged in will have access to the Dashboard. On this page, the user will 
 be able to create, read, update, and delete their entries following the 
 CRUD computer programming model.
+
+Demo User: test@test.com  
+Demo Password: pass123
+
+https://wdiazdev.github.io/Bitoracle/#/account
