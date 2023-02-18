@@ -25,9 +25,9 @@ export const SingleCoins = () => {
 
             {singleCoin.map((coin) => {
                 return (
-                    <div onClick={() => navigate(`/coin/${coin.id}`)}>
+                    <div key={coin.id} onClick={() => navigate(`/coin/${coin.id}`)}>
 
-                        <div key={coin.id} className='coin'>
+                        <div className='coin'>
 
                             <img src={coin.image} alt={coin.name} />
 

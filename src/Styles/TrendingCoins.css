@@ -7,21 +7,15 @@
 
 .trending--container h2 {
     font-size: 3rem;
+    text-align: center;
     font-family: var(--secondary--font);
-    background: linear-gradient(to right, var(--primary--color) 0%, #d40071 20%);
+    background: linear-gradient(to right, var(--primary--color) 40%, #d40071 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.card--container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 4rem 2rem 1rem 2rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 1rem;
-    grid-row-gap: 1rem;
-    place-items: center;
+.swiper--container {
+    padding: 1px solid red;
 }
 
 .card {
@@ -68,12 +62,6 @@
 
     .trending--container h2 {
         font-size: 2rem;
-    }
-
-    .card--container {
-        max-width: 400px;
-        padding: 1rem 0;
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .card {

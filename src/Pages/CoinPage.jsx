@@ -62,7 +62,7 @@ export const CoinPage = () => {
 
                                 <button
                                     className='close--btn'
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate(-1)}
                                 >
                                     x
                                 </button>
