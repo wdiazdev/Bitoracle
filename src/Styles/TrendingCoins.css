@@ -88,29 +88,10 @@
     .card h3 {
         font-size: 0.7rem;
     }
-
-    .swiper-wrapper {
-        width: 1000px;
-    }
-}
-
-@media screen and (max-width:640px) {
-    .swiper-wrapper {
-        width: 640px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
 }
 
 @media screen and (max-width:360px) {
     .trending--container h2 {
         font-size: 1.6rem;
-    }
-
-    .swiper-wrapper {
-        margin: 0 auto;
-        width: 640px;
     }
 }
