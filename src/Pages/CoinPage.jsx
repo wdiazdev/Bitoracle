@@ -7,7 +7,6 @@ import '../Styles/CoinPage.css';
 import { Loader } from '../Components/Loader';
 import { CoinPageInfo } from '../Components/CoinPageInfo';
 import { CoinPageChart } from '../Components/CoinPageChart';
-import { Footer } from '../Components/Footer';
 
 export const CoinPage = () => {
 
@@ -81,7 +80,6 @@ export const CoinPage = () => {
 
                     </div>
             }
-            <Footer />
         </>
     )
 };
