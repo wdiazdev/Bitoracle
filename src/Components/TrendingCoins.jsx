@@ -24,11 +24,14 @@ export const TrendingCoins = () => {
 
     return (
         <div className='trending--container'>
-            <h2>Trending Cryptos</h2>
+
+            <h3>Trending Cryptos</h3>
+
             <Swiper
                 modules={[Navigation]}
                 navigation
                 className='swiper--container'
+
                 breakpoints={{
                     1000: {
                         slidesPerView: 4,
@@ -39,11 +42,12 @@ export const TrendingCoins = () => {
                         spaceBetween: 10,
                     },
                     0: {
-                        slidesPerView: 1,
-                        spaceBetween: 5,
+                        slidesPerView: 2,
+                        spaceBetween: 0,
                     }
                 }}
             >
+
                 {trending.map((coin) => {
                     return (
                         <SwiperSlide key={coin.item.id}>
@@ -51,7 +55,9 @@ export const TrendingCoins = () => {
                         </SwiperSlide>
                     )
                 })}
+
             </Swiper>
+
         </div >
     )
 };

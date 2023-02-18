@@ -4,8 +4,11 @@ import '../Styles/MainSearch.css';
 export const MainSearch = ({ setSearch }) => {
     return (
         <div className='search--bar--container'>
-            <h3 className='search--Bar--header'>Search for your favorite cryptos</h3>
+
+            <h3>Search for your favorite cryptos</h3>
+
             <div className='input--container'>
+
                 <input
                     className='main--search'
                     type='text'
@@ -13,7 +16,9 @@ export const MainSearch = ({ setSearch }) => {
                     }
                     placeholder='Ex: Bitcoin, Ethereum...'
                 />
+
             </div>
+
         </div>
     )
 };

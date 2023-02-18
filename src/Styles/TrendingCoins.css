@@ -2,10 +2,10 @@
     position: relative;
     max-width: 1240px;
     margin: 2rem auto;
-    padding: 2rem 2rem;
+    padding: 2rem 0rem;
 }
 
-.trending--container h2 {
+.trending--container>h3 {
     font-size: 3rem;
     text-align: center;
     font-family: var(--secondary--font);
@@ -14,8 +14,11 @@
     -webkit-text-fill-color: transparent;
 }
 
-.swiper--container {
-    padding: 1px solid red;
+/* SWIPER STYLES /////////////////////////////// */
+
+.swiper-wrapper {
+    padding: 1rem;
+    width: 100%;
 }
 
 .card {
@@ -50,7 +53,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 0 20px #ffffff;
+    box-shadow: 0 0 10px #ffffff;
     transform: rotateX(7deg) translateY(-6px) scale(1.05);
 }
 
@@ -85,10 +88,29 @@
     .card h3 {
         font-size: 0.7rem;
     }
+
+    .swiper-wrapper {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width:640px) {
+    .swiper-wrapper {
+        width: 640px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
 @media screen and (max-width:360px) {
     .trending--container h2 {
         font-size: 1.6rem;
+    }
+
+    .swiper-wrapper {
+        margin: 0 auto;
+        width: 640px;
     }
 }
