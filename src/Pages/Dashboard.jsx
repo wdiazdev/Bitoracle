@@ -86,7 +86,7 @@ export const Dashboard = () => {
                                             ref={assetName}
                                         />
                                         <input
-                                            type='text'
+                                            type='number'
                                             name='price'
                                             id='price'
                                             placeholder='Price'
