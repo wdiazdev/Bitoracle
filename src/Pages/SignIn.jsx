@@ -68,7 +68,7 @@ export const SignIn = () => {
                                 type='submit'
                                 className='signup--btn'
                             >
-                                Log In
+                                Login
                             </button>
 
                             <Link to='/forgot-password'>Forgot Password?</Link>
