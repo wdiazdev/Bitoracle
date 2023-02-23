@@ -34,7 +34,7 @@ export const Home = () => {
                         <div className='main--btns'>
 
                             {user ? <Link to='/account'><button className='main--btn'>Dashboard</button></Link> :
-                                <Link to='/signin'><button className='main--btn'>Log in</button></Link>
+                                <Link to='/signin'><button className='main--btn'>Login</button></Link>
                             }
 
                             {!user ? <Link to='/signup'><button className='main--btn'>Sign Up</button></Link> : null}
