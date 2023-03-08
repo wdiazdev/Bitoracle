@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import '../Styles/SignUp.css';
-import { UserAuth } from '../Context/AuthContext';
+import { userAuth } from '../Context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const SignUp = () => {
@@ -13,7 +13,7 @@ export const SignUp = () => {
 
     const passwordConfirmRef = useRef();
 
-    const { createUser } = UserAuth();
+    const { createUser } = userAuth();
 
     const navigate = useNavigate();
 

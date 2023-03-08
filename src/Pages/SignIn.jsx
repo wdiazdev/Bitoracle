@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserAuth } from '../Context/AuthContext';
+import { userAuth } from '../Context/AuthContext';
 
 export const SignIn = () => {
 
@@ -10,7 +10,7 @@ export const SignIn = () => {
 
     const passwordRef = useRef();
 
-    const { signIn, user } = UserAuth();
+    const { signIn, currentUser } = userAuth();
 
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export const SignIn = () => {
         <div className='signup'>
 
             {
-                user ? <p
+                currentUser ? <p
                     className='already--login'
                     style={{
                         fontSize: '2.5rem',

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import '../Styles/NavBar.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserAuth } from '../Context/AuthContext';
+import { userAuth } from '../Context/AuthContext';
 
 export const NavBar = () => {
 
     const [error, setError] = useState();
 
-    const { user, logout } = UserAuth();
+    const { currentUser, logout } = userAuth();
 
     const navigate = useNavigate();
 
@@ -29,10 +29,10 @@ export const NavBar = () => {
             <Link to='/'><h3>BITORACLE</h3></Link>
 
             {
-                user
+                currentUser
                     ?
                     <>
-                        <Link to='/account'>Welcome: {user && user.email}</Link>
+                        <Link to='/account'>Welcome: {currentUser && currentUser.email}</Link>
                         <button
                             className='main--btn'
                             onClick={handleLogout}

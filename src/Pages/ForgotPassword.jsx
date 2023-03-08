@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { UserAuth } from '../Context/AuthContext';
+import { userAuth } from '../Context/AuthContext';
 
 export const ForgotPassword = () => {
 
@@ -10,7 +10,7 @@ export const ForgotPassword = () => {
 
     const emailRef = useRef();
 
-    const { resetPassword } = UserAuth();
+    const { resetPassword } = userAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import { SingleCoins } from '../Components/SingleCoins';
 import { TrendingCoins } from '../Components/TrendingCoins';
 import { Footer } from '../Components/Footer';
-import { UserAuth } from '../Context/AuthContext';
+import { userAuth } from '../Context/AuthContext';
 
 export const Home = () => {
 
-    const { user } = UserAuth();
+    const { currentUser } = userAuth();
 
     return (
         <div>
@@ -33,11 +33,11 @@ export const Home = () => {
 
                         <div className='main--btns'>
 
-                            {user ? <Link to='/account'><button className='main--btn'>Dashboard</button></Link> :
+                            {currentUser ? <Link to='/account'><button className='main--btn'>Dashboard</button></Link> :
                                 <Link to='/signin'><button className='main--btn'>Login</button></Link>
                             }
 
-                            {!user ? <Link to='/signup'><button className='main--btn'>Sign Up</button></Link> : null}
+                            {!currentUser ? <Link to='/signup'><button className='main--btn'>Sign Up</button></Link> : null}
 
                         </div>
 
