@@ -33,7 +33,6 @@ tr {
     color: #fff;
     border-bottom: 0.5px solid var(--primary--color);
     transition: 0.3s;
-    cursor: pointer;
 }
 
 tr:hover {
@@ -53,6 +52,7 @@ td {
     display: flex;
     align-items: center;
     gap: 1rem;
+    cursor: pointer;
 }
 
 img {

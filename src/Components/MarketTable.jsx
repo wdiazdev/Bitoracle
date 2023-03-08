@@ -5,8 +5,6 @@ export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
     const navigate = useNavigate();
 
-    // onClick={() => navigate(`/coin/${coin.id}`)}
-
     return (
         <div className='table--container'>
             <table>
@@ -33,7 +31,10 @@ export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
                                 <td className='col--rank'>{coin.market_cap_rank}</td>
 
-                                <td className='col--name'>
+                                <td
+                                    className='col--name'
+                                    onClick={() => navigate(`/coin/${coin.id}`)}
+                                >
                                     <img src={coin.image} alt={coin.name} />
                                     <div className='name--symbol'>
                                         <div>
