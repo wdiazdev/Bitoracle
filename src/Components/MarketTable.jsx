@@ -1,15 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
-
+import { SaveBtn } from './SaveBtn';
 export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
     const navigate = useNavigate();
+
+    // onClick={() => navigate(`/coin/${coin.id}`)}
 
     return (
         <div className='table--container'>
             <table>
                 <thead>
                     <tr className='table--head'>
+                        <th></th>
                         <th>Rank</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -25,7 +28,9 @@ export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
                     return (
                         <tbody key={coin.id} >
-                            <tr onClick={() => navigate(`/coin/${coin.id}`)}>
+                            <tr>
+                                <td><SaveBtn coin={coin} /></td>
+
                                 <td className='col--rank'>{coin.market_cap_rank}</td>
 
                                 <td className='col--name'>

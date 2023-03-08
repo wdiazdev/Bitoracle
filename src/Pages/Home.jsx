@@ -3,7 +3,7 @@ import { GlobalMarketData } from '../Components/GlobalMarketData';
 import '../Styles/Home.css';
 import { Link } from 'react-router-dom';
 import { SingleCoins } from '../Components/SingleCoins';
-import { TrendingCoins } from '../Components/TrendingCoins';
+import { TrendingCoinSlider } from '../Components/TrendingCoinSlider';
 import { Footer } from '../Components/Footer';
 import { userAuth } from '../Context/AuthContext';
 
@@ -47,7 +47,7 @@ export const Home = () => {
                 <SingleCoins />
             </div>
             <GlobalMarketData />
-            <TrendingCoins />
+            <TrendingCoinSlider />
             <MarketData />
             <Footer />
         </div>

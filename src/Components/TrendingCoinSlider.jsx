@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/swiper-bundle.css';
 import { Navigation } from 'swiper';
 
-export const TrendingCoins = () => {
+export const TrendingCoinSlider = () => {
 
     const [trending, setTrending] = useState([]);
 
