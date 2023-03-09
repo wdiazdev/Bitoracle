@@ -6,7 +6,8 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail,
 } from 'firebase/auth';
-import { auth } from '../Utilities/Firebase';
+import { setDoc, doc } from 'firebase/firestore';
+import { auth, db } from '../Utilities/Firebase';
 
 const UserContext = createContext();
 
@@ -16,6 +17,9 @@ export const AuthContextProvider = ({ children }) => {
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
+        setDoc(doc(db, 'users', email), {
+            savedCoins: [],
+        })
     };
 
     const signIn = (email, password) => {
