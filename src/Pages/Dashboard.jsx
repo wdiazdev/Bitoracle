@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Styles/Dashboard.css';
 import { Loader } from '../Components/Loader';
@@ -82,6 +82,7 @@ export const Dashboard = () => {
             quantity: amount,
             total: amount * activeCurrency.current_price
         }])
+
         setSearchCoin([]);
         setActiveCurrency([]);
         setAmount(0);
