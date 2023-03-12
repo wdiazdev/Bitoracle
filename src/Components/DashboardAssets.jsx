@@ -4,9 +4,10 @@ import { MdDeleteOutline } from 'react-icons/Md';
 
 export const DashboardAssets = ({ balance, assets, setAsset }) => {
 
-    function handleRemoveItem(id) {
-        const updatedItems = assets.filter(item => item.id !== id);
-        setAsset(updatedItems);
+    function handleRemoveItem(index) {
+        const newData = [...assets];
+        newData.splice(index, 1);
+        setAsset(newData);
     };
 
     return (
@@ -45,9 +46,9 @@ export const DashboardAssets = ({ balance, assets, setAsset }) => {
                     </tr>
                 </thead>
 
-                {assets.map((item) => {
+                {assets.map((item, index) => {
                     return (
-                        <tbody key={item.id}>
+                        <tbody key={index}>
                             <tr className='asset--table--row'>
 
                                 <td className='td--name'>
@@ -70,7 +71,7 @@ export const DashboardAssets = ({ balance, assets, setAsset }) => {
                                 <td>
                                     <MdDeleteOutline
                                         className='asset--delete'
-                                        onClick={() => handleRemoveItem(item.id)}
+                                        onClick={() => handleRemoveItem(index)}
                                     />
                                 </td>
                             </tr>
