@@ -14,8 +14,8 @@ export const DashChart = ({ assets }) => {
                     <h2>Your Holdings</h2>
                     <Chart
                         type='donut'
-                        width={500}
-                        height={500}
+                        width={450}
+                        height={450}
                         series={arrOfHoldings}
 
 

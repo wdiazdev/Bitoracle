@@ -142,18 +142,21 @@ export const Dashboard = () => {
                                         />
                                 }
 
+                                <DashChart
+                                    assets={assets}
+                                />
                             </div>
 
-                            <DashboardAssets
-                                balance={balance}
-                                assets={assets}
-                                setAsset={setAsset}
-                            />
+                            <div>
+                                <DashboardAssets
+                                    balance={balance}
+                                    assets={assets}
+                                    setAsset={setAsset}
+                                />
+                            </div>
 
-                            <DashChart
-                                assets={assets}
-                            />
                         </div>
+
                     </div>
 
                 </div>
