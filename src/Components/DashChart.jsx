@@ -5,13 +5,13 @@ export const DashChart = ({ assets }) => {
 
     const arrOfNames = assets.map((item) => item.name);
 
-    const arrOfHoldings = assets.map((item) => (item.price * item.quantity));
+    const arrOfHoldings = assets.map((item) => ((item.price).toFixed(0) * item.quantity));
 
     return (
         <>
             {assets.length > 0 ?
                 <div className='assets--chart--container'>
-                    <h2>Your Holdings</h2>
+                    <h2>Holdings</h2>
                     <Chart
                         type='donut'
                         width={450}
@@ -22,13 +22,7 @@ export const DashChart = ({ assets }) => {
                         options={{
                             labels: arrOfNames,
                             title: {
-                                text: 'Pie Chart',
-                                align: 'left',
-                                style: {
-                                    fontSize: '15px',
-                                    fontWeight: 'bold',
-                                    color: '#6A279A'
-                                },
+                                text: undefined,
                             },
                             fill: {
                                 type: "gradient"
@@ -51,7 +45,7 @@ export const DashChart = ({ assets }) => {
                             legend: {
 
                                 offsetX: 0,
-                                offsetY: 180,
+                                offsetY: 0,
 
                                 itemMargin: {
                                     horizontal: 0,

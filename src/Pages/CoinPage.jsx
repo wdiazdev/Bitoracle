@@ -7,6 +7,7 @@ import '../Styles/CoinPage.css';
 import { Loader } from '../Components/Loader';
 import { CoinPageInfo } from '../Components/CoinPageInfo';
 import { CoinPageChart } from '../Components/CoinPageChart';
+import { AiOutlineCloseCircle } from 'react-icons/Ai';
 
 export const CoinPage = () => {
 
@@ -60,12 +61,12 @@ export const CoinPage = () => {
 
                                 </div>
 
-                                <button
-                                    className='close--btn'
+                                <AiOutlineCloseCircle
+                                    className='asset--delete--btn'
                                     onClick={() => navigate(-1)}
-                                >
-                                    x
-                                </button>
+                                />
+
+
 
                             </nav>
 

@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { formatCurrency } from '../Utilities/FormatCurrency';
 import { MdDeleteOutline } from 'react-icons/Md';
 
-export const DashboardAssets = ({ balance, assets, setAsset }) => {
+export const DashboardAssets = ({ assets, setAsset }) => {
+
+    const [balance, setBalance] = useState(0);
+
+    //  TOTAL BALANCE LOGIC
+    useEffect(() => {
+        let total = 0;
+        for (let i = 0; i < assets.length; i++) {
+            total += parseInt(assets[i].price * assets[i].quantity)
+        }
+        const newBalance = `${formatCurrency(total)}`;
+        setBalance(newBalance);
+    }, [assets]);
 
     function handleRemoveItem(index) {
         const newData = [...assets];
@@ -72,7 +84,7 @@ export const DashboardAssets = ({ balance, assets, setAsset }) => {
 
                                         <td>
                                             <MdDeleteOutline
-                                                className='asset--delete'
+                                                className='asset--delete--btn'
                                                 onClick={() => handleRemoveItem(index)}
                                             />
                                         </td>

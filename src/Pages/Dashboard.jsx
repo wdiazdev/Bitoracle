@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Styles/Dashboard.css';
 import { Loader } from '../Components/Loader';
@@ -8,6 +8,7 @@ import { SearchDashCoin } from '../Components/SearchDashCoin';
 import { QtyDashCoin } from '../Components/QtyDashCoin';
 import { DashboardAssets } from '../Components/DashboardAssets';
 import { DashChart } from '../Components/DashChart';
+import { WatchList } from '../Components/WatchList';
 
 export const Dashboard = () => {
 
@@ -21,52 +22,44 @@ export const Dashboard = () => {
 
     const [amount, setAmount] = useState(0);
 
-    const [balance, setBalance] = useState(0);
-
     const [assets, setAsset] = useState([]);
 
-    const fetchCryptoData = async () => {
-        const { data } = await axios.get(marketDataUrl);
-        setCryptoData(data);
-    };
-
     useEffect(() => {
-        fetchCryptoData();
+        const fetchData = async () => {
+            const { data } = await axios.get(marketDataUrl);
+            setCryptoData(data);
+        };
+
+        fetchData();
     }, []);
 
     const handleSearch = (event) => {
         event.preventDefault();
 
-        let value = event.target.value.toLowerCase();
+        const searchValue = event.target.value.toLowerCase();
+        const searchResult = cryptoData.filter(
+            (coin) =>
+                coin.name.toLowerCase().includes(searchValue) ||
+                coin.symbol.toLowerCase().includes(searchValue)
+        );
 
-        let result = [];
-
-        result = cryptoData.filter((coin) => {
-            return coin.name.toLowerCase().includes(value) ||
-                coin.symbol.toLowerCase().includes(value)
-        });
-
-        if (value === '') {
-            setSearchCoin([]);
-        } else {
-            setSearchCoin(result)
-        }
+        setSearchCoin(searchValue ? searchResult : []);
     };
 
     const handleSelect = (event) => {
         event.preventDefault();
 
         const id = event.currentTarget.id;
-        const activeCurrency = cryptoData.filter((item) => item.id === id);
+        const activeCurrency = cryptoData.find((item) => item.id === id);
 
-        setActiveCurrency(activeCurrency[0]);
+        setActiveCurrency(activeCurrency);
         setSearchCoin([]);
     };
 
     const handleAmount = (event) => {
-        let value = parseInt(event.target.value);
+        const value = parseInt(event.target.value);
 
-        setAmount(value);
+        setAmount(isNaN(value) ? 0 : value);
         setSearchCoin([]);
     };
 
@@ -89,24 +82,17 @@ export const Dashboard = () => {
         setAmount(0);
     }
 
-
-    //  TOTAL BALANCE LOGIC
+    //LOADER
     useEffect(() => {
-        let total = 0;
-        for (let i = 0; i < assets.length; i++) {
-            total += parseInt(assets[i].price * assets[i].quantity)
-        }
-        const newBalance = `${formatCurrency(total)}`;
-        setBalance(newBalance);
-    }, [assets]);
+        const timerId = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
 
+        setLoading(true);
 
-    //  LOADER
-    useEffect(() => {
-        setLoading(false)
-        setTimeout(() => {
-            setLoading(false)
-        }, 1000)
+        return () => {
+            clearTimeout(timerId);
+        };
     }, []);
 
     return (
@@ -147,15 +133,15 @@ export const Dashboard = () => {
                                 />
                             </div>
 
-                            <div>
-                                <DashboardAssets
-                                    balance={balance}
-                                    assets={assets}
-                                    setAsset={setAsset}
-                                />
-                            </div>
+
+                            <DashboardAssets
+                                assets={assets}
+                                setAsset={setAsset}
+                            />
 
                         </div>
+
+                        <WatchList />
 
                     </div>
 
