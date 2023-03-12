@@ -1,54 +1,107 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../Styles/Dashboard.css';
-import { useEffect, useRef, useState } from 'react';
 import { Loader } from '../Components/Loader';
-import { AssetList } from '../Components/AssetList';
-import { Footer } from '../Components/Footer';
-import { numberWithCommas } from '../Utilities/FormatCurrency';
+import { formatCurrency } from '../Utilities/FormatCurrency';
+import { marketDataUrl } from '../APIs/ApiUrl';
+import { SearchDashCoin } from '../Components/SearchDashCoin';
+import { QtyDashCoin } from '../Components/QtyDashCoin';
+import { DashboardAssets } from '../Components/DashboardAssets';
 
 export const Dashboard = () => {
 
     const [loading, setLoading] = useState(true);
 
-    const [asset, setAsset] = useState([]);
+    const [cryptoData, setCryptoData] = useState([]);
+
+    const [searchCoin, setSearchCoin] = useState([]);
+
+    const [activeCurrency, setActiveCurrency] = useState([]);
+
+    const [amount, setAmount] = useState(0);
 
     const [balance, setBalance] = useState(0);
 
-    const assetName = useRef(null);
-    const price = useRef(null);
-    const quantity = useRef(null);
-    const date = useRef(null);
+    const [assets, setAsset] = useState([]);
+
+    const fetchCryptoData = async () => {
+        const { data } = await axios.get(marketDataUrl);
+        setCryptoData(data);
+    };
+
+    useEffect(() => {
+        fetchCryptoData();
+    }, []);
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+
+        let value = event.target.value.toLowerCase();
+
+        let result = [];
+
+        result = cryptoData.filter((coin) => {
+            return coin.name.toLowerCase().includes(value) ||
+                coin.symbol.toLowerCase().includes(value)
+        });
+
+        if (value === '') {
+            setSearchCoin([]);
+        } else {
+            setSearchCoin(result)
+        }
+    };
+
+    const handleSelect = (event) => {
+        event.preventDefault();
+
+        const id = event.currentTarget.id;
+        const activeCurrency = cryptoData.filter((item) => item.id === id);
+
+        setActiveCurrency(activeCurrency[0]);
+        setSearchCoin([]);
+    };
+
+    const handleAmount = (event) => {
+        let value = parseInt(event.target.value);
+
+        setAmount(value);
+        setSearchCoin([]);
+    };
 
     const addAsset = (event) => {
         event.preventDefault();
 
-        let d = date.current.value.split('-');
-        let newD = new Date(d[0], d[1], d[2]);
+        setSearchCoin([]);
 
-        setAsset([...asset, {
-            'assetName': assetName.current.value,
-            'price': price.current.value,
-            'quantity': quantity.current.value,
-            'date': newD.getTime()
+        setAsset([...assets, {
+            id: activeCurrency.id,
+            name: activeCurrency.name,
+            price: activeCurrency.current_price,
+            img: activeCurrency.image,
+            quantity: amount,
+            total: amount * activeCurrency.current_price
         }])
-        assetName.current.value = '';
-        price.current.value = null;
-        quantity.current.value = null;
-        date.current.value = null;
+        setSearchCoin([]);
+        setActiveCurrency([]);
+        setAmount(0);
     }
 
+
+    //  TOTAL BALANCE LOGIC
     useEffect(() => {
         let total = 0;
-        for (let i = 0; i < asset.length; i++) {
-            total += parseInt(asset[i].price * asset[i].quantity)
+        for (let i = 0; i < assets.length; i++) {
+            total += parseInt(assets[i].price * assets[i].quantity)
         }
-        const newBalance = `$${numberWithCommas(total)}`;
+        const newBalance = `${formatCurrency(total)}`;
         setBalance(newBalance);
-    }, [asset]);
+    }, [assets]);
 
-    //* LOADER
 
+    //  LOADER
     useEffect(() => {
-        setLoading(true)
+        setLoading(false)
         setTimeout(() => {
             setLoading(false)
         }, 1000)
@@ -56,68 +109,43 @@ export const Dashboard = () => {
 
     return (
         <>
-            {loading
-                ?
-                <Loader />
-                :
-                <div className='dashboard'>
+            {loading ?
 
-                    <div className='dash--container'>
+                <Loader /> :
 
-                        <h2>Dashboard</h2>
+                <div className='dashboard--container'>
 
-                        <div className='dashboard--data'>
+                    <div className='dashboard--wrapper'>
 
-                            <div className='num1'>
+                        <div className="dashboard--data">
 
-                                <h3>Balance:</h3>
+                            <div className='user--inputs'>
+                                {
+                                    activeCurrency.length != 0 ?
 
-                                <div className='total--balance'>{balance}</div>
 
-                                <form onSubmit={addAsset}>
-
-                                    <div className='form--inner'>
-                                        <input
-                                            type='text'
-                                            name='asset'
-                                            id='asset'
-                                            placeholder='Asset'
-                                            required
-                                            ref={assetName}
+                                        <QtyDashCoin
+                                            activeCurrency={activeCurrency}
+                                            handleAmount={handleAmount}
+                                            addAsset={addAsset}
                                         />
-                                        <input
-                                            type='number'
-                                            name='price'
-                                            id='price'
-                                            placeholder='Price'
-                                            required
-                                            ref={price}
-                                        />
-                                        <input
-                                            type='number'
-                                            name='quantity'
-                                            id='quantity'
-                                            placeholder='QTY'
-                                            required
-                                            ref={quantity}
-                                        />
-                                        <input
-                                            type='date'
-                                            name='date'
-                                            id='date'
-                                            placeholder='Date'
-                                            ref={date}
-                                        />
-                                        <input type='submit' value='Add' className='signup--btn' />
-                                    </div>
 
-                                </form>
+                                        :
 
+                                        <SearchDashCoin
+                                            handleSelect={handleSelect}
+                                            handleSearch={handleSearch}
+                                            searchCoin={searchCoin}
+                                            activeCurrency={activeCurrency}
+                                        />
+                                }
                             </div>
 
-                            <div className='num2'>
-                                <AssetList asset={asset} setAsset={setAsset} />
-                            </div>
+                            <DashboardAssets
+                                balance={balance}
+                                assets={assets}
+                                setAsset={setAsset}
+                            />
 
                         </div>
 
@@ -125,8 +153,6 @@ export const Dashboard = () => {
 
                 </div>
             }
-
-            <Footer />
         </>
     )
 };

@@ -1,4 +1,4 @@
-.dashboard {
+.dashboard--container {
     position: relative;
     min-height: 100vh;
     width: 100%;
@@ -12,22 +12,13 @@
     justify-content: center;
 }
 
-.dash--container {
+.dashboard--wrapper {
     width: 100%;
     height: 80vh;
     padding: 1rem 3rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    border-radius: 1rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
     box-shadow: rgba(0, 0, 0, 0.4) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 25px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
-    border-radius: 20px;
-}
-
-.dash--container h2 {
-    font-family: var(--secondary--font);
-    text-align: center;
-    font-size: 3rem;
-    background: linear-gradient(to right, var(--primary--color) 40%, #d40071 60%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .dashboard--data {
@@ -36,135 +27,86 @@
     grid-column-gap: 3rem;
 }
 
-.total--balance {
-    border-radius: 10px;
-    background: rgb(12, 141, 224);
-    background: linear-gradient(90deg, rgba(12, 141, 224, 1) 0%, rgba(160, 29, 253, 1) 75%, rgba(182, 69, 252, 1) 100%);
-    color: #fff;
-    font-weight: 700;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    margin-top: 0.5rem;
+.grid1 {
+    padding: 1rem;
 }
 
-.form--inner {
+.user--inputs {
+    height: 100%;
+    width: 100%;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-.form--inner input {
+#search {
     padding: 1rem;
-    color: var(--primary--bg--color);
-    border-radius: 10px;
     outline: none;
     border: none;
+    background: transparent;
+    border-bottom: 1px solid var(--primary--color);
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
-.form--inner input::placeholder {
-    color: var(--primary--bg--color);
+.search--result {
+    padding: 0.5rem;
+    background: #fff;
+    color: #111;
 }
 
-.asset--list {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.asset--item {
+.result {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--primary--bg--color);
-    padding: 1rem;
-    border-radius: 20px;
-}
-
-.asset {
-    font-size: 1rem;
-}
-
-.remove--asset {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    border: none;
+    padding: 0.5rem 1rem;
     cursor: pointer;
-    color: var(--primary--color);
-    font-weight: 700;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5rem;
 }
 
-.remove--asset:hover {
-    background: #c20101;
+.result:hover {
+    background: var(--primary--color);
     color: #fff;
 }
 
-@media screen and (max-width:1000px) {
-    .dashboard {
-        padding: 0rem 1rem;
-    }
-
-    .dash--container {
-        padding: 1rem 2rem;
-    }
-
-    .dash--container h2 {
-        font-size: 2rem;
-    }
-
-    .dashboard--data {
-        grid-column-gap: 2rem;
-        gap: 1rem;
-    }
-
-    .total--balance {
-        font-size: 1rem;
-    }
-
-    .form--inner input {
-        padding: 0.8rem;
-    }
-
-    .signup--btn {
-        font-size: 0.8rem;
-    }
-
-    .asset {
-        font-size: 0.8rem;
-    }
-
-    .remove--asset {
-        width: 1.5rem;
-        height: 1.5rem;
-        font-size: 0.8rem;
-    }
+.result--name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-@media screen and (max-width:640px) {
-
-    .dash--container {
-        padding: 1rem 1rem;
-    }
-
-    .dashboard--data {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-column-gap: 3rem;
-    }
-
-    .asset {
-        font-size: 0.6rem;
-    }
-
-    .remove--asset {
-        width: 1.2rem;
-        height: 1.2rem;
-        font-size: 0.8rem;
-    }
+.result--symbol {
+    text-transform: uppercase;
 }
 
-/* @media screen and (max-width:360px) {} */
+.assets--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.asset--table--row>td {
+    text-align: center;
+}
+
+.asset--table--row:hover {
+    background: #464646;
+}
+
+.td--name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.asset--delete {
+    color: var(--primary--color);
+    font-size: 1.3rem;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
