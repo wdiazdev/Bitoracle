@@ -7,6 +7,7 @@ import { marketDataUrl } from '../APIs/ApiUrl';
 import { SearchDashCoin } from '../Components/SearchDashCoin';
 import { QtyDashCoin } from '../Components/QtyDashCoin';
 import { DashboardAssets } from '../Components/DashboardAssets';
+import { DashChart } from '../Components/DashChart';
 
 export const Dashboard = () => {
 
@@ -140,6 +141,7 @@ export const Dashboard = () => {
                                             activeCurrency={activeCurrency}
                                         />
                                 }
+
                             </div>
 
                             <DashboardAssets
@@ -148,8 +150,10 @@ export const Dashboard = () => {
                                 setAsset={setAsset}
                             />
 
+                            <DashChart
+                                assets={assets}
+                            />
                         </div>
-
                     </div>
 
                 </div>

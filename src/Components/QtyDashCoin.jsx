@@ -6,8 +6,6 @@ export const QtyDashCoin = ({ activeCurrency, handleAmount, addAsset }) => {
         <>
             <form onSubmit={addAsset}>
 
-
-
                 <h2>
                     Enter your
                     <span
@@ -22,7 +20,7 @@ export const QtyDashCoin = ({ activeCurrency, handleAmount, addAsset }) => {
                 </h2>
 
                 <input
-                    id='search'
+                    className='search'
                     type='number'
                     min='0'
                     placeholder='Ex: 17'

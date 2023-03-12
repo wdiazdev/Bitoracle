@@ -27,21 +27,19 @@
     grid-column-gap: 3rem;
 }
 
-.grid1 {
-    padding: 1rem;
-}
+/* USERS INPUTS //////////////////////////////// */
 
 .user--inputs {
     height: 100%;
     width: 100%;
 }
 
-form {
+.user--inputs>form {
     display: flex;
     flex-direction: column;
 }
 
-#search {
+.search {
     padding: 1rem;
     outline: none;
     border: none;
@@ -82,6 +80,8 @@ form {
 .result--symbol {
     text-transform: uppercase;
 }
+
+/* ASSETS TABLE ////////////////////////// */
 
 .assets--container {
     display: flex;
@@ -126,3 +126,7 @@ form {
     transition: 0.3s ease-in-out;
     cursor: pointer;
 }
+
+/* WATCHLIST  //////////////////////////////////////// */
+
+.watchlist--container {}

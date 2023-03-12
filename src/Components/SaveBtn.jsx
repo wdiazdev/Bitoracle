@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { AiFillStar, AiOutlineStar } from 'react-icons/Ai';
 import { userAuth } from '../Context/AuthContext';
+import { db } from '../Utilities/Firebase';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 export const SaveBtn = ({ coin }) => {
 
@@ -8,17 +10,30 @@ export const SaveBtn = ({ coin }) => {
 
     const { currentUser } = userAuth();
 
-    const handleSave = () => setSave(!save);
+    const dbUserID = doc(db, 'users', `${currentUser?.email}`);
 
-    const handleClick = () => {
-        if (!currentUser) {
-            alert('Please login or create a new account!')
+    const handleSaveCoin = async () => {
+        if (currentUser?.email) {
+            setSave(true)
+            await updateDoc(dbUserID, {
+                savedCoins: arrayUnion({
+                    id: coin.id,
+                    name: coin.name,
+                    symbol: coin.symbol,
+                    img: coin.image,
+                    price: coin.current_price,
+                    ath: coin.ath
+                })
+            })
+        } else {
+            alert('Please login or create an account')
         }
     };
 
     return (
         <>
-            {save && currentUser ?
+            {currentUser && save ?
+
                 <button className='save--btn'
                     style={{
                         background: 'none',
@@ -29,7 +44,6 @@ export const SaveBtn = ({ coin }) => {
                         cursor: 'pointer',
                         outline: 'inherit',
                     }}
-                    onClick={handleSave}
 
                 >
                     <AiFillStar
@@ -37,7 +51,9 @@ export const SaveBtn = ({ coin }) => {
                         style={{ color: '#0995e0', fontSize: '1rem' }}
                     />
                 </button>
+
                 :
+
                 <button
                     className='save--btn'
                     style={{
@@ -49,14 +65,14 @@ export const SaveBtn = ({ coin }) => {
                         cursor: 'pointer',
                         outline: 'inherit',
                     }}
-                    onClick={handleSave}
+                    onClick={handleSaveCoin}
                 >
                     <AiOutlineStar
                         className='save--btn--icon'
                         style={{ color: '#0995e0', fontSize: '1rem' }}
-                        onClick={handleClick}
                     />
-                </button>}
+                </button>
+            }
         </>
     )
 };

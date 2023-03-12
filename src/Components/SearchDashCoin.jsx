@@ -13,7 +13,7 @@ export const SearchDashCoin = ({ searchCoin, handleSelect, handleSearch }) => {
                 </h2>
 
                 <input
-                    id='search'
+                    className='search'
                     type='text'
                     onChange={(event) => handleSearch(event)}
                     placeholder='Ex: Bitcoin, ETH...'
