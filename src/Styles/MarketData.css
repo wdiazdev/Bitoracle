@@ -17,30 +17,33 @@ table {
     width: 100%;
 }
 
-th {
+.table--head {
     position: sticky;
     top: 0;
     text-align: center;
-    padding: 1rem;
     font-size: 1.2rem;
     background: var(--primary--color);
     color: #111;
     border: none;
 }
 
-tr {
+.table--head>th {
+    padding: 0.8rem;
+}
+
+.table--body--rows {
     background: var(--primary--bg--color);
     color: #fff;
     border-bottom: 0.5px solid var(--primary--color);
     transition: 0.3s;
 }
 
-tr:hover {
+.table--body--rows:hover {
     background: rgb(36, 36, 36);
 }
 
-td {
-    padding: 1rem;
+.table--body--rows>td {
+    padding: 0.8rem;
 }
 
 .col--rank {

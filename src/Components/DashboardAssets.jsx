@@ -37,7 +37,7 @@ export const DashboardAssets = ({ balance, assets, setAsset }) => {
 
             <table>
                 <thead>
-                    <tr>
+                    <tr className='assets--table--head'>
                         <th>Name</th>
                         <th>Market Price</th>
                         <th>Quantity</th>

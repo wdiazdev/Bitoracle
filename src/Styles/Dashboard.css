@@ -87,11 +87,21 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 2rem;
+    gap: 2.8rem;
+}
+
+.assets--table--head {
+    background: #6A279A;
+    color: #111;
+}
+
+.assets--table--head>th {
+    padding: 0.5rem;
 }
 
 .asset--table--row>td {
     text-align: center;
+    padding: 0.5rem;
 }
 
 .asset--table--row:hover {
@@ -101,12 +111,18 @@ form {
 .td--name {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    align-self: center;
+    gap: 1rem;
+}
+
+.td--name>img {
+    width: 2rem;
 }
 
 .asset--delete {
+    display: flex;
     color: var(--primary--color);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     transition: 0.3s ease-in-out;
     cursor: pointer;
 }

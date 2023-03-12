@@ -23,6 +23,7 @@ body {
 
 :root {
   --primary--color: #0995e0;
+  --secondary--color: #d40071;
   --primary--bg--color: #141414;
   --primary--font: 'Poppins', sans-serif;
   --secondary--font: 'Bebas Neue', cursive, sans-serif;

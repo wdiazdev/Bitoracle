@@ -26,7 +26,7 @@ export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
                     return (
                         <tbody key={coin.id} >
-                            <tr>
+                            <tr className='table--body--rows'>
                                 <td><SaveBtn coin={coin} /></td>
 
                                 <td className='col--rank'>{coin.market_cap_rank}</td>
