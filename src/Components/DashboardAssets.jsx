@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { formatCurrency } from '../Utilities/FormatCurrency';
 import { MdDeleteOutline } from 'react-icons/Md';
+import { userAuth } from '../Context/AuthContext';
+import { db } from '../Utilities/Firebase';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 
 export const DashboardAssets = ({ assets, setAsset }) => {
 
     const [balance, setBalance] = useState(0);
 
-    //  TOTAL BALANCE LOGIC
+    const { currentUser } = userAuth();
+
+    const coinRef = doc(db, 'users', `${currentUser?.email}`);
+
+    //To calculate the total balance of the array of assets and updates 
+    //the state of a component with the formatted currency value.
+
     useEffect(() => {
         let total = 0;
         for (let i = 0; i < assets.length; i++) {
@@ -16,10 +25,32 @@ export const DashboardAssets = ({ assets, setAsset }) => {
         setBalance(newBalance);
     }, [assets]);
 
-    function handleRemoveItem(index) {
-        const newData = [...assets];
-        newData.splice(index, 1);
-        setAsset(newData);
+
+    //This function sets up a listener for changes to the document in the 
+    //Firestore database. Whenever the document changes, the callback function is 
+    //called with the updated document data.
+
+    useEffect(() => {
+        onSnapshot(doc(db, 'users', `${currentUser?.email}`), (doc => {
+            //This line updates the state of the component
+            setAsset(doc.data()?.portfolio);
+        }))
+    }, [currentUser?.email]);
+
+
+    //this function takes an index parameter and deletes the corresponding 
+    //coin from an array of coins stored in a Firestore document. 
+
+    const deleteSavedCoin = async (index) => {
+        try {
+            const newData = [...assets];
+            newData.splice(index, 1)
+            await updateDoc(coinRef, {
+                portfolio: newData
+            });
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -85,7 +116,7 @@ export const DashboardAssets = ({ assets, setAsset }) => {
                                         <td>
                                             <MdDeleteOutline
                                                 className='asset--delete--btn'
-                                                onClick={() => handleRemoveItem(index)}
+                                                onClick={() => deleteSavedCoin(index)}
                                             />
                                         </td>
                                     </tr>

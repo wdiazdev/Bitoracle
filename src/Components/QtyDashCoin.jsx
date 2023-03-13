@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const QtyDashCoin = ({ activeCurrency, handleAmount, addAsset }) => {
+export const QtyDashCoin = ({ activeCurrency, handleAmount, addAssetAndSaveToPortfolio }) => {
 
     return (
         <>
-            <form onSubmit={addAsset}>
+            <form onSubmit={addAssetAndSaveToPortfolio}>
 
                 <h2>
                     Enter your

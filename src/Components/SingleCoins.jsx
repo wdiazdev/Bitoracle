@@ -10,14 +10,17 @@ export const SingleCoins = () => {
 
     const navigate = useNavigate();
 
-    const fetchSingleCoin = async () => {
-        const { data } = await axios.get(singleCoinMain);
-        setSingleCoin(data);
-    }
-
     useEffect(() => {
+        const fetchSingleCoin = async () => {
+            try {
+                const { data } = await axios.get(singleCoinMain);
+                setSingleCoin(data);
+            } catch (error) {
+                console.log('Error fetching single coin data:', error);
+            }
+        }
         fetchSingleCoin();
-    }, []);
+    }, [singleCoinMain]);
 
     return (
 

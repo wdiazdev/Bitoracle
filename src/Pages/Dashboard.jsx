@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Styles/Dashboard.css';
 import { Loader } from '../Components/Loader';
-import { formatCurrency } from '../Utilities/FormatCurrency';
 import { marketDataUrl } from '../APIs/ApiUrl';
 import { SearchDashCoin } from '../Components/SearchDashCoin';
 import { QtyDashCoin } from '../Components/QtyDashCoin';
 import { DashboardAssets } from '../Components/DashboardAssets';
 import { DashChart } from '../Components/DashChart';
 import { WatchList } from '../Components/WatchList';
+import { userAuth } from '../Context/AuthContext';
+import { db } from '../Utilities/Firebase';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 export const Dashboard = () => {
 
@@ -23,6 +25,10 @@ export const Dashboard = () => {
     const [amount, setAmount] = useState(0);
 
     const [assets, setAsset] = useState([]);
+
+    const { currentUser } = userAuth();
+
+    const dbUserID = doc(db, 'users', `${currentUser?.email}`);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -63,7 +69,26 @@ export const Dashboard = () => {
         setSearchCoin([]);
     };
 
-    const addAsset = (event) => {
+    // const addAsset = (event) => {
+    //     event.preventDefault();
+
+    //     setSearchCoin([]);
+
+    //     setAsset([...assets, {
+    //         id: activeCurrency.id,
+    //         name: activeCurrency.name,
+    //         price: activeCurrency.current_price,
+    //         img: activeCurrency.image,
+    //         quantity: amount,
+    //         total: amount * activeCurrency.current_price
+    //     }])
+
+    //     setSearchCoin([]);
+    //     setActiveCurrency([]);
+    //     setAmount(0);
+    // }
+
+    const addAssetAndSaveToPortfolio = async (event) => {
         event.preventDefault();
 
         setSearchCoin([]);
@@ -80,6 +105,21 @@ export const Dashboard = () => {
         setSearchCoin([]);
         setActiveCurrency([]);
         setAmount(0);
+
+        if (currentUser?.email) {
+            await updateDoc(dbUserID, {
+                portfolio: arrayUnion({
+                    id: activeCurrency.id,
+                    name: activeCurrency.name,
+                    price: activeCurrency.current_price,
+                    img: activeCurrency.image,
+                    quantity: amount,
+                    total: amount * activeCurrency.current_price
+                })
+            })
+        } else {
+            alert('An error occurred')
+        }
     }
 
     //LOADER
@@ -115,7 +155,7 @@ export const Dashboard = () => {
                                         <QtyDashCoin
                                             activeCurrency={activeCurrency}
                                             handleAmount={handleAmount}
-                                            addAsset={addAsset}
+                                            addAssetAndSaveToPortfolio={addAssetAndSaveToPortfolio}
                                         />
 
                                         :

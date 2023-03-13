@@ -12,15 +12,18 @@ export const TrendingCoinSlider = () => {
 
     const [trending, setTrending] = useState([]);
 
-    const fetchTrendingCoins = async () => {
-        const { data } = await axios.get(trendingCoins);
-        setTrending(data.coins);
-        // console.log(data.coins);
-    }
-
     useEffect(() => {
+        const fetchTrendingCoins = async () => {
+            try {
+                const { data } = await axios.get(trendingCoins);
+                setTrending(data.coins);
+            } catch (error) {
+                console.log('Error fetching trending coins data:', error);
+            }
+        };
+
         fetchTrendingCoins();
-    }, []);
+    }, [trendingCoins]);
 
     return (
         <div className='trending--container'>

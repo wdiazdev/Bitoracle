@@ -15,6 +15,10 @@ export const WatchList = () => {
 
     const navigate = useNavigate();
 
+    //This function sets up a listener for changes to the document in the 
+    //Firestore database. Whenever the document changes, the callback function is 
+    //called with the updated document data.
+
     useEffect(() => {
         onSnapshot(doc(db, 'users', `${currentUser?.email}`), (doc => {
             setSavedCoins(doc.data()?.savedCoins);
@@ -22,6 +26,9 @@ export const WatchList = () => {
     }, [currentUser?.email]);
 
     const coinRef = doc(db, 'users', `${currentUser?.email}`);
+
+    //this function takes an ID parameter and deletes the corresponding 
+    //coin from an array of coins stored in a Firestore document. 
 
     const deleteSavedCoin = async (coinId) => {
         try {

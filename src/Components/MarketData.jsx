@@ -16,14 +16,18 @@ export const MarketData = () => {
 
     const [search, setSearch] = useState('');
 
-    const fetchCryptoData = async () => {
-        const { data } = await axios.get(marketDataUrl);
-        setCryptoData(data);
-    }
-
     useEffect(() => {
+        const fetchCryptoData = async () => {
+            try {
+                const { data } = await axios.get(marketDataUrl);
+                setCryptoData(data);
+            } catch (error) {
+                console.log('Error fetching crypto data:', error);
+            }
+        };
+
         fetchCryptoData();
-    }, [page, search, itemsPerPage]);
+    }, [page, search, itemsPerPage, marketDataUrl]);
 
     const handleSearch = () => {
         if (search.length > 0) {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+//!NEED TO HAVE FOR CHART TO WORK
 import Chart from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
 import { HistoricalChart } from '../APIs/ApiUrl';
@@ -10,12 +11,16 @@ export const CoinPageChart = ({ coin, id }) => {
 
     const [days, setDays] = useState(1);
 
-    const fetchMarketData = async () => {
-        const { data } = await axios.get(HistoricalChart(id, days));
-        setChartData(data.prices)
-    };
-
     useEffect(() => {
+        const fetchMarketData = async () => {
+            try {
+                const { data } = await axios.get(HistoricalChart(id, days));
+                setChartData(data.prices);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
         fetchMarketData();
     }, [days]);
 
