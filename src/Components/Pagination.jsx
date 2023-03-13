@@ -57,6 +57,7 @@ export const Pagination = (
                 onChange={e => setItemsPerPage(e.target.value)}
                 className='pages'
             >
+                <option value='50' >25</option>
                 <option value='50' >50</option>
                 <option value='100'>100</option>
             </select>
