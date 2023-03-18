@@ -11,6 +11,8 @@ export const RadialBar = ({ assets, balance }) => {
 
     const [highestName, setHighestName] = useState('');
 
+    const [img, setImg] = useState('');
+
     useEffect(() => {
         let highestAssetTotal = assets.reduce((acc, max) => {
             return max.total > acc ? max.total : acc;
@@ -20,8 +22,11 @@ export const RadialBar = ({ assets, balance }) => {
 
         let name = highestAsset ? highestAsset.name : '';
 
+        let img = highestAsset ? highestAsset.img : '';
+
         setHighestTotal(highestAssetTotal);
         setHighestName(name);
+        setImg(img);
     }, [assets]);
 
     useEffect(() => {
@@ -60,14 +65,14 @@ export const RadialBar = ({ assets, balance }) => {
                             offsetY: -10,
                             show: true,
                             color: '#0995e0',
-                            fontSize: '1rem'
+                            fontSize: '1.2rem'
                         },
                         value: {
                             formatter: function (val) {
                                 return parseInt(val);
                             },
                             color: '#fff',
-                            fontSize: '36px',
+                            fontSize: '40px',
                             show: true,
                         },
                     }
@@ -96,19 +101,21 @@ export const RadialBar = ({ assets, balance }) => {
     }, [highestTotal, highestName]);
 
     return (
-        <>
+        <div className='radial--chart--container'>
+            <img src={img} alt="" />
+            <h2>Biggest holding</h2>
             <h3>{highestName}</h3>
             {assets.length > 0 ?
                 <Chart
                     options={chartOptions}
                     series={chartSeries}
                     type="radialBar"
-                    height={300}
+                    height={275}
                 />
                 :
 
                 null
             }
-        </>
+        </div>
     )
 };

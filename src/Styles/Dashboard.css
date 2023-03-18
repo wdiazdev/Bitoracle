@@ -149,7 +149,7 @@
     color: var(--secondary--color);
 }
 
-/* CHART //////////////////////////// */
+/* CHARTS //////////////////////////// */
 
 .assets--chart--container {
     border: 1px solid #333;
@@ -160,6 +160,40 @@
 .assets--chart--container>h2 {
     text-align: center;
     margin: 1rem 0;
+}
+
+.radial--chart--container {
+    position: relative;
+    padding: 1rem 0;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 15px #7CFC00;
+}
+
+.radial--chart--container>h2 {
+    text-transform: uppercase;
+}
+
+.radial--chart--container>h3 {
+    position: absolute;
+    top: 3rem;
+    font-size: 2rem;
+    background: linear-gradient(to right, var(--primary--color) 0%, #d40071 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.radial--chart--container>img {
+    position: absolute;
+    right: 8rem;
+    width: 90%;
+    opacity: 0.1;
 }
 
 /* WATCHLIST  /////////////////////// */
