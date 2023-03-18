@@ -5,10 +5,7 @@ export const SearchDashCoin = ({ searchCoin, handleSelect, handleSearch }) => {
         <>
             <form>
 
-                <h2 style={{
-                    color: '#0995e0'
-                }}
-                >
+                <h2 className='search--heading'>
                     Search:
                 </h2>
 

@@ -1,6 +1,11 @@
 import React from 'react'
 
-export const QtyDashCoin = ({ activeCurrency, handleAmount, addAssetAndSaveToPortfolio }) => {
+export const QtyDashCoin = (
+    { activeCurrency,
+        handleAmount,
+        addAssetAndSaveToPortfolio,
+        setSearchCoin
+    }) => {
 
     return (
         <>
@@ -28,7 +33,6 @@ export const QtyDashCoin = ({ activeCurrency, handleAmount, addAssetAndSaveToPor
                     required
                     onChange={(event) => handleAmount(event)}
                 />
-
                 <button
                     type='submit'
                     className='main--btn'

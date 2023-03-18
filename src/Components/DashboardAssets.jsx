@@ -64,17 +64,17 @@ export const DashboardAssets = ({ assets, setAsset }) => {
                         alignItems: 'baseline',
                     }}
                     >
-                        <h2 style={{
-                            color: '#0995e0',
-                            marginRight: '0.3rem'
-                        }}
+                        <h2
+                            className='assets-container-title'
+                            style={{
+                                color: '#0995e0',
+                                marginRight: '0.3rem'
+                            }}
                         >
                             Balance:
                         </h2>
                         <p
-                            style={{
-                                fontSize: '1.4rem',
-                            }}
+                            className='assets-container--balance'
                         >
                             {balance}
                         </p>

@@ -50,9 +50,9 @@ export const WatchList = () => {
 
             <table>
                 <thead>
-                    <tr className='assets--table--head'>
+                    <tr className='watchlist--table--head'>
                         <th>Name</th>
-                        <th>Market Price</th>
+                        <th>Price</th>
                         <th>ATH</th>
                         <th></th>
                         <th></th>

@@ -37,6 +37,12 @@ body {
   font-size: 3rem;
 }
 
+/* TO SET ANIMATION DURATION FOR UP TO 4000MS */
+body[data-aos-duration='4000'] [data-aos],
+[data-aos][data-aos][data-aos-duration='4000'] {
+  transition-duration: 4000ms;
+}
+
 @media screen and (max-width:1000px) {}
 
 @media screen and (max-width:640px) {}
