@@ -5,7 +5,8 @@ export const DashChart = ({ assets }) => {
 
     const arrOfNames = assets.map((item) => item.name);
 
-    const arrOfHoldings = assets.map((item) => ((item.price).toFixed(0) * item.quantity));
+    const arrOfHoldings = assets.map((item) =>
+        ((item.price).toFixed(0) * item.quantity));
 
     return (
         <>

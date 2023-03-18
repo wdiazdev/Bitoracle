@@ -11,6 +11,7 @@ import { WatchList } from '../Components/WatchList';
 import { userAuth } from '../Context/AuthContext';
 import { db } from '../Utilities/Firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { RadialBar } from '../Components/RadialBar';
 
 export const Dashboard = () => {
 
@@ -23,6 +24,8 @@ export const Dashboard = () => {
     const [activeCurrency, setActiveCurrency] = useState([]);
 
     const [amount, setAmount] = useState(0);
+
+    const [balance, setBalance] = useState(0);
 
     const [assets, setAsset] = useState([]);
 
@@ -38,7 +41,6 @@ export const Dashboard = () => {
 
         fetchData();
     }, [marketDataUrl]);
-
 
     // This function is called when the user types something in a search input
     const handleSearch = (event) => {
@@ -100,13 +102,27 @@ export const Dashboard = () => {
         setAmount(0);
     }
 
+    /*
+   useEffect hook is triggered whenever the assets dependency changes. 
+   It calculates the total balance of assets by iterating through the assets 
+   array and summing the product of each asset's price and quantity.
+    */
+
+    useEffect(() => {
+        let total = 0;
+        for (let i = 0; i < assets.length; i++) {
+            total += parseInt(assets[i].price * assets[i].quantity);
+        }
+        setBalance(total);
+    }, [assets]);
+
     //LOADER
     useEffect(() => {
         const timerId = setTimeout(() => {
             setLoading(false);
         }, 1000);
 
-        setLoading(true);
+        setLoading(false);
 
         return () => {
             clearTimeout(timerId);
@@ -153,11 +169,17 @@ export const Dashboard = () => {
 
 
                             <DashboardAssets
+                                balance={balance}
                                 assets={assets}
                                 setAsset={setAsset}
                             />
 
                         </div>
+
+                        <RadialBar
+                            assets={assets}
+                            balance={balance}
+                        />
 
                         <WatchList />
 

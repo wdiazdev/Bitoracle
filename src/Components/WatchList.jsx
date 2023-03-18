@@ -61,8 +61,8 @@ export const WatchList = () => {
 
                 {savedCoins.map((item, index) => {
                     return (
-                        <tbody>
-                            <tr key={index} className='asset--table--row'>
+                        <tbody key={item.id}>
+                            <tr className='asset--table--row'>
 
                                 <td className='td--name'>
                                     <img src={item.img} alt={item.name} />

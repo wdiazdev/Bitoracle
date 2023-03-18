@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { formatCurrency } from '../Utilities/FormatCurrency';
 import { MdDeleteOutline } from 'react-icons/Md';
 import { userAuth } from '../Context/AuthContext';
 import { db } from '../Utilities/Firebase';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 
-export const DashboardAssets = ({ assets, setAsset }) => {
-
-    const [balance, setBalance] = useState(0);
+export const DashboardAssets = ({ assets, setAsset, balance }) => {
 
     const { currentUser } = userAuth();
 
     const coinRef = doc(db, 'users', `${currentUser?.email}`);
 
-    //To calculate the total balance of the array of assets and updates 
-    //the state of a component with the formatted currency value.
-
-    useEffect(() => {
-        let total = 0;
-        for (let i = 0; i < assets.length; i++) {
-            total += parseInt(assets[i].price * assets[i].quantity)
-        }
-        const newBalance = `${formatCurrency(total)}`;
-        setBalance(newBalance);
-    }, [assets]);
-
-
-    //This function sets up a listener for changes to the document in the 
-    //Firestore database. Whenever the document changes, the callback function is 
-    //called with the updated document data.
+    /*
+    This function sets up a listener for changes to the document in the 
+    Firestore database. Whenever the document changes, the callback function is 
+    called with the updated document data.
+    */
 
     useEffect(() => {
         onSnapshot(doc(db, 'users', `${currentUser?.email}`), (doc => {
@@ -38,8 +25,10 @@ export const DashboardAssets = ({ assets, setAsset }) => {
     }, [currentUser?.email]);
 
 
-    //this function takes an index parameter and deletes the corresponding 
-    //coin from an array of coins stored in a Firestore document. 
+    /*
+    This function takes an index parameter and deletes the corresponding 
+    coin from an array of coins stored in a Firestore document. 
+    */
 
     const deleteSavedCoin = async (index) => {
         try {
@@ -76,7 +65,7 @@ export const DashboardAssets = ({ assets, setAsset }) => {
                         <p
                             className='assets-container--balance'
                         >
-                            {balance}
+                            {formatCurrency(balance)}
                         </p>
                     </div>
 
