@@ -44,59 +44,65 @@ export const WatchList = () => {
     // console.log(savedCoins);
 
     return (
-        <div className='watchlist--container'>
+        <>
+            {savedCoins.length > 0 ?
+                <div className='watchlist--container'>
 
-            <h2>Watchlist</h2>
+                    <h2>Watchlist</h2>
 
-            <table>
-                <thead>
-                    <tr className='watchlist--table--head'>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>ATH</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                {savedCoins.map((item, index) => {
-                    return (
-                        <tbody key={item.id}>
-                            <tr className='asset--table--row'>
-
-                                <td className='td--name'>
-                                    <img src={item.img} alt={item.name} />
-                                    <p>{item.name}</p>
-                                    <p style={{
-                                        textTransform: 'uppercase',
-                                        color: 'var(--secondary--color)'
-                                    }}>
-                                        {item.symbol}
-                                    </p>
-                                </td>
-
-                                <td>{formatCurrency(item.price)}</td>
-
-                                <td>{formatCurrency(item.ath)}</td>
-
-                                <td>
-                                    <BsInfoSquare className='asset--delete--btn'
-                                        onClick={() => navigate(`/coin/${item.id}`)}
-                                    />
-                                </td>
-
-                                <td>
-                                    <AiOutlineCloseCircle
-                                        className='asset--delete--btn'
-                                        onClick={() => deleteSavedCoin(item.id)}
-                                    />
-                                </td>
+                    <table>
+                        <thead>
+                            <tr className='watchlist--table--head'>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>ATH</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        </tbody>
-                    )
-                })}
-            </table>
+                        </thead>
 
-        </div>
+                        {savedCoins.map((item, index) => {
+                            return (
+                                <tbody key={item.id}>
+                                    <tr className='asset--table--row'>
+
+                                        <td className='td--name'>
+                                            <img src={item.img} alt={item.name} />
+                                            <p>{item.name}</p>
+                                            <p style={{
+                                                textTransform: 'uppercase',
+                                                color: 'var(--secondary--color)'
+                                            }}>
+                                                {item.symbol}
+                                            </p>
+                                        </td>
+
+                                        <td>{formatCurrency(item.price)}</td>
+
+                                        <td>{formatCurrency(item.ath)}</td>
+
+                                        <td>
+                                            <BsInfoSquare className='asset--delete--btn'
+                                                onClick={() => navigate(`/coin/${item.id}`)}
+                                            />
+                                        </td>
+
+                                        <td>
+                                            <AiOutlineCloseCircle
+                                                className='asset--delete--btn'
+                                                onClick={() => deleteSavedCoin(item.id)}
+                                            />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            )
+                        })}
+                    </table>
+
+                </div>
+                :
+                null
+            }
+        </>
     )
 };

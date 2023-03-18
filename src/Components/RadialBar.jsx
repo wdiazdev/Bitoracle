@@ -101,21 +101,27 @@ export const RadialBar = ({ assets, balance }) => {
     }, [highestTotal, highestName]);
 
     return (
-        <div className='radial--chart--container'>
-            <img src={img} alt="" />
-            <h2>Biggest holding</h2>
-            <h3>{highestName}</h3>
+        <>
             {assets.length > 0 ?
-                <Chart
-                    options={chartOptions}
-                    series={chartSeries}
-                    type="radialBar"
-                    height={275}
-                />
-                :
+                <div className='radial--chart--container'>
+                    <img src={img} alt="" />
+                    <h2>Biggest holding</h2>
+                    <h3>{highestName}</h3>
+                    {assets.length > 0 ?
+                        <Chart
+                            options={chartOptions}
+                            series={chartSeries}
+                            type="radialBar"
+                            height={275}
+                        />
+                        :
 
+                        null
+                    }
+                </div>
+                :
                 null
             }
-        </div>
+        </>
     )
 };
