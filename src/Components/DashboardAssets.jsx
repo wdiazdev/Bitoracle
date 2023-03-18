@@ -85,6 +85,7 @@ export const DashboardAssets = ({ assets, setAsset }) => {
                             <tr className='assets--table--head'>
                                 <th>Name</th>
                                 <th>Market Price</th>
+                                <th>24h %</th>
                                 <th>Quantity</th>
                                 <th>Holdings</th>
                                 <th></th>
@@ -92,6 +93,9 @@ export const DashboardAssets = ({ assets, setAsset }) => {
                         </thead>
 
                         {assets.map((item, index) => {
+
+                            let priceChange = item.percentage;
+
                             return (
                                 <tbody key={index}>
                                     <tr className='asset--table--row'>
@@ -103,6 +107,13 @@ export const DashboardAssets = ({ assets, setAsset }) => {
 
                                         <td>
                                             <p>{formatCurrency(item.price)}</p>
+                                        </td>
+
+                                        <td>
+                                            <p
+                                                style={priceChange > 0 ? { color: '#7CFC00' } :
+                                                    { color: '#DC0000' }}
+                                            >{priceChange.toFixed(2)}%</p>
                                         </td>
 
                                         <td>

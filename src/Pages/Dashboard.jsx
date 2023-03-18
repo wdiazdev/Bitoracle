@@ -37,12 +37,15 @@ export const Dashboard = () => {
         };
 
         fetchData();
-    }, []);
+    }, [marketDataUrl]);
 
+
+    // This function is called when the user types something in a search input
     const handleSearch = (event) => {
         event.preventDefault();
 
         const searchValue = event.target.value.toLowerCase();
+
         const searchResult = cryptoData.filter(
             (coin) =>
                 coin.name.toLowerCase().includes(searchValue) ||
@@ -62,6 +65,8 @@ export const Dashboard = () => {
         setSearchCoin([]);
     };
 
+
+    // Updates the amount state and clears the searchCoin state if the value is not a number
     const handleAmount = (event) => {
         const value = parseInt(event.target.value);
 
@@ -69,42 +74,10 @@ export const Dashboard = () => {
         setSearchCoin([]);
     };
 
-    // const addAsset = (event) => {
-    //     event.preventDefault();
-
-    //     setSearchCoin([]);
-
-    //     setAsset([...assets, {
-    //         id: activeCurrency.id,
-    //         name: activeCurrency.name,
-    //         price: activeCurrency.current_price,
-    //         img: activeCurrency.image,
-    //         quantity: amount,
-    //         total: amount * activeCurrency.current_price
-    //     }])
-
-    //     setSearchCoin([]);
-    //     setActiveCurrency([]);
-    //     setAmount(0);
-    // }
-
     const addAssetAndSaveToPortfolio = async (event) => {
         event.preventDefault();
 
         setSearchCoin([]);
-
-        setAsset([...assets, {
-            id: activeCurrency.id,
-            name: activeCurrency.name,
-            price: activeCurrency.current_price,
-            img: activeCurrency.image,
-            quantity: amount,
-            total: amount * activeCurrency.current_price
-        }])
-
-        setSearchCoin([]);
-        setActiveCurrency([]);
-        setAmount(0);
 
         if (currentUser?.email) {
             await updateDoc(dbUserID, {
@@ -112,6 +85,7 @@ export const Dashboard = () => {
                     id: activeCurrency.id,
                     name: activeCurrency.name,
                     price: activeCurrency.current_price,
+                    percentage: activeCurrency.price_change_percentage_24h,
                     img: activeCurrency.image,
                     quantity: amount,
                     total: amount * activeCurrency.current_price
@@ -120,6 +94,10 @@ export const Dashboard = () => {
         } else {
             alert('An error occurred')
         }
+
+        setSearchCoin([]);
+        setActiveCurrency([]);
+        setAmount(0);
     }
 
     //LOADER

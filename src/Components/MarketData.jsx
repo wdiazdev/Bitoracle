@@ -12,7 +12,7 @@ export const MarketData = () => {
 
     const [page, setPage] = useState(1);
 
-    const [itemsPerPage, setItemsPerPage] = useState(50);
+    const [itemsPerPage, setItemsPerPage] = useState(25);
 
     const [search, setSearch] = useState('');
 
