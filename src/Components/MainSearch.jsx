@@ -3,7 +3,11 @@ import '../Styles/MainSearch.css';
 
 export const MainSearch = ({ setSearch }) => {
     return (
-        <div className='search--bar--container'>
+        <div
+            className='search--bar--container'
+            data-aos='fade-up'
+            data-aos-duration='3000'
+        >
 
             <h3>Search for your favorite cryptos</h3>
 

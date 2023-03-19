@@ -26,7 +26,11 @@ export const TrendingCoinSlider = () => {
     }, [trendingCoins]);
 
     return (
-        <div className='trending--container'>
+        <div
+            className='trending--container'
+            data-aos='fade-up'
+            data-aos-duration='2000'
+        >
 
             <h3>Trending Cryptos</h3>
 
