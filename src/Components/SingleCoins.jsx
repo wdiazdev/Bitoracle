@@ -28,7 +28,12 @@ export const SingleCoins = () => {
 
             {singleCoin.map((coin) => {
                 return (
-                    <div key={coin.id} onClick={() => navigate(`/coin/${coin.id}`)}>
+                    <div
+                        data-aos='fade-down-left'
+                        data-aos-duration='1500'
+                        key={coin.id}
+                        onClick={() => navigate(`/coin/${coin.id}`)}
+                    >
 
                         <div className='coin'>
 

@@ -15,13 +15,21 @@ export const Home = () => {
         <div>
             <div className='main--container'>
 
-                <div className='main--info'>
-
+                <div
+                    className='main--info'
+                    data-aos='fade-right'
+                    data-aos-duration='700'
+                    data-aos-easing='ease-in-sine'
+                >
                     <h1>BitOracle</h1>
 
                     <div className='main--hero'>
 
-                        <div className='sub--headings'>
+                        <div
+                            className='sub--headings'
+                            data-aos='fade-left'
+                            data-aos-duration='1500'
+                        >
 
                             <h2>The World's</h2>
                             <h2>Fastest Growing</h2>
@@ -29,9 +37,19 @@ export const Home = () => {
 
                         </div>
 
-                        <p> BitOracle is one of the most useful tools available to crypto traders and investors.</p>
+                        <p
+                            data-aos='fade-left'
+                            data-aos-duration='1500'
+                        >
+                            BitOracle is one of the most useful tools
+                            available to crypto traders and investors.
+                        </p>
 
-                        <div className='main--btns'>
+                        <div
+                            className='main--btns'
+                            data-aos='zoom-in'
+                            data-aos-duration='2000'
+                        >
 
                             {currentUser ? <Link to='/account'><button className='main--btn'>Dashboard</button></Link> :
                                 <Link to='/signin'><button className='main--btn'>Login</button></Link>

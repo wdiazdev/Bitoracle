@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import { NavBar } from './Components/NavBar';
@@ -9,8 +10,15 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import { ForgotPassword } from './Pages/ForgotPassword';
 import { Error404 } from './Components/Error404';
 import { CoinPage } from './Pages/CoinPage';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="App">
       <NavBar />
