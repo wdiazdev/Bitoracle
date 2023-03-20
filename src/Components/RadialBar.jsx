@@ -112,7 +112,7 @@ export const RadialBar = ({ assets, balance }) => {
                             options={chartOptions}
                             series={chartSeries}
                             type="radialBar"
-                            height={275}
+                            height={250}
                         />
                         :
 

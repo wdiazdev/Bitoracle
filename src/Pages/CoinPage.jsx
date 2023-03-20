@@ -53,7 +53,11 @@ export const CoinPage = () => {
 
                             <nav className='coin--page--nav'>
 
-                                <div className='img--name--symbol'>
+                                <div
+                                    className='img--name--symbol'
+                                    data-aos='fade-right'
+                                    data-aos-duration='1000'
+                                >
 
                                     {coin.image ? <img src={coin.image.large} alt={coin.name} /> : null}
                                     <h2>{coin.name}</h2>
@@ -76,7 +80,15 @@ export const CoinPage = () => {
                                 <CoinPageChart coin={coin} id={id} />
                             </div>
 
-                            {coin.description ? <p className='description'>{ReactHTMLParser(coin.description.en.split(". ")[0])}.</p> : null}
+                            {coin.description ?
+                                <p
+                                    className='description'
+                                    data-aos='fade-up'
+                                    data-aos-duration='3000'
+                                >
+
+                                    {ReactHTMLParser(coin.description.en.split(". ")[0])}.
+                                </p> : null}
                         </div>
 
                     </div>

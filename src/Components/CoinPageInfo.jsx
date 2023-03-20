@@ -4,7 +4,11 @@ import { HighAndLowIndicator } from './HighAndLowIndicator';
 
 export const CoinPageInfo = ({ coin }) => {
     return (
-        <div className='coin--page--info--1'>
+        <div
+            className='coin--page--info--1'
+            data-aos='flip-left'
+            data-aos-duration='2000'
+        >
             <ul>
                 <li><p>Market Cap Rank:</p>#{coin.market_cap_rank}</li>
                 {coin.market_data?.current_price ? <li><p>Price:</p>${numberWithCommas(coin.market_data.current_price.usd.toFixed(2))}</li> : null}

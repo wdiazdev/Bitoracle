@@ -6,7 +6,7 @@ export const MainSearch = ({ setSearch }) => {
         <div
             className='search--bar--container'
             data-aos='fade-up'
-            data-aos-duration='3000'
+            data-aos-duration='2000'
         >
 
             <h3>Search for your favorite cryptos</h3>

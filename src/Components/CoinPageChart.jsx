@@ -25,7 +25,11 @@ export const CoinPageChart = ({ coin, id }) => {
     }, [days]);
 
     return (
-        <div className='coin--page--info--2'>
+        <div
+            className='coin--page--info--2'
+            data-aos='fade-up'
+            data-aos-duration='1000'
+        >
             <Line
                 data={{
                     labels: chartData?.map((crypto) => {
