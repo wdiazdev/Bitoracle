@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import Chart from "react-apexcharts";
 
-export const RadialBar = ({ assets, balance }) => {
+export const LowestHolding = ({ assets, balance }) => {
 
     const [chartOptions, setChartOptions] = useState({});
 
     const [chartSeries, setChartSeries] = useState([]);
 
-    const [highestTotal, setHighestTotal] = useState(0);
+    const [lowestTotal, setLowestTotal] = useState(0);
 
-    const [highestName, setHighestName] = useState('');
+    const [lowestName, setLowestName] = useState('');
 
     const [img, setImg] = useState('');
 
     useEffect(() => {
-        let highestAssetTotal = assets.reduce((acc, max) => {
-            return max.total > acc ? max.total : acc;
-        }, 0);
 
-        let highestAsset = assets.find((asset) => asset.total === highestAssetTotal);
+        let lowestAssetTotal = assets.reduce((min, asset) => {
+            return asset.total < min ? asset.total : min;
+        }, Infinity);
 
-        let name = highestAsset ? highestAsset.name : '';
+        let lowestAsset = assets.find((asset) => asset.total === lowestAssetTotal);
 
-        let img = highestAsset ? highestAsset.img : '';
-
-        setHighestTotal(highestAssetTotal);
-        setHighestName(name);
-        setImg(img);
+        setLowestTotal(parseInt(lowestAssetTotal));
+        setLowestName(lowestAsset ? lowestAsset.name : null);
+        setImg(lowestAsset ? lowestAsset.img : null);
     }, [assets]);
 
     useEffect(() => {
@@ -97,22 +94,22 @@ export const RadialBar = ({ assets, balance }) => {
             labels: ['Percent'],
         });
 
-        setChartSeries([highestTotal / balance * 100]);
-    }, [highestTotal, highestName]);
+        setChartSeries([lowestTotal / balance * 100]);
+    }, [lowestTotal, lowestName]);
 
     return (
         <>
-            {assets.length > 0 ?
-                <div className='radial--chart--container'>
+            {assets.length > 1 ?
+                <div className='radial--chart--container lowest'>
                     <img src={img} alt="" />
-                    <h2>Biggest holding</h2>
-                    <h3>{highestName}</h3>
+                    <h2>Lowest holding</h2>
+                    <h3>{lowestName}</h3>
                     {assets.length > 0 ?
                         <Chart
                             options={chartOptions}
                             series={chartSeries}
                             type="radialBar"
-                            height={250}
+                            height={200}
                         />
                         :
 

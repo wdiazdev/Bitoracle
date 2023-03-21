@@ -11,7 +11,8 @@ import { WatchList } from '../Components/WatchList';
 import { userAuth } from '../Context/AuthContext';
 import { db } from '../Utilities/Firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { RadialBar } from '../Components/RadialBar';
+import { HighestHolding } from '../Components/HighestHolding';
+import { LowestHolding } from '../Components/LowestHolding';
 
 export const Dashboard = () => {
 
@@ -83,8 +84,6 @@ export const Dashboard = () => {
     const addAssetAndSaveToPortfolio = async (event) => {
         event.preventDefault();
 
-        setSearchCoin([]);
-
         if (currentUser?.email) {
             await updateDoc(dbUserID, {
                 portfolio: arrayUnion({
@@ -104,7 +103,7 @@ export const Dashboard = () => {
         setSearchCoin([]);
         setActiveCurrency([]);
         setAmount(0);
-    }
+    };
 
     /*
    useEffect hook is triggered whenever the assets dependency changes. 
@@ -171,7 +170,6 @@ export const Dashboard = () => {
                                 />
                             </div>
 
-
                             <DashboardAssets
                                 balance={balance}
                                 assets={assets}
@@ -180,10 +178,19 @@ export const Dashboard = () => {
 
                         </div>
 
-                        <RadialBar
-                            assets={assets}
-                            balance={balance}
-                        />
+                        <div className='highest--lowest'>
+
+                            <HighestHolding
+                                assets={assets}
+                                balance={balance}
+                            />
+
+                            <LowestHolding
+                                assets={assets}
+                                balance={balance}
+                            />
+
+                        </div>
 
                         <WatchList />
 
