@@ -94,7 +94,7 @@ export const HighestHolding = ({ assets, balance }) => {
         });
 
         setChartSeries([highestTotal / balance * 100]);
-    }, [highestTotal, highestName]);
+    }, [highestTotal, highestName, balance]);
 
     return (
         <>

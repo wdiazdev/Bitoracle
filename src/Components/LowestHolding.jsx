@@ -14,7 +14,6 @@ export const LowestHolding = ({ assets, balance }) => {
     const [img, setImg] = useState('');
 
     useEffect(() => {
-
         let lowestAssetTotal = assets.reduce((min, asset) => {
             return asset.total < min ? asset.total : min;
         }, Infinity);
@@ -95,7 +94,7 @@ export const LowestHolding = ({ assets, balance }) => {
         });
 
         setChartSeries([lowestTotal / balance * 100]);
-    }, [lowestTotal, lowestName]);
+    }, [lowestTotal, lowestName, balance]);
 
     return (
         <>
