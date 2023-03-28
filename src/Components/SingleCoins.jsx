@@ -31,6 +31,7 @@ export const SingleCoins = () => {
                     <div
                         data-aos='fade-left'
                         data-aos-duration='1500'
+                        // data-aos-easing='ease-in-sine'
                         key={coin.id}
                         onClick={() => navigate(`/coin/${coin.id}`)}
                     >
