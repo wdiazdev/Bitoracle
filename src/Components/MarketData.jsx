@@ -5,8 +5,36 @@ import { MarketTable } from '../Components/MarketTable';
 import { marketDataUrl } from '../APIs/ApiUrl';
 import axios from 'axios';
 import { Pagination } from '../Components/Pagination';
+import { useQuery } from '@tanstack/react-query';
+import { Spinner } from './Spinner';
+import { Error } from './TrendingCoinSlider';
 
 export const MarketData = () => {
+
+    // const fetchCryptoData = async () => {
+    //     const response = await axios.get(marketDataUrl);
+    //     return response.data;
+    // };
+
+    // const { data, isLoading, error } = useQuery({
+    //     queryKey: ['Crypto Data'],
+    //     queryFn: fetchCryptoData
+    // });
+
+    // if (isLoading) {
+    //     return <Spinner />;
+    // };
+
+    // if (error) {
+    //     return <Error>
+    //         <h3>Error: {error.message}</h3>
+    //     </Error>;
+    // };
+
+
+
+
+
 
     const [cryptoData, setCryptoData] = useState([]);
 

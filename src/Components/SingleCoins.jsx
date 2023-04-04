@@ -3,30 +3,39 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { singleCoinMain } from '../APIs/ApiUrl';
 import { formatCurrency } from '../Utilities/FormatCurrency';
+import { useQuery } from '@tanstack/react-query';
+import { Spinner } from './Spinner';
+import { Error } from './TrendingCoinSlider';
 
 export const SingleCoins = () => {
 
-    const [singleCoin, setSingleCoin] = useState([]);
-
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchSingleCoin = async () => {
-            try {
-                const { data } = await axios.get(singleCoinMain);
-                setSingleCoin(data);
-            } catch (error) {
-                console.log('Error fetching single coin data:', error);
-            }
-        }
-        fetchSingleCoin();
-    }, [singleCoinMain]);
+    const fetchTrendingCoins = async () => {
+        const response = await axios.get(singleCoinMain);
+        return response.data;
+    };
+
+    const { data, isLoading, error, isError } = useQuery({
+        queryKey: ['Single Coins'],
+        queryFn: fetchTrendingCoins
+    });
+
+    if (isLoading) {
+        return <Spinner />;
+    };
+
+    if (isError) {
+        return <Error>
+            <h3>Error: {error.message}</h3>
+        </Error>;
+    };
 
     return (
 
         <div className='coins--container'>
 
-            {singleCoin.map((coin) => {
+            {data?.map((coin) => {
                 return (
                     <div
                         data-aos='fade-left'

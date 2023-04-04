@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
 import { trendingCoins } from '../APIs/ApiUrl';
 import '../Styles/TrendingCoins.css';
 import { TrendingCard } from './TrendingCard';
@@ -14,22 +13,21 @@ import styled from 'styled-components';
 
 export const TrendingCoinSlider = () => {
 
-
     const fetchTrendingCoins = async () => {
         const response = await axios.get(trendingCoins);
         return response.data.coins;
     };
 
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, error, isError } = useQuery({
         queryKey: ['Trending Coins'],
         queryFn: fetchTrendingCoins
     });
 
     if (isLoading) {
         return <Spinner />;
-    }
+    };
 
-    if (error) {
+    if (isError) {
         return <Error>
             <h3>Error: {error.message}</h3>
         </Error>;
@@ -65,7 +63,7 @@ export const TrendingCoinSlider = () => {
                 }}
             >
 
-                {data && data.map((coin) => {
+                {data?.map((coin) => {
                     return (
                         <SwiperSlide key={coin.item.id}>
                             <TrendingCard coin={coin.item} />
@@ -79,9 +77,9 @@ export const TrendingCoinSlider = () => {
     )
 };
 
-const Error = styled.div`
+export const Error = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-padding: 2rem 0
+padding: 2rem 0;
 `

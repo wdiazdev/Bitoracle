@@ -3,6 +3,6 @@ import '../Styles/Spinner.css';
 
 export const Spinner = () => {
     return (
-        <div class='spinner'>Loading...</div>
+        <div className='spinner'>Loading...</div>
     )
 };
