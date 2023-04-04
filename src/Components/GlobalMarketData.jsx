@@ -1,6 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import '../Styles/MarketData.css';
+import axios from 'axios';
 import { numberWithCommas } from '../Utilities/FormatCurrency';
 import { globalMarketDataURL } from '../APIs/ApiUrl'
 import '../Styles/GlobalData.css';
@@ -21,9 +20,7 @@ export const GlobalMarketData = () => {
         }
 
         fetchGlobalData();
-    }, [globalMarketDataURL]);
-
-    // console.log(globalData);
+    }, []);
 
     return (
         <div data-aos='fade-up' data-aos-duration='1000'>
@@ -60,7 +57,6 @@ export const GlobalMarketData = () => {
                                 </div>
 
                             </div>
-
 
                         </div>
                     )

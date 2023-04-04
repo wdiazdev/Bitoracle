@@ -7,23 +7,33 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/swiper-bundle.css';
 import { Navigation } from 'swiper';
+import { useQuery } from '@tanstack/react-query';
+import { Spinner } from './Spinner';
+import styled from 'styled-components';
+
 
 export const TrendingCoinSlider = () => {
 
-    const [trending, setTrending] = useState([]);
 
-    useEffect(() => {
-        const fetchTrendingCoins = async () => {
-            try {
-                const { data } = await axios.get(trendingCoins);
-                setTrending(data.coins);
-            } catch (error) {
-                console.log('Error fetching trending coins data:', error);
-            }
-        };
+    const fetchTrendingCoins = async () => {
+        const response = await axios.get(trendingCoins);
+        return response.data.coins;
+    };
 
-        fetchTrendingCoins();
-    }, [trendingCoins]);
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['Trending Coins'],
+        queryFn: fetchTrendingCoins
+    });
+
+    if (isLoading) {
+        return <Spinner />;
+    }
+
+    if (error) {
+        return <Error>
+            <h3>Error: {error.message}</h3>
+        </Error>;
+    };
 
     return (
         <div
@@ -55,7 +65,7 @@ export const TrendingCoinSlider = () => {
                 }}
             >
 
-                {trending.map((coin) => {
+                {data && data.map((coin) => {
                     return (
                         <SwiperSlide key={coin.item.id}>
                             <TrendingCard coin={coin.item} />
@@ -68,3 +78,10 @@ export const TrendingCoinSlider = () => {
         </div >
     )
 };
+
+const Error = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 2rem 0
+`

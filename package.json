@@ -12,6 +12,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.28.0",
+    "@tanstack/react-query-devtools": "^4.29.0",
     "aos": "^2.3.4",
     "apexcharts": "^3.37.1",
     "axios": "^1.2.2",
@@ -27,6 +29,7 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.1",
     "react-scripts": "^5.0.1",
+    "styled-components": "^5.3.9",
     "swiper": "^9.0.5"
   },
   "devDependencies": {
