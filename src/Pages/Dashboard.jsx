@@ -77,10 +77,6 @@ export const Dashboard = () => {
         setSearchCoin([]);
     };
 
-    /*
-
-    */
-
     const addAssetAndSaveToPortfolio = async (event) => {
         event.preventDefault();
 

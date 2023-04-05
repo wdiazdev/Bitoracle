@@ -1,9 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
 import { SaveBtn } from './SaveBtn';
-export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
+
+export const MarketTable = ({ page, itemsPerPage, search, cryptoData }) => {
 
     const navigate = useNavigate();
+
+    const handleSearch = () => {
+        if (search.length > 0) {
+            setPage(1);
+        }
+        return cryptoData.filter(
+            (crypto) =>
+                crypto.name.toLowerCase().includes(search) ||
+                crypto.symbol.toLowerCase().includes(search)
+        );
+    };
 
     return (
         <div className='table--container'>
@@ -22,7 +34,7 @@ export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
 
                 {handleSearch().slice(page * itemsPerPage - itemsPerPage, page * itemsPerPage).map((coin) => {
 
-                    let priceChange = coin.price_change_percentage_24h;
+                    let priceChange = coin.price_change_percentage_24h
 
                     return (
                         <tbody key={coin.id} >
@@ -52,7 +64,7 @@ export const MarketTable = ({ page, itemsPerPage, handleSearch }) => {
                                     className='col--hr--change'
                                     style={priceChange > 0 ? { color: '#7CFC00' } : { color: '#DC0000' }}
                                 >
-                                    {priceChange.toFixed(2)}%
+                                    {priceChange}%
                                 </td>
 
                                 <td className='col--price'>${numberWithCommas(coin.market_cap.toFixed(0))}</td>

@@ -11,11 +11,12 @@ export const Pagination = (
         setItemsPerPage }) => {
 
     const handlePage = (selectedPage) => {
-        if (selectedPage >= 1 &&
-            selectedPage <= cryptoData.length / itemsPerPage &&
-            selectedPage !== page)
+        const totalPages = Math.ceil(cryptoData.length / itemsPerPage);
+
+        if (selectedPage >= 1 && selectedPage <= totalPages && selectedPage !== page) {
             setPage(selectedPage);
-        window.scroll(0, 1200)
+            window.scroll(0, 1200);
+        }
     };
 
     return (
@@ -48,13 +49,17 @@ export const Pagination = (
                 src={NextIcon}
                 alt='next'
                 onClick={() => handlePage(page + 1)}
-                className={page < cryptoData.length / itemsPerPage ? '' : 'pagination--disable'}
+                className={page < Math.ceil(cryptoData.length / itemsPerPage) ? '' : 'pagination--disable'}
             />
 
             <p>Show:</p>
 
             <select
-                onChange={e => setItemsPerPage(e.target.value)}
+                onChange={e => {
+                    setItemsPerPage(e.target.value);
+                    console.log(`Selected value: ${e.target.value}`);
+                }}
+                value={itemsPerPage}
                 className='pages'
             >
                 <option value='25'>25</option>

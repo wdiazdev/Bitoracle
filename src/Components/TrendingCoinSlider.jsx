@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { trendingCoins } from '../APIs/ApiUrl';
 import '../Styles/TrendingCoins.css';
 import { TrendingCard } from './TrendingCard';
@@ -13,14 +12,15 @@ import styled from 'styled-components';
 
 export const TrendingCoinSlider = () => {
 
-    const fetchTrendingCoins = async () => {
-        const response = await axios.get(trendingCoins);
-        return response.data.coins;
-    };
-
-    const { data, isLoading, error, isError } = useQuery({
+    const {
+        data,
+        isLoading,
+        error,
+        isError,
+    } = useQuery({
         queryKey: ['Trending Coins'],
-        queryFn: fetchTrendingCoins
+        queryFn: () => trendingCoins(),
+        keepPreviousData: true,
     });
 
     if (isLoading) {
@@ -63,13 +63,11 @@ export const TrendingCoinSlider = () => {
                 }}
             >
 
-                {data?.map((coin) => {
-                    return (
-                        <SwiperSlide key={coin.item.id}>
-                            <TrendingCard coin={coin.item} />
-                        </SwiperSlide>
-                    )
-                })}
+                {data.coins?.map((coin) => (
+                    <SwiperSlide key={coin.item.id}>
+                        <TrendingCard coin={coin.item} />
+                    </SwiperSlide>
+                ))}
 
             </Swiper>
 
