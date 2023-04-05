@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatCurrency, numberWithCommas } from '../Utilities/FormatCurrency';
 import { SaveBtn } from './SaveBtn';
 
-export const MarketTable = ({ page, itemsPerPage, search, cryptoData }) => {
+export const MarketTable = ({ page, itemsPerPage, search, cryptoData, setPage }) => {
 
     const navigate = useNavigate();
 
@@ -19,7 +19,9 @@ export const MarketTable = ({ page, itemsPerPage, search, cryptoData }) => {
 
     return (
         <div className='table--container'>
+
             <table>
+
                 <thead>
                     <tr className='table--head'>
                         <th></th>
@@ -34,7 +36,7 @@ export const MarketTable = ({ page, itemsPerPage, search, cryptoData }) => {
 
                 {handleSearch().slice(page * itemsPerPage - itemsPerPage, page * itemsPerPage).map((coin) => {
 
-                    let priceChange = coin.price_change_percentage_24h.toFixed(2);
+                    const priceChange = coin.price_change_percentage_24h.toFixed(2)
 
                     return (
                         <tbody key={coin.id} >
@@ -67,16 +69,21 @@ export const MarketTable = ({ page, itemsPerPage, search, cryptoData }) => {
                                     {priceChange}%
                                 </td>
 
-                                <td className='col--price'>${numberWithCommas(coin.market_cap.toFixed(0))}</td>
+                                <td className='col--price'>
+                                    {coin.market_cap ? '$' + numberWithCommas(coin.market_cap.toFixed(0)) : null}
+                                </td>
 
                                 <td className='col--price'>
-                                    {numberWithCommas(coin.circulating_supply.toFixed(0))}
+                                    {coin.circulating_supply ? numberWithCommas(coin.circulating_supply.toFixed(0)) : null}
                                 </td>
                             </tr>
+
                         </tbody>
                     )
                 })}
+
             </table>
+
         </div >
     )
 };

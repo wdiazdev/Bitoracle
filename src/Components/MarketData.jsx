@@ -46,6 +46,7 @@ export const MarketData = () => {
 
             <MarketTable
                 page={page}
+                setPage={setPage}
                 itemsPerPage={itemsPerPage}
                 search={search}
                 cryptoData={cryptoData}

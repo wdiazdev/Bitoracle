@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import '../Styles/Dashboard.css';
-import { Loader } from '../Components/Loader';
 import { marketData } from '../APIs/ApiUrl';
 import { SearchDashCoin } from '../Components/SearchDashCoin';
 import { QtyDashCoin } from '../Components/QtyDashCoin';
@@ -16,8 +15,6 @@ import { useQuery } from '@tanstack/react-query';
 import { Error } from '../Components/TrendingCoinSlider';
 
 export const Dashboard = () => {
-
-    const [loading, setLoading] = useState(true);
 
     const [searchCoin, setSearchCoin] = useState([]);
 
@@ -64,7 +61,7 @@ export const Dashboard = () => {
                 coin.symbol.toLowerCase().includes(searchValue)
         );
 
-        setSearchCoin(searchValue ? searchResult : []);
+        setSearchCoin(searchValue ? searchResult : '');
     };
 
     const handleSelect = (event) => {
@@ -122,87 +119,69 @@ export const Dashboard = () => {
             total += parseInt(assets[i].price * assets[i].quantity);
         }
         setBalance(total);
-    }, [assets]);
-
-    //LOADER
-    useEffect(() => {
-        const timerId = setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-
-        setLoading(false);
-
-        return () => {
-            clearTimeout(timerId);
-        };
-    }, []);
+    }, [assets, setBalance]);
 
     return (
         <>
-            {loading ?
+            <div className='dashboard--container'>
 
-                <Loader /> :
+                <div className='dashboard--wrapper'>
 
-                <div className='dashboard--container'>
+                    <div className="dashboard--data">
 
-                    <div className='dashboard--wrapper'>
-
-                        <div className="dashboard--data">
-
-                            <div className='user--inputs'>
-                                {
-                                    activeCurrency.length != 0 ?
+                        <div className='user--inputs'>
+                            {
+                                activeCurrency.length != 0 ?
 
 
-                                        <QtyDashCoin
-                                            activeCurrency={activeCurrency}
-                                            handleAmount={handleAmount}
-                                            addAssetAndSaveToPortfolio={addAssetAndSaveToPortfolio}
-                                        />
+                                    <QtyDashCoin
+                                        activeCurrency={activeCurrency}
+                                        handleAmount={handleAmount}
+                                        addAssetAndSaveToPortfolio={addAssetAndSaveToPortfolio}
+                                    />
 
-                                        :
+                                    :
 
-                                        <SearchDashCoin
-                                            handleSelect={handleSelect}
-                                            handleSearch={handleSearch}
-                                            searchCoin={searchCoin}
-                                            activeCurrency={activeCurrency}
-                                        />
-                                }
+                                    <SearchDashCoin
+                                        handleSelect={handleSelect}
+                                        handleSearch={handleSearch}
+                                        searchCoin={searchCoin}
+                                        activeCurrency={activeCurrency}
+                                    />
+                            }
 
-                                <DashChart
-                                    assets={assets}
-                                />
-                            </div>
-
-                            <DashboardAssets
-                                balance={balance}
+                            <DashChart
                                 assets={assets}
-                                setAsset={setAsset}
                             />
-
                         </div>
 
-                        <div className='highest--lowest'>
-
-                            <HighestHolding
-                                assets={assets}
-                                balance={balance}
-                            />
-
-                            <LowestHolding
-                                assets={assets}
-                                balance={balance}
-                            />
-
-                        </div>
-
-                        <WatchList />
+                        <DashboardAssets
+                            balance={balance}
+                            assets={assets}
+                            setAsset={setAsset}
+                        />
 
                     </div>
 
+                    <div className='highest--lowest'>
+
+                        <HighestHolding
+                            assets={assets}
+                            balance={balance}
+                        />
+
+                        <LowestHolding
+                            assets={assets}
+                            balance={balance}
+                        />
+
+                    </div>
+
+                    <WatchList />
+
                 </div>
-            }
+
+            </div>
         </>
     )
 };

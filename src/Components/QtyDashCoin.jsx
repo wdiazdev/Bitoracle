@@ -4,7 +4,6 @@ export const QtyDashCoin = (
     { activeCurrency,
         handleAmount,
         addAssetAndSaveToPortfolio,
-        setSearchCoin
     }) => {
 
     return (
