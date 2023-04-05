@@ -1,28 +1,38 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 //!NEED TO HAVE FOR CHART TO WORK
 import Chart from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
-import { HistoricalChart } from '../APIs/ApiUrl';
+import { historicalChartData } from '../APIs/ApiUrl';
+import { useQuery } from '@tanstack/react-query';
+import { Spinner } from './Spinner';
+import { Error } from './TrendingCoinSlider';
 
 export const CoinPageChart = ({ coin, id }) => {
 
-    const [chartData, setChartData] = useState();
-
     const [days, setDays] = useState(1);
 
-    useEffect(() => {
-        const fetchMarketData = async () => {
-            try {
-                const { data } = await axios.get(HistoricalChart(id, days));
-                setChartData(data.prices);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    const {
+        data,
+        isLoading,
+        error,
+        isError,
+    } = useQuery({
+        queryKey: ['Coin Chart'],
+        queryFn: () => historicalChartData(id, days),
+        keepPreviousData: true,
+        staleTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
-        fetchMarketData();
-    }, [days]);
+    if (isLoading) {
+        return <Spinner />;
+    };
+
+    if (isError) {
+        return <Error>
+            <h3>Error: {error.message}</h3>
+        </Error>;
+    };
 
     return (
         <div
@@ -32,7 +42,7 @@ export const CoinPageChart = ({ coin, id }) => {
         >
             <Line
                 data={{
-                    labels: chartData?.map((crypto) => {
+                    labels: data.prices?.map((crypto) => {
                         let date = new Date(crypto[0]);
                         let time = date.getHours() > 12
                             ? `${date.getHours() - 12}:${date.getMinutes()} PM`
@@ -40,7 +50,7 @@ export const CoinPageChart = ({ coin, id }) => {
                         return days === 1 ? time : date.toLocaleDateString();
                     }),
                     datasets: [{
-                        data: chartData?.map((crypto) => crypto[1]),
+                        data: data.prices?.map((crypto) => crypto[1]),
                         label: `Price (Past ${days} Days) in USD`,
                         borderColor: "#0995e0",
                     }],

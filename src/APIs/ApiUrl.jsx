@@ -24,10 +24,12 @@ export const globalMarketDataURL = async () => {
     return response.data
 };
 
-export const singleCoin = (id) => `https://api.coingecko.com/api/v3/coins/${id}`;
+export const fetchCoinData = async (id) => {
+    const response = await baseURL.get(`/coins/${id}`)
+    return response.data
+};
 
-
-export const marketDataUrl = (page) => `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=${page}&sparkline=false`;
-
-export const HistoricalChart = (id, days) =>
-    `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}`;
+export const historicalChartData = async (id, days) => {
+    const response = await baseURL.get(`/coins/${id}/market_chart?vs_currency=usd&days=${days}`)
+    return response.data
+};

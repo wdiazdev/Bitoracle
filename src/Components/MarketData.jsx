@@ -4,9 +4,9 @@ import { MainSearch } from '../Components/MainSearch';
 import { MarketTable } from '../Components/MarketTable';
 import { marketData } from '../APIs/ApiUrl';
 import { Pagination } from '../Components/Pagination';
-import { useQuery } from '@tanstack/react-query';
 import { Spinner } from './Spinner';
 import { Error } from './TrendingCoinSlider';
+import { useQuery } from '@tanstack/react-query';
 
 export const MarketData = () => {
 

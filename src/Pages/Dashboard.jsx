@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import '../Styles/Dashboard.css';
 import { Loader } from '../Components/Loader';
-import { marketDataUrl } from '../APIs/ApiUrl';
+import { marketData } from '../APIs/ApiUrl';
 import { SearchDashCoin } from '../Components/SearchDashCoin';
 import { QtyDashCoin } from '../Components/QtyDashCoin';
 import { DashboardAssets } from '../Components/DashboardAssets';
@@ -13,12 +12,12 @@ import { db } from '../Utilities/Firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { HighestHolding } from '../Components/HighestHolding';
 import { LowestHolding } from '../Components/LowestHolding';
+import { useQuery } from '@tanstack/react-query';
+import { Error } from '../Components/TrendingCoinSlider';
 
 export const Dashboard = () => {
 
     const [loading, setLoading] = useState(true);
-
-    const [cryptoData, setCryptoData] = useState([]);
 
     const [searchCoin, setSearchCoin] = useState([]);
 
@@ -34,14 +33,24 @@ export const Dashboard = () => {
 
     const dbUserID = doc(db, 'users', `${currentUser?.email}`);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data } = await axios.get(marketDataUrl);
-            setCryptoData(data);
-        };
+    const {
+        data: cryptoData,
+        error,
+        isError
+    } = useQuery({
+        queryKey: ['Dashboard Data'],
+        queryFn: () => marketData(),
+        keepPreviousData: true,
+        staleTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false,
+    });
 
-        fetchData();
-    }, [marketDataUrl]);
+    if (isError) {
+        return <Error>
+            <h3>Error: {error.message}</h3>
+        </Error>;
+    };
+
 
     // This function is called when the user types something in a search input
     const handleSearch = (event) => {
