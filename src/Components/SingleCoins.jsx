@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { singleCoinMain } from '../APIs/ApiUrl';
 import { formatCurrency } from '../Utilities/FormatCurrency';
@@ -11,15 +10,15 @@ export const SingleCoins = () => {
 
     const navigate = useNavigate();
 
-    const fetchTrendingCoins = async () => {
-        const response = await axios.get(singleCoinMain);
-        return response.data;
-    };
-
     const { data, isLoading, error, isError } = useQuery({
         queryKey: ['Single Coins'],
-        queryFn: fetchTrendingCoins
+        queryFn: () => singleCoinMain(),
+        keepPreviousData: true,
+        staleTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false,
     });
+
+    // console.log(data);
 
     if (isLoading) {
         return <Spinner />;

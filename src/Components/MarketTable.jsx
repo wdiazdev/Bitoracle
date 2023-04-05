@@ -34,7 +34,7 @@ export const MarketTable = ({ page, itemsPerPage, search, cryptoData }) => {
 
                 {handleSearch().slice(page * itemsPerPage - itemsPerPage, page * itemsPerPage).map((coin) => {
 
-                    let priceChange = coin.price_change_percentage_24h
+                    let priceChange = coin.price_change_percentage_24h.toFixed(2);
 
                     return (
                         <tbody key={coin.id} >

@@ -21,6 +21,8 @@ export const TrendingCoinSlider = () => {
         queryKey: ['Trending Coins'],
         queryFn: () => trendingCoins(),
         keepPreviousData: true,
+        staleTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false,
     });
 
     if (isLoading) {
