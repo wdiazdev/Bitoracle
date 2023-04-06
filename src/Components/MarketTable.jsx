@@ -47,7 +47,10 @@ export const MarketTable = ({ page, itemsPerPage, search, cryptoData, setPage })
 
                                 <td
                                     className='col--name'
-                                    onClick={() => navigate(`/coin/${coin.id}`)}
+                                    onClick={() => {
+                                        console.log(`Navigating to /coin/${coin.id}`);
+                                        navigate(`/coin/${coin.id}`);
+                                    }}
                                 >
                                     <img src={coin.image} alt={coin.name} />
                                     <div className='name--symbol'>

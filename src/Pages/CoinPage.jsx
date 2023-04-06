@@ -11,7 +11,7 @@ import { Spinner } from '../Components/Spinner';
 import { Error } from '../Components/TrendingCoinSlider';
 import { Loader } from '../Components/Loader';
 
-export const CoinPage = () => {
+const CoinPage = () => {
 
     const { id } = useParams();
 
@@ -112,3 +112,5 @@ export const CoinPage = () => {
         </>
     )
 };
+
+export default CoinPage;

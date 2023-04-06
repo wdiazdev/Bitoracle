@@ -3,7 +3,7 @@ import '../Styles/SignUp.css';
 import { userAuth } from '../Context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
-export const SignUp = () => {
+const SignUp = () => {
 
     const [error, setError] = useState();
 
@@ -82,4 +82,6 @@ export const SignUp = () => {
 
         </div>
     )
-}
+};
+
+export default SignUp;

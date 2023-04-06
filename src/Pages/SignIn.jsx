@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { userAuth } from '../Context/AuthContext';
 
-export const SignIn = () => {
+const SignIn = () => {
 
     const [error, setError] = useState();
 
@@ -80,5 +80,7 @@ export const SignIn = () => {
         </div>
     )
 };
+
+export default SignIn;
 
 

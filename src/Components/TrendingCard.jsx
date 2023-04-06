@@ -8,7 +8,12 @@ export const TrendingCard = ({ coin }) => {
     return (
         <div>
 
-            <div className='card' onClick={() => navigate(`/coin/${coin.id}`)}>
+            <div className='card'
+                onClick={() => {
+                    console.log(`Navigating to /coin/${coin.id}`);
+                    navigate(`/coin/${coin.id}`);
+                }}
+            >
                 <img src={coin.large} alt={coin.name} />
                 <h3>{coin.name}</h3>
                 <span># {coin.market_cap_rank}</span>

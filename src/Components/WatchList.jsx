@@ -83,7 +83,10 @@ export const WatchList = () => {
 
                                         <td>
                                             <BsInfoSquare className='asset--delete--btn'
-                                                onClick={() => navigate(`/coin/${item.id}`)}
+                                                onClick={() => {
+                                                    console.log(`Navigating to /coin/${item.id}`);
+                                                    navigate(`/coin/${item.id}`);
+                                                }}
                                             />
                                         </td>
 

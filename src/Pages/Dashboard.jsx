@@ -14,7 +14,7 @@ import { LowestHolding } from '../Components/LowestHolding';
 import { useQuery } from '@tanstack/react-query';
 import { Error } from '../Components/TrendingCoinSlider';
 
-export const Dashboard = () => {
+const Dashboard = () => {
 
     const [searchCoin, setSearchCoin] = useState([]);
 
@@ -185,3 +185,5 @@ export const Dashboard = () => {
         </>
     )
 };
+
+export default Dashboard;

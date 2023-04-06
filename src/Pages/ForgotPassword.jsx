@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { userAuth } from '../Context/AuthContext';
 
-export const ForgotPassword = () => {
+const ForgotPassword = () => {
 
     const [error, setError] = useState();
 
@@ -61,4 +61,6 @@ export const ForgotPassword = () => {
 
         </div>
     )
-}
+};
+
+export default ForgotPassword;

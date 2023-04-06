@@ -7,7 +7,7 @@ import { TrendingCoinSlider } from '../Components/TrendingCoinSlider';
 import { Footer } from '../Components/Footer';
 import { userAuth } from '../Context/AuthContext';
 
-export const Home = () => {
+const Home = () => {
 
     const { currentUser } = userAuth();
 
@@ -71,3 +71,5 @@ export const Home = () => {
         </div>
     )
 };
+
+export default Home;
