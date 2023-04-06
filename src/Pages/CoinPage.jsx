@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactHTMLParser from "react-html-parser";
 import { fetchCoinData } from '../APIs/ApiUrl';
@@ -8,12 +9,15 @@ import { AiOutlineCloseCircle } from 'react-icons/Ai';
 import { useQuery } from '@tanstack/react-query';
 import { Spinner } from '../Components/Spinner';
 import { Error } from '../Components/TrendingCoinSlider';
+import { Loader } from '../Components/Loader';
 
 export const CoinPage = () => {
 
     const { id } = useParams();
 
     const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false);
 
     const {
         data: coin,
@@ -28,6 +32,17 @@ export const CoinPage = () => {
         refetchOnWindowFocus: false,
     });
 
+    useEffect(() => {
+        setLoading(true);
+        const timeout = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, []);
+
     if (isLoading) {
         return <Spinner />;
     };
@@ -40,53 +55,60 @@ export const CoinPage = () => {
 
     return (
         <>
+            {
+                loading ?
 
-            <div className='coin--page--container'>
+                    <Loader /> :
 
-                <div className='coin--info--container'>
+                    <>
+                        <div className='coin--page--container'>
 
-                    {coin.image ? <img src={coin.image.large} alt={coin.name} className='coin--img--bg' /> : null}
+                            <div className='coin--info--container'>
 
-                    <nav className='coin--page--nav'>
+                                {coin.image ? <img src={coin.image.large} alt={coin.name} className='coin--img--bg' /> : null}
 
-                        <div
-                            className='img--name--symbol'
-                            data-aos='fade-right'
-                            data-aos-duration='1000'
-                        >
+                                <nav className='coin--page--nav'>
 
-                            {coin.image ? <img src={coin.image.large} alt={coin.name} /> : null}
-                            <h2>{coin.name}</h2>
-                            <span>{coin.symbol}</span>
+                                    <div
+                                        className='img--name--symbol'
+                                        data-aos='fade-right'
+                                        data-aos-duration='1000'
+                                    >
+
+                                        {coin.image ? <img src={coin.image.large} alt={coin.name} /> : null}
+                                        <h2>{coin.name}</h2>
+                                        <span>{coin.symbol}</span>
+
+                                    </div>
+
+                                    <AiOutlineCloseCircle
+                                        className='asset--delete--btn'
+                                        onClick={() => navigate(-1)}
+                                    />
+
+                                </nav>
+
+
+                                <div className='coin--page--info'>
+                                    <CoinPageInfo coin={coin} />
+                                    <CoinPageChart id={id} />
+                                </div>
+
+                                {coin.description ?
+                                    <p
+                                        className='description'
+                                        data-aos='fade-up'
+                                        data-aos-duration='3000'
+                                    >
+
+                                        {ReactHTMLParser(coin.description.en.split(". ")[0])}.
+                                    </p> : null}
+                            </div>
 
                         </div>
 
-                        <AiOutlineCloseCircle
-                            className='asset--delete--btn'
-                            onClick={() => navigate(-1)}
-                        />
-
-                    </nav>
-
-
-                    <div className='coin--page--info'>
-                        <CoinPageInfo coin={coin} />
-                        <CoinPageChart id={id} />
-                    </div>
-
-                    {coin.description ?
-                        <p
-                            className='description'
-                            data-aos='fade-up'
-                            data-aos-duration='3000'
-                        >
-
-                            {ReactHTMLParser(coin.description.en.split(". ")[0])}.
-                        </p> : null}
-                </div>
-
-            </div>
-
+                    </>
+            }
         </>
     )
 };
