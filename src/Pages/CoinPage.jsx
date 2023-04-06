@@ -21,7 +21,7 @@ export const CoinPage = () => {
         error,
         isError,
     } = useQuery({
-        queryKey: ['Coin Page'],
+        queryKey: ['Coin Page', id],
         queryFn: () => fetchCoinData(id),
         keepPreviousData: true,
         staleTime: 60 * 60 * 1000,

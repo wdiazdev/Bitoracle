@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { singleCoinMain } from '../APIs/ApiUrl';
 import { formatCurrency } from '../Utilities/FormatCurrency';
@@ -41,7 +40,10 @@ export const SingleCoins = () => {
                         data-aos-duration='1500'
                         // data-aos-easing='ease-in-sine'
                         key={coin.id}
-                        onClick={() => navigate(`/coin/${coin.id}`)}
+                        onClick={() => {
+                            console.log(`Navigating to /coin/${coin.id}`);
+                            navigate(`/coin/${coin.id}`);
+                        }}
                     >
 
                         <div className='coin'>
