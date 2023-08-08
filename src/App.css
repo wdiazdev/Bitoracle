@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 * {
   box-sizing: border-box;
@@ -14,8 +14,7 @@ html {
 }
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6)), url('/src/assets/appbg.jpg');
-  background-size: cover;
+  background-color: #141414;
   font-family: var(--primary--font);
   color: #fff;
   overflow-x: hidden;
@@ -25,8 +24,8 @@ body {
   --primary--color: #0995e0;
   --secondary--color: #d40071;
   --primary--bg--color: #141414;
-  --primary--font: 'Poppins', sans-serif;
-  --secondary--font: 'Bebas Neue', cursive, sans-serif;
+  --primary--font: "Poppins", sans-serif;
+  --secondary--font: "Bebas Neue", cursive, sans-serif;
 }
 
 .error {
@@ -38,13 +37,16 @@ body {
 }
 
 /* TO SET ANIMATION DURATION FOR UP TO 4000MS */
-body[data-aos-duration='4000'] [data-aos],
-[data-aos][data-aos][data-aos-duration='4000'] {
+body[data-aos-duration="4000"] [data-aos],
+[data-aos][data-aos][data-aos-duration="4000"] {
   transition-duration: 4000ms;
 }
 
-@media screen and (max-width:1000px) {}
+@media screen and (max-width: 1000px) {
+}
 
-@media screen and (max-width:640px) {}
+@media screen and (max-width: 640px) {
+}
 
-@media screen and (max-width:360px) {}
+@media screen and (max-width: 360px) {
+}

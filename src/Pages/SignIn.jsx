@@ -1,86 +1,74 @@
-import React, { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { userAuth } from '../Context/AuthContext';
+import React, { useRef, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { userAuth } from "../Context/AuthContext"
 
 const SignIn = () => {
+  const [error, setError] = useState()
 
-    const [error, setError] = useState();
+  const emailRef = useRef()
 
-    const emailRef = useRef();
+  const passwordRef = useRef()
 
-    const passwordRef = useRef();
+  const { signIn, currentUser } = userAuth()
 
-    const { signIn, currentUser } = userAuth();
+  const navigate = useNavigate()
 
-    const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      setError("")
+      await signIn(emailRef.current.value, passwordRef.current.value)
+      console.log("Login Successfully")
+      navigate("/account")
+    } catch (e) {
+      setError("Unable to login")
+      console.log(e.message)
+    }
+  }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            setError('')
-            await signIn(emailRef.current.value, passwordRef.current.value)
-            console.log('Login Successfully')
-            navigate('/account')
-        } catch (e) {
-            setError('Unable to login')
-            console.log(e.message)
-        }
-    };
+  return (
+    <div className="signup">
+      {currentUser ? (
+        <p
+          className="already--login"
+          style={{
+            fontSize: "2.5rem",
+            color: "var(--primary--color)",
+          }}
+        >
+          You are already logged in.
+        </p>
+      ) : (
+        <>
+          <form className="form" onSubmit={handleSubmit}>
+            <h2>Log In</h2>
 
-    return (
-        <div className='signup'>
+            {error && <p className="signup--error">{error}</p>}
 
-            {
-                currentUser ? <p
-                    className='already--login'
-                    style={{
-                        fontSize: '2.5rem',
-                        color: 'var(--primary--color)'
-                    }}
-                >You are already logged in.
-                </p> :
-                    <>
-                        <form
-                            className='form'
-                            onSubmit={handleSubmit}
-                        >
-                            <h2>Log In</h2>
+            <div className="signup--input--container">
+              <label htmlFor="email">Email</label>
+              <input type="email" ref={emailRef} required />
+            </div>
 
-                            {error && <p className='signup--error'>{error}</p>}
+            <div className="signup--input--container">
+              <label htmlFor="password">Password</label>
+              <input type="password" ref={passwordRef} required />
+            </div>
 
-                            <div className='signup--input--container'>
-                                <label htmlFor='email'>Email</label>
-                                <input
-                                    type='email'
-                                    ref={emailRef}
-                                    required />
-                            </div>
+            <button type="submit" className="signup--btn">
+              Login
+            </button>
 
-                            <div className='signup--input--container'>
-                                <label htmlFor='password'>Password</label>
-                                <input
-                                    type='password'
-                                    ref={passwordRef}
-                                    required />
-                            </div>
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </form>
 
-                            <button
-                                type='submit'
-                                className='signup--btn'
-                            >
-                                Login
-                            </button>
+          <div>
+            Don't have an account?<Link to="/signup"> Sign Up</Link>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
 
-                            <Link to='/forgot-password'>Forgot Password?</Link>
-                        </form>
-
-                        <div>Don't have an account?<Link to='/signup'> Sign Up</Link></div>
-                    </>
-            }
-        </div>
-    )
-};
-
-export default SignIn;
-
-
+export default SignIn
