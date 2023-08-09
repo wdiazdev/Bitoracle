@@ -9,7 +9,6 @@ export const GlobalMarketData = () => {
   const {
     data: global,
     isLoading,
-    error,
     isError,
   } = useQuery({
     queryKey: ["Global Market Data"],
@@ -27,7 +26,7 @@ export const GlobalMarketData = () => {
     return <Spinner />
   }
 
-  if (isError || !global) {
+  if (isError) {
     return (
       <Error>
         <h3>Error: {error.message}</h3>
