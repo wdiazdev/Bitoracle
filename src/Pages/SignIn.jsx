@@ -4,6 +4,7 @@ import { userAuth } from "../Context/AuthContext"
 
 const SignIn = () => {
   const [error, setError] = useState()
+  const [passwordError, setPasswordError] = useState("")
 
   const emailRef = useRef()
 
@@ -26,6 +27,15 @@ const SignIn = () => {
     }
   }
 
+  const handlePasswordChange = () => {
+    const passwordValue = passwordRef.current.value
+    if (passwordValue.length < 6) {
+      setPasswordError("Password must be at least 6 characters.")
+    } else {
+      setPasswordError("")
+    }
+  }
+
   return (
     <div className="signup">
       {currentUser ? (
@@ -40,6 +50,11 @@ const SignIn = () => {
         </p>
       ) : (
         <>
+          <div className="test--account">
+            <p>Test account:</p>
+            <p>User: test@test.com</p>
+            <p>Password: test123</p>
+          </div>
           <form className="form" onSubmit={handleSubmit}>
             <h2>Log In</h2>
 
@@ -52,10 +67,11 @@ const SignIn = () => {
 
             <div className="signup--input--container">
               <label htmlFor="password">Password</label>
-              <input type="password" ref={passwordRef} required />
+              <input type="password" ref={passwordRef} onChange={handlePasswordChange} required />
+              <p>{passwordError}</p>
             </div>
 
-            <button type="submit" className="signup--btn">
+            <button type="submit" className="signup--btn" disabled={passwordError}>
               Login
             </button>
 

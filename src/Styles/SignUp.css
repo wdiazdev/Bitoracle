@@ -1,96 +1,112 @@
 .signup {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url('/src/assets/signupbg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url("/src/assets/signupbg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.test--account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #333;
+  padding: 0.5rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
 }
 
 .signup h2 {
-    font-family: var(--secondary--font);
-    font-size: 3rem;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #00FFFF 0%, #d40071 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-family: var(--secondary--font);
+  font-size: 3rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #00ffff 0%, #d40071 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .form {
-    width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 2rem;
-    border: 1px solid var(--primary--color);
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.6) 20px 2px 4px, rgba(0, 0, 0, 0.6)20px 10px 25px 15px, rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
-    padding: 2rem;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  border: 1px solid var(--primary--color);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.6) 20px 2px 4px, rgba(0, 0, 0, 0.6) 20px 10px 25px 15px,
+    rgba(0, 0, 0, 0.2) 1px -3px 0px inset;
+  padding: 2rem;
 }
 
 .signup--input--container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .signup--input--container input {
-    padding: 1rem;
-    outline: none;
-    background: transparent;
-    border-radius: 10px;
-    font-size: 1rem;
-    color: #fff;
-    border: 1px solid #333;
+  padding: 1rem;
+  outline: none;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #fff;
+  border: 1px solid #333;
 }
 
 .signup--input--container input:focus {
-    border: 2px solid var(--primary--color);
-    box-shadow: 0 0 10px var(--primary--color);
+  border: 2px solid var(--primary--color);
+  box-shadow: 0 0 10px var(--primary--color);
+}
+
+.signup--input--container p {
+  font-size: 0.8rem;
 }
 
 .signup--btn {
-    width: 100%;
-    padding: 1rem;
-    color: #111;
-    background: var(--primary--color);
-    font-size: 1.2rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    outline: none;
-    border: none;
-    text-transform: uppercase;
+  width: 100%;
+  padding: 1rem;
+  color: #111;
+  background: var(--primary--color);
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
 }
 
 .signup--btn:hover {
-    box-shadow: 0 0 10px #ffffff;
-    background: transparent;
-    color: var(--primary--color);
+  box-shadow: 0 0 10px #ffffff;
+  background: transparent;
+  color: var(--primary--color);
 }
 
 .signup--error {
-    padding: 0.8rem;
-    color: #DC0000;
-    text-align: center;
+  padding: 0.8rem;
+  color: #dc0000;
+  text-align: center;
 }
 
 .reset--pass--msg {
-    padding: 0.8rem;
-    color: #7CFC00;
-    text-align: center;
+  padding: 0.8rem;
+  color: #7cfc00;
+  text-align: center;
 }
 
 a {
-    color: var(--primary--color);
-    transition: 0.3s;
+  color: var(--primary--color);
+  transition: 0.3s;
 }
 
 a:hover {
-    color: #fff;
+  color: #fff;
 }
