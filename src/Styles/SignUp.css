@@ -110,3 +110,11 @@ a {
 a:hover {
   color: #fff;
 }
+
+.invalid--icon {
+  width: 100%;
+  display: flex;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 100;
+}

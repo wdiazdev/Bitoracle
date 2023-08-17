@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { userAuth } from "../Context/AuthContext"
+import { FaRegFrown } from "react-icons/fa"
+import { toast } from "sonner"
 
 const SignIn = () => {
-  const [error, setError] = useState()
   const [passwordError, setPasswordError] = useState("")
 
   const emailRef = useRef()
@@ -17,12 +18,12 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      setError("")
       await signIn(emailRef.current.value, passwordRef.current.value)
+      toast.success("Login Successfully!")
       console.log("Login Successfully")
       navigate("/account")
     } catch (e) {
-      setError("Unable to login")
+      toast.error("Unable to login!")
       console.log(e.message)
     }
   }
@@ -58,8 +59,6 @@ const SignIn = () => {
           <form className="form" onSubmit={handleSubmit}>
             <h2>Log In</h2>
 
-            {error && <p className="signup--error">{error}</p>}
-
             <div className="signup--input--container">
               <label htmlFor="email">Email</label>
               <input type="email" ref={emailRef} required />
@@ -72,7 +71,7 @@ const SignIn = () => {
             </div>
 
             <button type="submit" className="signup--btn" disabled={passwordError}>
-              Login
+              {passwordError ? <FaRegFrown className="invalid--icon" /> : "Login"}
             </button>
 
             <Link to="/forgot-password">Forgot Password?</Link>

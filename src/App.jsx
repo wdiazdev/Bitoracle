@@ -7,6 +7,7 @@ import ProtectedRoute from "./Components/ProtectedRoute"
 import { Error404 } from "./Components/Error404"
 import AOS from "aos"
 import "aos/dist/aos.css"
+import { Toaster } from "sonner"
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
         />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Toaster richColors position="top-right" />
     </div>
   )
 }
