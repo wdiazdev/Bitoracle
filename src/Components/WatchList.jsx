@@ -1,111 +1,100 @@
-import React, { useEffect, useState } from 'react'
-import { userAuth } from '../Context/AuthContext';
-import { db } from '../Utilities/Firebase';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
-import { AiOutlineCloseCircle } from 'react-icons/Ai';
-import { BsInfoSquare } from 'react-icons/Bs';
-import { formatCurrency } from '../Utilities/formatCurrency';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import { userAuth } from "../Context/AuthContext"
+import { db } from "../Utilities/Firebase"
+import { doc, onSnapshot, updateDoc } from "firebase/firestore"
+import { AiOutlineCloseCircle } from "react-icons/Ai"
+import { BsInfoSquare } from "react-icons/Bs"
+import { useNavigate } from "react-router-dom"
+import { formatCurrency } from "../Utilities/FormatCurrency"
 
 export const WatchList = () => {
+  const [savedCoins, setSavedCoins] = useState([])
 
-    const [savedCoins, setSavedCoins] = useState([]);
+  const { currentUser } = userAuth()
 
-    const { currentUser } = userAuth();
+  const navigate = useNavigate()
 
-    const navigate = useNavigate();
+  //This function sets up a listener for changes to the document in the
+  //Firestore database. Whenever the document changes, the callback function is
+  //called with the updated document data.
 
-    //This function sets up a listener for changes to the document in the 
-    //Firestore database. Whenever the document changes, the callback function is 
-    //called with the updated document data.
+  useEffect(() => {
+    onSnapshot(doc(db, "users", `${currentUser?.email}`), (doc) => {
+      setSavedCoins(doc.data()?.savedCoins)
+    })
+  }, [currentUser?.email])
 
-    useEffect(() => {
-        onSnapshot(doc(db, 'users', `${currentUser?.email}`), (doc => {
-            setSavedCoins(doc.data()?.savedCoins);
-        }))
-    }, [currentUser?.email]);
+  const coinRef = doc(db, "users", `${currentUser?.email}`)
 
-    const coinRef = doc(db, 'users', `${currentUser?.email}`);
+  const deleteSavedCoin = async (coinId) => {
+    try {
+      const deleteCoin = savedCoins.filter((i) => i.id !== coinId)
+      await updateDoc(coinRef, {
+        savedCoins: deleteCoin,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
-    //this function takes an ID parameter and deletes the corresponding 
-    //coin from an array of coins stored in a Firestore document. 
+  return (
+    <>
+      {savedCoins.length ? (
+        <div className="watchlist--container">
+          <h2>Watchlist</h2>
 
-    const deleteSavedCoin = async (coinId) => {
-        try {
-            const deleteCoin = savedCoins.filter((i) => i.id !== coinId);
-            await updateDoc(coinRef, {
-                savedCoins: deleteCoin
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    };
+          <table>
+            <thead>
+              <tr className="watchlist--table--head">
+                <th>Name</th>
+                <th>Price</th>
+                <th>ATH</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
 
-    // console.log(savedCoins);
+            {savedCoins.map((item) => {
+              return (
+                <tbody key={item.id}>
+                  <tr className="asset--table--row">
+                    <td className="td--name">
+                      <img src={item.img} alt={item.name} />
+                      <p>{item.name}</p>
+                      <p
+                        style={{
+                          textTransform: "uppercase",
+                          color: "var(--secondary--color)",
+                        }}
+                      >
+                        {item.symbol}
+                      </p>
+                    </td>
 
-    return (
-        <>
-            {savedCoins.length > 0 ?
-                <div className='watchlist--container'>
+                    <td>{formatCurrency(item.price)}</td>
 
-                    <h2>Watchlist</h2>
+                    <td>{formatCurrency(item.ath)}</td>
 
-                    <table>
-                        <thead>
-                            <tr className='watchlist--table--head'>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>ATH</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                    <td>
+                      <BsInfoSquare
+                        className="asset--delete--btn"
+                        onClick={() => {
+                          console.log(`Navigating to /coin/${item.id}`)
+                          navigate(`/coin/${item.id}`)
+                        }}
+                      />
+                    </td>
 
-                        {savedCoins.map((item, index) => {
-                            return (
-                                <tbody key={item.id}>
-                                    <tr className='asset--table--row'>
-
-                                        <td className='td--name'>
-                                            <img src={item.img} alt={item.name} />
-                                            <p>{item.name}</p>
-                                            <p style={{
-                                                textTransform: 'uppercase',
-                                                color: 'var(--secondary--color)'
-                                            }}>
-                                                {item.symbol}
-                                            </p>
-                                        </td>
-
-                                        <td>{formatCurrency(item.price)}</td>
-
-                                        <td>{formatCurrency(item.ath)}</td>
-
-                                        <td>
-                                            <BsInfoSquare className='asset--delete--btn'
-                                                onClick={() => {
-                                                    console.log(`Navigating to /coin/${item.id}`);
-                                                    navigate(`/coin/${item.id}`);
-                                                }}
-                                            />
-                                        </td>
-
-                                        <td>
-                                            <AiOutlineCloseCircle
-                                                className='asset--delete--btn'
-                                                onClick={() => deleteSavedCoin(item.id)}
-                                            />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            )
-                        })}
-                    </table>
-
-                </div>
-                :
-                null
-            }
-        </>
-    )
-};
+                    <td>
+                      <AiOutlineCloseCircle className="asset--delete--btn" onClick={() => deleteSavedCoin(item.id)} />
+                    </td>
+                  </tr>
+                </tbody>
+              )
+            })}
+          </table>
+        </div>
+      ) : null}
+    </>
+  )
+}

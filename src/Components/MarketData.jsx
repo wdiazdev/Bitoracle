@@ -28,33 +28,37 @@ export const MarketData = () => {
     refetchOnWindowFocus: false,
   })
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
-  if (isError) {
-    return (
-      <Error>
-        <h3>Error: {error.message}</h3>
-      </Error>
-    )
-  }
-
   return (
-    <div className="crypto--data">
-      <MainSearch setSearch={setSearch} />
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : isError ? (
+        <Error>
+          <h3>Error: {error.message}</h3>
+        </Error>
+      ) : (
+        <div className="crypto--data">
+          <MainSearch setSearch={setSearch} />
 
-      <MarketTable page={page} setPage={setPage} itemsPerPage={itemsPerPage} search={search} cryptoData={cryptoData} />
+          <MarketTable
+            page={page}
+            setPage={setPage}
+            itemsPerPage={itemsPerPage}
+            search={search}
+            cryptoData={cryptoData}
+          />
 
-      {cryptoData && cryptoData?.length && (
-        <Pagination
-          page={page}
-          setPage={setPage}
-          itemsPerPage={itemsPerPage}
-          setItemsPerPage={setItemsPerPage}
-          cryptoData={cryptoData}
-        />
+          {cryptoData.length && (
+            <Pagination
+              page={page}
+              setPage={setPage}
+              itemsPerPage={itemsPerPage}
+              setItemsPerPage={setItemsPerPage}
+              cryptoData={cryptoData}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   )
 }
