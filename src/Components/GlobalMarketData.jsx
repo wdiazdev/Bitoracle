@@ -33,7 +33,7 @@ export const GlobalMarketData = () => {
   if (global.data) {
     return (
       <>
-        <div data-aos="fade-up" data-aos-duration="1000">
+        <section data-aos="fade-up" data-aos-duration="1000">
           <div>
             <div className="global--market--data">
               <div>
@@ -63,7 +63,7 @@ export const GlobalMarketData = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </>
     )
   }

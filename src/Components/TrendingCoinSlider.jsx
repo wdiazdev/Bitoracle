@@ -31,7 +31,7 @@ export const TrendingCoinSlider = () => {
   }
 
   return (
-    <div className="trending--container" data-aos="fade-up" data-aos-duration="2000">
+    <section className="trending--container" data-aos="fade-up" data-aos-duration="2000">
       <h3>Trending Cryptos</h3>
 
       <Swiper
@@ -59,7 +59,7 @@ export const TrendingCoinSlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   )
 }
 

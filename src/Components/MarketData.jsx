@@ -29,7 +29,7 @@ export const MarketData = () => {
   })
 
   return (
-    <>
+    <section>
       {isLoading ? (
         <Spinner />
       ) : isError ? (
@@ -59,6 +59,6 @@ export const MarketData = () => {
           )}
         </div>
       )}
-    </>
+    </section>
   )
 }
